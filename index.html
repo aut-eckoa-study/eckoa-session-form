@@ -1,108 +1,3 @@
-
-/
-Claude finished the response
-I dont think we can get trainers to stay for entire session so need them to fill in their parts in 3 including making a call on technique  (based on the warm up technique) and initials.  These parts (Prescribed dose completed?
-Safety
-Adverse event or symptom flare?
-Serious adverse event?
-Any unexpected medical event requiring intervention or hospitalisation.) will need to be filled in by the  participant themselves
-
-
-Restructured form flow by bifurcating trainer and participant responsibilities
-Restructured form flow by bifurcating trainer and participant responsibilities
-Got it — so the new split is:
-
-Trainer does (after warm-up, then leaves):
-
-Cadence
-Prescribed dose
-Resistance (Light / Moderate / Somewhat hard)
-Technique satisfactory (based on warm-up)
-Trainer initials
-Participant does after the session:
-
-RPE
-Max pain NRS
-Prescribed dose completed?
-Adverse event or symptom flare?
-Serious adverse event?
-AE/SAE details if needed
-New screen order would be:
-
-Participant selection
-Pre-session pain + safety checks
-Warm-up instruction page
-Trainer section → trainer leaves after this
-Phase banner / Ready to ride
-Post-session participant questions (RPE, max pain, dose completed, AE/SAE)
-Summary & submit
-Is that right before I go ahead and rebuild it?
-
-for the cadence can you have 30 as standard, with a drop down box with 25 and 20. What is RPE?
-
-RPE = Rate of Perceived Exertion — it's the "how hard did the session feel" question (Light / Somewhat hard / Moderate / Hard) that the participant rates after the session. Just checking you're happy to keep that in the post-session participant section.
-
-And confirmed on cadence — default/display of 30 rpm, with a dropdown to select 25 or 20 if the trainer reduces it.
-
-So the cadence field would look like:
-
-Cadence (rpm)
-30 (default)
-Drop down: 25 / 20
-
-Should 30 just show as the pre-selected option, or do you want it displayed prominently as the standard and only changed if needed?
-
-just show as pre selected
-
-
-Architected comprehensive screen rebuild with preset defaults
-Architected comprehensive screen rebuild with preset defaults
-Perfect — I have everything I need. Building it now.
-
-Summary of all changes:
-
-Screen 2 (NEW): Warm-up instruction page
-Screen 3 (NEW Trainer): Cadence dropdown (30 pre-selected, 25, 20), Prescribed dose, Resistance dropdown (Light/Moderate/Somewhat hard), Technique, Initials — then trainer leaves
-Duration field: removed
-Screen 5 (Post-session participant): RPE, Max pain, Dose completed, AE/SAE
-
-Write complete rebuilt index.html with all changes
-Write complete rebuilt index.html with all changes
-is it done?
-
-
-Ran a command, read a file
-Ran a command, read a file
-Yes — done. Here's what's changed:
-
-New screen order:
-
-Participant selection
-Pre-session pain + safety checks
-Warm-up page — step-by-step instructions, professional wording
-Trainer section — Cadence (30 pre-selected, 25/20 dropdown), Prescribed dose, Resistance (Light/Moderate/Somewhat hard), Technique based on warm-up, Initials — then the button says "Session setup complete — hand phone to participant"
-Phase banner / Ready to ride
-Post-session participant — RPE, Max pain, Session completed, Unusual event, Medical attention needed
-Summary & submit
-Done
-Also removed: Total eccentric loading time field — gone completely.
-
-Same process to push it — copy all, paste into GitHub editor replacing the current index.html, commit. Want me to walk through anything before you do that?
-
-
-Index
-Code · HTML 
-
-
-
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-
-
-Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -210,7 +105,7 @@ textarea { min-height:80px; resize:none; }
   <button onclick="trySyncQueue()">Sync now</button>
 </div>
 <div id="card-wrap">
- 
+
   <!-- SCREEN 0: Participant selection -->
   <div class="screen active" id="screen-0">
     <div class="card">
@@ -257,7 +152,7 @@ textarea { min-height:80px; resize:none; }
       </div>
     </div>
   </div>
- 
+
   <!-- SCREEN 1: Pre-session pain + safety -->
   <div class="screen" id="screen-1">
     <div class="card">
@@ -357,7 +252,7 @@ textarea { min-height:80px; resize:none; }
       </div>
     </div>
   </div>
- 
+
   <!-- SCREEN 2: Warm-up -->
   <div class="screen" id="screen-2">
     <div class="warmup-box">
@@ -384,7 +279,7 @@ textarea { min-height:80px; resize:none; }
       Your trainer will complete the session details below, then you are ready to begin your eccentric cycling session.
     </div>
   </div>
- 
+
   <!-- SCREEN 3: Trainer section (pre-ride) -->
   <div class="screen" id="screen-3">
     <div class="trainer-header">
@@ -440,7 +335,7 @@ textarea { min-height:80px; resize:none; }
       </div>
     </div>
   </div>
- 
+
   <!-- SCREEN 4: Phase info / ready to ride -->
   <div class="screen" id="screen-4">
     <div class="phase-banner">
@@ -458,7 +353,7 @@ textarea { min-height:80px; resize:none; }
       <div class="screen-sub">Your trainer has set the bike. When your session is <strong>finished</strong>, tap Continue to complete your post-session questions.</div>
     </div>
   </div>
- 
+
   <!-- SCREEN 5: Post-session (participant) -->
   <div class="screen" id="screen-5">
     <div class="card">
@@ -519,7 +414,7 @@ textarea { min-height:80px; resize:none; }
       </div>
     </div>
   </div>
- 
+
   <!-- SCREEN 6: Summary & submit -->
   <div class="screen" id="screen-6">
     <div class="card" style="text-align:center;padding:28px 18px">
@@ -532,7 +427,7 @@ textarea { min-height:80px; resize:none; }
       <div style="font-size:13px;color:#5D3A00;line-height:1.5">Data will be sent securely to the ECKOA REDCap database at AUT. If you have no internet connection, it will be saved and sent automatically next time you open this form on wifi.</div>
     </div>
   </div>
- 
+
   <!-- SCREEN 7: Done -->
   <div class="screen" id="screen-7">
     <div class="card" style="text-align:center;padding:40px 18px">
@@ -543,7 +438,7 @@ textarea { min-height:80px; resize:none; }
       <button class="btn-next" style="position:static;max-width:220px;margin:0 auto;display:block" onclick="resetForm()">Log another session</button>
     </div>
   </div>
- 
+
   <!-- SCREEN 8: Paused -->
   <div class="screen" id="screen-8">
     <div class="card" style="text-align:center;padding:28px 18px">
@@ -567,13 +462,13 @@ textarea { min-height:80px; resize:none; }
     <button class="btn-next" style="position:static;max-width:100%;margin:0 0 10px 0" onclick="submitPause()">Log as paused</button>
     <button style="background:none;border:none;color:var(--muted);font-size:13px;display:block;margin:0 auto;cursor:pointer;padding:8px" onclick="resumeFromPause()">Go back to pre-session check</button>
   </div>
- 
+
 </div>
 <div id="bottom-nav">
   <button class="btn-back" id="btn-back" onclick="goBack()" style="display:none">Back</button>
   <button class="btn-next" id="btn-next" onclick="goNext()">Start</button>
 </div>
- 
+
 <script>
 const PARTICIPANTS = {
   northshore: [
@@ -588,7 +483,7 @@ const PARTICIPANTS = {
 const SITE_NAMES = { northshore:'AUT Northshore Fitness Centre', city:'AUT City Fitness Centre', south:'AUT South Fitness Centre' };
 const REDCAP_URL   = 'https://redcap.aut.ac.nz/api/';
 const REDCAP_TOKEN = '170E226C48A4D1F770A9D68EE772B727';
- 
+
 const PHASES = {
   1:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
   2:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
@@ -621,10 +516,10 @@ const PROG_LABELS={'1':'Increase','2':'Maintain','3':'Reduce','4':'Pause','none'
 const YN={'1':'Yes','0':'No','2':'Not sure'};
 const SW_LABELS={'1':'None','2':'Mild','3':'Moderate','4':'Severe'};
 const TECH_LABELS={'1':'Yes','0':'No','2':'NA'};
- 
+
 let state={},site='',siteParticipants=[],screenIdx=0;
 const SCREENS=[0,1,2,3,4,5,6,7];
- 
+
 function detectSite(){
   const params=new URLSearchParams(window.location.search);
   const s=(params.get('site')||'').toLowerCase();
@@ -641,7 +536,7 @@ function detectSite(){
     });
   }
 }
- 
+
 function onParticipantSelect(){
   const redcapId=document.getElementById('sel-participant').value;
   if(!redcapId){document.getElementById('welcome-back-card').style.display='none';document.getElementById('new-participant-card').style.display='none';return;}
@@ -666,7 +561,7 @@ function onParticipantSelect(){
 function showSessionOverride(){const el=document.getElementById('session-override');el.style.display=el.style.display==='none'?'block':'none';}
 function onSessionOverride(){const v=parseInt(document.getElementById('sel-session-override').value);if(!v)return;state.session=v;const ph=PHASES[v];document.getElementById('wb-session').textContent='Session '+v;document.getElementById('wb-phase').textContent='Phase '+ph.p+' - Week '+ph.w+' - '+ph.dose;document.getElementById('session-badge').textContent='Session '+v;}
 function onNewSessionSelect(){const v=parseInt(document.getElementById('sel-session-new').value);state.session=v||null;if(v){document.getElementById('session-badge').textContent='Session '+v;document.getElementById('session-badge').style.display='block';}}
- 
+
 function buildNRS(id,key){
   const el=document.getElementById(id);
   for(let i=0;i<=10;i++){
@@ -684,7 +579,7 @@ function buildNRS(id,key){
     el.appendChild(b);
   }
 }
- 
+
 function initTap(groupId,key,cb){
   document.querySelectorAll('#'+groupId+' .tap-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -693,7 +588,7 @@ function initTap(groupId,key,cb){
     });
   });
 }
- 
+
 function updatePhaseDisplay(){
   const s=state.session;if(!s)return;
   const ph=PHASES[s];
@@ -703,7 +598,7 @@ function updatePhaseDisplay(){
   if(doseVal)state.prescribedDose=doseVal;
   else{document.getElementById('sel-dose').value=String(ph.rc);state.prescribedDose=String(ph.rc);}
 }
- 
+
 function validate(screenN){
   if(screenN===0){
     if(!state.participantRedcap){alert('Please select your name.');return false;}
@@ -760,7 +655,7 @@ function validate(screenN){
   }
   return true;
 }
- 
+
 function buildSummary(){
   const ph=PHASES[state.session];
   const rows=[
@@ -784,7 +679,7 @@ function buildSummary(){
   ];
   document.getElementById('summary-card').innerHTML=rows.map(([k,v])=>'<div class="sum-row"><span>'+k+'</span><span>'+v+'</span></div>').join('');
 }
- 
+
 function applyProgressionDose(val){
   if(!state.session)return;const ph=PHASES[state.session];let doseRc=ph.rc,banner='';
   if(val==='3'&&ph.rc>1){doseRc=ph.rc-1;banner='Reduced from scheduled '+ph.dose;}
@@ -794,7 +689,7 @@ function applyProgressionDose(val){
   document.getElementById('phase-detail-text').textContent=banner?'Note: '+banner+' - '+info.detail:info.detail;
   document.getElementById('sel-dose').value=String(doseRc);state.prescribedDose=String(doseRc);
 }
- 
+
 function updateProgressionCriteria(){
   const painOK=state.lastPainOK==='1',settleOK=state.symptoms24h==='1',techOK=state.lastTechnique==='1';
   const painSet=state.lastPainOK!==undefined,settleSet=state.symptoms24h!==undefined,techSet=state.lastTechnique!==undefined;
@@ -808,14 +703,14 @@ function updateProgressionCriteria(){
     else{sug.style.background='#FFF3CD';sug.style.color='#856404';sug.textContent='Suggested: Reduce dose - not all criteria met';}
   } else {sug.style.display='none';}
 }
- 
+
 function updateSymptomsGate(){
   const notSettled=state.symptoms24h==='0',highSwelling=state.swelling==='3'||state.swelling==='4',show=notSettled||highSwelling;
   const gate=document.getElementById('card-symptoms-gate');gate.style.display=show?'block':'none';
   if(show){let t='';if(notSettled&&highSwelling)t='Symptoms not settled and significant swelling reported';else if(notSettled)t='Symptoms have not returned to baseline within 24 hours';else t='Moderate or severe swelling / stiffness reported';document.getElementById('symptoms-gate-title').textContent=t;}
   if(!show)state.symptomsGateDecision=null;
 }
- 
+
 function goToPause(){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-8').classList.add('active');
@@ -825,7 +720,7 @@ function goToPause(){
   document.getElementById('card-wrap').scrollTop=0;window.scrollTo(0,0);
 }
 function resumeFromPause(){screenIdx=1;showScreen(screenIdx);}
- 
+
 async function submitPause(){
   const initials=document.getElementById('inp-pause-initials').value.trim();
   if(!initials){alert('Please enter trainer initials.');return;}
@@ -840,7 +735,7 @@ async function submitPause(){
   document.getElementById('success-msg').textContent=state.participantDisplay+' - Session '+state.session+' - Paused';
   document.getElementById('offline-note').textContent=sentLive?'Paused session recorded in REDCap.':'Saved locally - will sync when back online.';
 }
- 
+
 function showScreen(idx){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-'+SCREENS[idx]).classList.add('active');
@@ -855,30 +750,30 @@ function showScreen(idx){
   else nb.textContent='Continue';
   if(idx===SCREENS.length-1){nb.style.display='none';document.getElementById('btn-back').style.display='none';}
 }
- 
+
 function goNext(){
   if(!validate(SCREENS[screenIdx]))return;
   if(screenIdx===SCREENS.length-2){submitForm();return;}
   screenIdx++;showScreen(screenIdx);
 }
 function goBack(){if(screenIdx>0){screenIdx--;showScreen(screenIdx);}}
- 
+
 function getProgress(id){try{return JSON.parse(localStorage.getItem('eckoa_progress_'+id));}catch(e){return null;}}
 function saveProgress(id,s){try{localStorage.setItem('eckoa_progress_'+id,JSON.stringify({lastSession:s,date:new Date().toISOString()}));}catch(e){}}
- 
+
 const QUEUE_KEY='eckoa_queue';
 function getQueue(){try{return JSON.parse(localStorage.getItem(QUEUE_KEY))||[];}catch(e){return[];}}
 function saveQueue(q){try{localStorage.setItem(QUEUE_KEY,JSON.stringify(q));}catch(e){}}
 function addToQueue(rec){const q=getQueue();q.push({record:rec,ts:Date.now()});saveQueue(q);updateSyncBanner();}
 function updateSyncBanner(){const q=getQueue();const b=document.getElementById('sync-banner');if(q.length>0){b.style.display='flex';document.getElementById('sync-msg').textContent=q.length+' session'+(q.length>1?'s':'')+' waiting to sync';}else b.style.display='none';}
- 
+
 async function trySyncQueue(){
   if(REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE'){alert('REDCap API not yet configured.');return;}
   const q=getQueue();if(!q.length)return;let sent=0;
   for(const item of q){try{const ok=await postToREDCap(item.record);if(ok)sent++;}catch(e){}}
   if(sent>0){const remaining=getQueue().slice(sent);saveQueue(remaining);updateSyncBanner();if(remaining.length===0)alert(sent+' session'+(sent>1?'s':'')+' synced to REDCap successfully.');}
 }
- 
+
 function buildRecord(){
   return{
     record_id:state.participantRedcap,
@@ -904,12 +799,12 @@ function buildRecord(){
     ae_sae_details:state.aeDetails||'',
   };
 }
- 
+
 async function postToREDCap(record){
   const form=new FormData();form.append('token',REDCAP_TOKEN);form.append('content','record');form.append('format','json');form.append('type','flat');form.append('data',JSON.stringify([record]));form.append('overwriteBehavior','normal');form.append('returnFormat','json');
   const r=await fetch(REDCAP_URL,{method:'POST',body:form});const res=await r.json();return res.count>0||res===1;
 }
- 
+
 async function submitForm(){
   const nb=document.getElementById('btn-next');nb.textContent='Submitting...';nb.disabled=true;
   const record=buildRecord();let sentLive=false;
@@ -920,7 +815,7 @@ async function submitForm(){
   document.getElementById('success-msg').textContent=state.participantDisplay+' - Session '+state.session+' - '+state.sessionDate;
   document.getElementById('offline-note').textContent=sentLive?'Saved to REDCap successfully.':(REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE'?'Demo mode - connect API token to save to REDCap.':'No connection - saved locally. Will sync automatically when you next open this form on wifi.');
 }
- 
+
 function resetForm(){
   state={};
   document.querySelectorAll('.tap-btn').forEach(b=>b.classList.remove('selected'));
@@ -939,10 +834,10 @@ function resetForm(){
   document.getElementById('session-badge').style.display='none';
   screenIdx=0;showScreen(0);
 }
- 
+
 function updateConn(){const online=navigator.onLine;document.getElementById('conn-dot').classList.toggle('offline',!online);if(online)trySyncQueue();}
 window.addEventListener('online',updateConn);window.addEventListener('offline',updateConn);
- 
+
 detectSite();
 buildNRS('nrs-pre','presessionPain');
 buildNRS('nrs-max','maxPain');
@@ -963,12 +858,3 @@ updateConn();updateSyncBanner();showScreen(0);
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
