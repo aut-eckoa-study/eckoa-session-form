@@ -14,8 +14,6 @@
   --white:#FFFFFF; --card-bg:#F5FAF7;
 }
 body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--green); min-height:100vh; display:flex; flex-direction:column; color:var(--text); -webkit-font-smoothing:antialiased; }
-
-/* Header */
 #app-header { background:var(--green); padding:14px 18px 0; position:sticky; top:0; z-index:10; }
 .header-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
 .logo-text { font-size:20px; font-weight:800; color:var(--white); letter-spacing:-0.5px; }
@@ -26,90 +24,55 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
 .conn-dot.offline { background:#E8A020; }
 .progress-track { height:4px; background:rgba(255,255,255,0.2); border-radius:2px; overflow:hidden; }
 .progress-fill { height:100%; background:#7ECFA0; border-radius:2px; transition:width 0.3s ease; width:0%; }
-
-/* Sync banner */
 #sync-banner { background:var(--amber); color:#5D3A00; font-size:13px; font-weight:600; padding:10px 16px; display:none; align-items:center; justify-content:space-between; }
 #sync-banner button { background:rgba(0,0,0,0.12); border:none; border-radius:6px; padding:4px 10px; font-size:12px; font-weight:700; color:#5D3A00; cursor:pointer; }
-
-/* Card wrap */
 #card-wrap { flex:1; padding:16px 14px 100px; overflow-y:auto; }
 .screen { display:none; }
 .screen.active { display:block; }
 .card { background:var(--white); border-radius:16px; padding:22px 18px; margin-bottom:14px; box-shadow:0 2px 12px rgba(0,0,0,0.08); }
-
-/* Typography */
 .screen-label { font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--green-mid); margin-bottom:4px; }
 .screen-title { font-size:22px; font-weight:800; color:var(--text); line-height:1.2; margin-bottom:6px; }
 .screen-sub { font-size:14px; color:var(--muted); line-height:1.5; }
 .field { margin-bottom:20px; }
 .field-label { font-size:15px; font-weight:700; color:var(--text); margin-bottom:8px; display:block; }
 .field-hint { font-size:13px; color:var(--muted); margin-bottom:8px; line-height:1.4; }
-
-/* Welcome back card */
 .welcome-back { background:var(--green); color:var(--white); border-radius:12px; padding:16px; margin-bottom:14px; }
 .welcome-back .wb-name { font-size:18px; font-weight:800; margin-bottom:2px; }
 .welcome-back .wb-session { font-size:28px; font-weight:800; margin:8px 0 4px; }
 .welcome-back .wb-phase { font-size:13px; opacity:0.8; margin-bottom:12px; }
 .wb-change { background:rgba(255,255,255,0.15); border:none; border-radius:8px; padding:8px 14px; color:var(--white); font-size:13px; font-weight:600; cursor:pointer; width:100%; text-align:center; }
-
-/* Site badge */
-.site-badge { display:inline-block; background:var(--green-light); color:var(--green); font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; margin-bottom:16px; }
-
-/* Phase banner */
 .phase-banner { background:var(--green); color:var(--white); border-radius:12px; padding:14px 16px; margin-bottom:14px; }
 .phase-banner .phase-label { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.7; margin-bottom:3px; }
 .phase-banner .phase-dose { font-size:22px; font-weight:800; margin-bottom:2px; }
 .phase-banner .phase-detail { font-size:13px; opacity:0.85; line-height:1.5; }
-
-/* Callout */
 .callout { background:var(--amber-light); border-left:3px solid var(--amber); border-radius:8px; padding:12px 14px; font-size:13px; color:#5D3A00; line-height:1.5; margin-bottom:14px; }
 .callout strong { display:block; margin-bottom:2px; }
 .callout-red { background:var(--red-light); border-color:var(--red); color:#5c0000; }
-
-/* Form controls */
-select, input[type="text"], input[type="number"], textarea {
-  width:100%; padding:13px 14px; border:2px solid var(--border); border-radius:10px;
-  font-size:16px; color:var(--text); background:var(--white); font-family:inherit;
-}
+select, input[type="text"], input[type="number"], textarea { width:100%; padding:13px 14px; border:2px solid var(--border); border-radius:10px; font-size:16px; color:var(--text); background:var(--white); font-family:inherit; }
 select { appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B5E3B' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-color:var(--white); padding-right:40px; }
 select:focus, input:focus, textarea:focus { outline:none; border-color:var(--green); }
 textarea { min-height:80px; resize:none; }
-
-/* Tap buttons */
 .tap-group { display:flex; flex-direction:column; gap:8px; }
 .tap-group.horiz { flex-direction:row; flex-wrap:wrap; }
 .tap-btn { border:2px solid var(--border); border-radius:10px; padding:12px 16px; font-size:15px; font-weight:600; color:var(--text); background:var(--card-bg); cursor:pointer; text-align:left; transition:all 0.15s; -webkit-tap-highlight-color:transparent; user-select:none; flex:1; }
 .tap-btn .sub { display:block; font-size:12px; font-weight:400; color:var(--muted); margin-top:2px; }
 .tap-btn.selected { border-color:var(--green); background:var(--green-light); color:var(--green); }
 .tap-btn.selected .sub { color:var(--green-mid); }
-
-/* NRS */
 .nrs-grid { display:flex; flex-direction:column; gap:6px; margin-top:8px; }
 .nrs-btn { width:100%; padding:12px 16px; border-radius:10px; border:none; font-size:17px; font-weight:700; cursor:pointer; transition:transform 0.1s; -webkit-tap-highlight-color:transparent; display:flex; align-items:center; gap:12px; text-align:left; }
 .nrs-btn::after { content:attr(data-label); font-size:13px; font-weight:400; opacity:0.85; }
 .nrs-btn.selected { box-shadow:0 0 0 3px var(--text),0 0 0 5px white; transform:scale(1.02); z-index:1; position:relative; }
-.nrs-labels { display:none; }
-
-/* Trainer header */
 .trainer-header { background:var(--green); color:var(--white); border-radius:12px; padding:14px 16px; margin-bottom:14px; display:flex; align-items:center; gap:12px; }
 .trainer-icon { width:40px; height:40px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
 .trainer-header h3 { font-size:16px; font-weight:700; }
 .trainer-header p { font-size:13px; opacity:0.8; margin-top:2px; }
-
-/* Summary */
 .sum-row { display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding:7px 0; font-size:14px; }
 .sum-row span:first-child { color:var(--muted); }
 .sum-row span:last-child { font-weight:600; text-align:right; max-width:58%; }
-
-/* Success */
 .success-icon { width:72px; height:72px; background:var(--green-light); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:36px; margin:0 auto 16px; }
-
-/* Divider */
 .divider { height:1px; background:var(--border); margin:18px 0; }
 .conditional { display:none; }
 .conditional.show { display:block; }
-
-/* Bottom nav */
 #bottom-nav { position:fixed; bottom:0; left:0; right:0; background:var(--white); border-top:1px solid var(--border); padding:12px 16px; display:flex; gap:10px; z-index:20; }
 .btn-back { flex:0 0 80px; padding:14px; border:2px solid var(--border); border-radius:12px; background:var(--white); font-size:15px; font-weight:600; color:var(--muted); cursor:pointer; }
 .btn-next { flex:1; padding:14px; border:none; border-radius:12px; background:var(--green); color:var(--white); font-size:16px; font-weight:700; cursor:pointer; }
@@ -117,7 +80,6 @@ textarea { min-height:80px; resize:none; }
 </style>
 </head>
 <body>
-
 <div id="app-header">
   <div class="header-top">
     <div class="logo-text">ECK<span>OA</span></div>
@@ -128,97 +90,88 @@ textarea { min-height:80px; resize:none; }
   </div>
   <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
 </div>
-
 <div id="sync-banner">
-  <span id="sync-msg">📤 1 session waiting to sync</span>
+  <span id="sync-msg">&#128228; 1 session waiting to sync</span>
   <button onclick="trySyncQueue()">Sync now</button>
 </div>
-
 <div id="card-wrap">
-
-  <!-- SCREEN 0: Participant selection -->
+  <!-- SCREEN 0 -->
   <div class="screen active" id="screen-0">
     <div class="card">
       <div class="screen-label" id="site-label">Session Log</div>
       <div class="screen-title">Welcome</div>
-      <div class="screen-sub">ECKOA Feasibility Study · AUT</div>
+      <div class="screen-sub">ECKOA Feasibility Study &middot; AUT</div>
       <div class="divider"></div>
       <div class="field">
         <label class="field-label" for="sel-participant">Select your name</label>
         <div class="field-hint">Choose your initials from the list below.</div>
         <select id="sel-participant" onchange="onParticipantSelect()">
-          <option value="">— Select your name —</option>
+          <option value="">&mdash; Select your name &mdash;</option>
         </select>
       </div>
     </div>
-
-    <!-- Welcome back card (shown if returning participant) -->
     <div id="welcome-back-card" style="display:none">
       <div class="welcome-back">
         <div class="wb-name" id="wb-name"></div>
         <div style="font-size:13px;opacity:0.7;margin-bottom:4px;">Your next session</div>
         <div class="wb-session" id="wb-session"></div>
         <div class="wb-phase" id="wb-phase"></div>
-        <button class="wb-change" onclick="showSessionOverride()">Not right? Change session ↓</button>
+        <button class="wb-change" onclick="showSessionOverride()">Not right? Change session &darr;</button>
       </div>
       <div id="session-override" style="display:none">
         <div class="card">
           <div class="field">
             <label class="field-label">Select the correct session</label>
             <select id="sel-session-override" onchange="onSessionOverride()">
-              <option value="">— Select —</option>
+              <option value="">&mdash; Select &mdash;</option>
             </select>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- New participant session select (shown if first time) -->
     <div id="new-participant-card" style="display:none">
       <div class="card">
         <div class="field">
           <label class="field-label">Which session is this?</label>
           <div class="field-hint">Count from your very first cycling session. Ask your trainer if unsure.</div>
           <select id="sel-session-new" onchange="onNewSessionSelect()">
-            <option value="">— Select session —</option>
+            <option value="">&mdash; Select session &mdash;</option>
           </select>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- SCREEN 1: Pre-session (participant) -->
+  <!-- SCREEN 1 -->
   <div class="screen" id="screen-1">
     <div class="card">
-      <div class="screen-label">Before you start · Your questions</div>
+      <div class="screen-label">Before you start &middot; Your questions</div>
       <div class="screen-title">How is your knee right now?</div>
       <div class="screen-sub">Rate your pain <strong>at this moment</strong>, before any exercise.</div>
     </div>
     <div class="card">
       <div class="field">
         <label class="field-label">Knee pain right now</label>
-        <div class="field-hint">Tap a number · 0 = no pain at all · 10 = worst pain imaginable</div>
+        <div class="field-hint">Tap a number &middot; 0 = no pain at all &middot; 10 = worst pain imaginable</div>
         <div class="nrs-grid" id="nrs-pre"></div>
-        <div class="nrs-labels"><span>No pain</span><span>Worst imaginable</span></div>
       </div>
     </div>
     <div class="card" id="card-safety-gate" style="display:none">
       <div style="background:#FDECEA;border-left:4px solid #C62828;padding:12px 14px;border-radius:8px;margin-bottom:14px">
-        <div style="font-weight:700;color:#B71C1C;margin-bottom:3px">🛑 Pre-session pain is 5 or above</div>
+        <div style="font-weight:700;color:#B71C1C;margin-bottom:3px">&#128721; Pre-session pain is 5 or above</div>
         <div style="font-size:13px;color:#B71C1C;line-height:1.5">This session should not proceed without trainer review. Please speak with your trainer now.</div>
       </div>
       <div style="font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px"><strong>Safety rule:</strong> Stop or modify the session if pain becomes sharp, escalating, or above 5/10 at any point, or if you feel your knee giving way or feel unsafe.</div>
       <div class="field">
         <label class="field-label">Trainer decision</label>
         <div class="tap-group" id="tg-safety-gate">
-          <button class="tap-btn" data-val="proceed">Trainer has reviewed — proceed with caution<span class="sub">Trainer will monitor closely. Pain ≤3/10 rule still applies during session.</span></button>
+          <button class="tap-btn" data-val="proceed">Trainer has reviewed &mdash; proceed with caution<span class="sub">Trainer will monitor closely. Pain &le;3/10 rule still applies during session.</span></button>
           <button class="tap-btn" data-val="pause">Not proceeding today<span class="sub">Log this as a paused / rested session</span></button>
         </div>
       </div>
     </div>
     <div class="card" id="card-symptoms" style="display:none">
       <div class="field">
-        <label class="field-label">Was your knee pain ≤3/10 throughout your last session?</label>
+        <label class="field-label">Was your knee pain &le;3/10 throughout your last session?</label>
         <div class="tap-group horiz" id="tg-last-pain-ok">
           <button class="tap-btn" data-val="1">Yes</button>
           <button class="tap-btn" data-val="0">No</button>
@@ -230,8 +183,8 @@ textarea { min-height:80px; resize:none; }
         <label class="field-label">Did your knee settle after your last session?</label>
         <div class="field-hint">Did any pain or swelling return to normal within 24 hours?</div>
         <div class="tap-group" id="tg-24h">
-          <button class="tap-btn" data-val="1">Yes — felt back to normal within 24 hours</button>
-          <button class="tap-btn" data-val="0">No — still not fully settled</button>
+          <button class="tap-btn" data-val="1">Yes &mdash; felt back to normal within 24 hours</button>
+          <button class="tap-btn" data-val="0">No &mdash; still not fully settled</button>
           <button class="tap-btn" data-val="2">Not sure</button>
         </div>
       </div>
@@ -248,26 +201,26 @@ textarea { min-height:80px; resize:none; }
     </div>
     <div class="card" id="card-symptoms-gate" style="display:none">
       <div style="background:#FDECEA;border-left:4px solid #C62828;padding:12px 14px;border-radius:8px;margin-bottom:14px">
-        <div style="font-weight:700;color:#B71C1C;margin-bottom:3px" id="symptoms-gate-title">⚠️ Symptoms have not returned to baseline</div>
+        <div style="font-weight:700;color:#B71C1C;margin-bottom:3px" id="symptoms-gate-title">&#9888;&#65039; Symptoms have not returned to baseline</div>
         <div style="font-size:13px;color:#B71C1C;line-height:1.5">This session should not proceed without trainer review. Please speak with your trainer now.</div>
       </div>
       <div class="field">
         <label class="field-label">Trainer decision</label>
         <div class="tap-group" id="tg-symptoms-gate">
-          <button class="tap-btn" data-val="proceed">Trainer has reviewed — proceed with caution<span class="sub">Trainer will monitor closely. Pain ≤3/10 rule still applies during session.</span></button>
+          <button class="tap-btn" data-val="proceed">Trainer has reviewed &mdash; proceed with caution<span class="sub">Trainer will monitor closely. Pain &le;3/10 rule still applies during session.</span></button>
           <button class="tap-btn" data-val="pause">Not proceeding today<span class="sub">Log this as a paused / rested session</span></button>
         </div>
       </div>
     </div>
     <div class="card" id="card-progression-gate" style="display:none">
       <div style="background:#FFF3CD;border-left:4px solid #F0A500;padding:12px 14px;border-radius:8px;margin-bottom:16px">
-        <div style="font-weight:700;color:#856404;margin-bottom:3px">⚠️ Pre-session pain is 3 or above</div>
+        <div style="font-weight:700;color:#856404;margin-bottom:3px">&#9888;&#65039; Pre-session pain is 3 or above</div>
         <div style="font-size:13px;color:#856404;line-height:1.5">Trainer: review the criteria below and confirm the progression decision.</div>
       </div>
       <div style="background:#FFFBF0;border:1px solid #F0A500;border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:13px;line-height:1.8">
-        <div id="crit-pain"   style="display:flex;gap:8px"><span id="crit-pain-icon">⬜</span><span>Pain ≤3/10 throughout last session</span></div>
-        <div id="crit-settle" style="display:flex;gap:8px"><span id="crit-settle-icon">⬜</span><span>Symptoms returned to baseline within 24h</span></div>
-        <div id="crit-tech"   style="display:flex;gap:8px"><span id="crit-tech-icon">⬜</span><span>Technique satisfactory last session</span></div>
+        <div id="crit-pain" style="display:flex;gap:8px"><span id="crit-pain-icon">&#9634;</span><span>Pain &le;3/10 throughout last session</span></div>
+        <div id="crit-settle" style="display:flex;gap:8px"><span id="crit-settle-icon">&#9634;</span><span>Symptoms returned to baseline within 24h</span></div>
+        <div id="crit-tech" style="display:flex;gap:8px"><span id="crit-tech-icon">&#9634;</span><span>Technique satisfactory last session</span></div>
       </div>
       <div class="field">
         <label class="field-label">Was technique satisfactory last session?</label>
@@ -280,15 +233,14 @@ textarea { min-height:80px; resize:none; }
       <div class="field">
         <label class="field-label">Progression decision</label>
         <div class="tap-group" id="tg-progression-gate">
-          <button class="tap-btn" data-val="1">Increase dose<span class="sub">Pain ≤3/10 last session · symptoms returned to baseline within 24h · technique satisfactory</span></button>
-          <button class="tap-btn" data-val="3">Reduce dose<span class="sub">Pain exceeded 3/10 during last session, or symptoms / swelling did not return to baseline → reduce to previous step and reassess</span></button>
+          <button class="tap-btn" data-val="1">Increase dose<span class="sub">Pain &le;3/10 last session &middot; symptoms returned to baseline within 24h &middot; technique satisfactory</span></button>
+          <button class="tap-btn" data-val="3">Reduce dose<span class="sub">Pain exceeded 3/10 during last session, or symptoms / swelling did not return to baseline</span></button>
           <button class="tap-btn" data-val="4">Pause programme<span class="sub">Intercurrent illness, symptom flare, or other safety concern</span></button>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- SCREEN 2: Phase info / ready to ride -->
+  <!-- SCREEN 2 -->
   <div class="screen" id="screen-2">
     <div class="phase-banner">
       <div class="phase-label">Today's prescribed dose</div>
@@ -296,7 +248,7 @@ textarea { min-height:80px; resize:none; }
       <div class="phase-detail" id="phase-detail-text"></div>
     </div>
     <div class="callout">
-      <strong>⚠️ Safety reminder</strong>
+      <strong>&#9888;&#65039; Safety reminder</strong>
       Stop immediately and tell your trainer if your knee pain goes above 3/10, or if you feel chest pain, dizziness, or anything unusual.
     </div>
     <div class="card">
@@ -305,11 +257,10 @@ textarea { min-height:80px; resize:none; }
       <div class="screen-sub">Your trainer will set the bike. When your session is <strong>finished</strong>, tap Continue to complete your post-session questions.</div>
     </div>
   </div>
-
-  <!-- SCREEN 3: Post-session (participant) -->
+  <!-- SCREEN 3 -->
   <div class="screen" id="screen-3">
     <div class="card">
-      <div class="screen-label">After your session · Your questions</div>
+      <div class="screen-label">After your session &middot; Your questions</div>
       <div class="screen-title">How did that feel?</div>
     </div>
     <div class="card">
@@ -326,17 +277,15 @@ textarea { min-height:80px; resize:none; }
     <div class="card">
       <div class="field">
         <label class="field-label">Highest knee pain during the session</label>
-        <div class="field-hint">Rate the <strong>most</strong> you felt during cycling · 0 = no pain · 10 = worst imaginable</div>
+        <div class="field-hint">Rate the <strong>most</strong> you felt during cycling &middot; 0 = no pain &middot; 10 = worst imaginable</div>
         <div class="nrs-grid" id="nrs-max"></div>
-        <div class="nrs-labels"><span>No pain</span><span>Worst imaginable</span></div>
       </div>
     </div>
   </div>
-
-  <!-- SCREEN 4: Trainer -->
+  <!-- SCREEN 4 -->
   <div class="screen" id="screen-4">
     <div class="trainer-header">
-      <div class="trainer-icon">🏋️</div>
+      <div class="trainer-icon">&#127947;</div>
       <div><h3>Trainer section</h3><p>Complete all fields below then submit.</p></div>
     </div>
     <div class="card">
@@ -348,11 +297,11 @@ textarea { min-height:80px; resize:none; }
       <div class="field">
         <label class="field-label">Prescribed dose</label>
         <select id="sel-dose">
-          <option value="">— Select —</option>
-          <option value="1">3 × 1 min</option>
-          <option value="2">3 × 90 sec</option>
-          <option value="3">3 × 120 sec</option>
-          <option value="4">4 × 120 sec</option>
+          <option value="">&mdash; Select &mdash;</option>
+          <option value="1">3 &times; 1 min</option>
+          <option value="2">3 &times; 90 sec</option>
+          <option value="3">3 &times; 120 sec</option>
+          <option value="4">4 &times; 120 sec</option>
           <option value="5">Other / modified</option>
         </select>
       </div>
@@ -403,10 +352,10 @@ textarea { min-height:80px; resize:none; }
         </div>
       </div>
       <div class="conditional" id="ae-wrap">
-        <div class="callout callout-red"><strong>⚠️ Complete a separate AE/SAE report</strong>Note brief details below, then complete the full report with the Research Officer.</div>
+        <div class="callout callout-red"><strong>&#9888;&#65039; Complete a separate AE/SAE report</strong>Note brief details below, then complete the full report with the Research Officer.</div>
         <div class="field">
           <label class="field-label">AE / SAE brief details</label>
-          <textarea id="inp-ae-details" placeholder="Brief description…"></textarea>
+          <textarea id="inp-ae-details" placeholder="Brief description..."></textarea>
         </div>
       </div>
     </div>
@@ -417,11 +366,10 @@ textarea { min-height:80px; resize:none; }
       </div>
     </div>
   </div>
-
-  <!-- SCREEN 5: Summary & submit -->
+  <!-- SCREEN 5 -->
   <div class="screen" id="screen-5">
     <div class="card" style="text-align:center;padding:28px 18px">
-      <div class="success-icon">📋</div>
+      <div class="success-icon">&#128203;</div>
       <div class="screen-title" style="margin-bottom:6px">Ready to submit</div>
       <div class="screen-sub">Check your answers below before submitting.</div>
     </div>
@@ -430,22 +378,20 @@ textarea { min-height:80px; resize:none; }
       <div style="font-size:13px;color:#5D3A00;line-height:1.5">Data will be sent securely to the ECKOA REDCap database at AUT. If you have no internet connection, it will be saved and sent automatically next time you open this form on wifi.</div>
     </div>
   </div>
-
-  <!-- SCREEN 6: Done -->
+  <!-- SCREEN 6 -->
   <div class="screen" id="screen-6">
     <div class="card" style="text-align:center;padding:40px 18px">
-      <div class="success-icon" style="font-size:40px">✅</div>
+      <div class="success-icon" style="font-size:40px">&#9989;</div>
       <div class="screen-title" style="margin-bottom:8px">Session logged</div>
       <div class="screen-sub" style="margin-bottom:16px" id="success-msg"></div>
       <div style="font-size:13px;color:var(--muted);margin-bottom:24px" id="offline-note"></div>
       <button class="btn-next" style="position:static;max-width:220px;margin:0 auto;display:block" onclick="resetForm()">Log another session</button>
     </div>
   </div>
-
-  <!-- SCREEN 7: Paused session -->
+  <!-- SCREEN 7 -->
   <div class="screen" id="screen-7">
     <div class="card" style="text-align:center;padding:28px 18px">
-      <div class="success-icon" style="background:#FFF3CD;font-size:36px">⏸️</div>
+      <div class="success-icon" style="background:#FFF3CD;font-size:36px">&#9208;&#65039;</div>
       <div class="screen-title" style="margin-bottom:6px">Session paused</div>
       <div class="screen-sub">Today's session will not proceed. This will be recorded in the study log.</div>
     </div>
@@ -455,622 +401,249 @@ textarea { min-height:80px; resize:none; }
     <div class="card">
       <div class="field">
         <label class="field-label">Reason for pause / notes <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
-        <textarea id="inp-pause-reason" placeholder="e.g. Intercurrent illness, high pain, symptom flare…" style="min-height:80px"></textarea>
+        <textarea id="inp-pause-reason" placeholder="e.g. Intercurrent illness, high pain, symptom flare..." style="min-height:80px"></textarea>
       </div>
       <div class="field" style="margin-top:4px">
         <label class="field-label">Trainer initials</label>
         <input type="text" id="inp-pause-initials" placeholder="e.g. JB" maxlength="5" style="text-transform:uppercase">
       </div>
     </div>
-    <button class="btn-next" style="position:static;max-width:100%;margin:0 0 10px 0" onclick="submitPause()">Log as paused →</button>
+    <button class="btn-next" style="position:static;max-width:100%;margin:0 0 10px 0" onclick="submitPause()">Log as paused &rarr;</button>
     <button style="background:none;border:none;color:var(--muted);font-size:13px;display:block;margin:0 auto;cursor:pointer;padding:8px" onclick="resumeFromPause()">Go back to pre-session check</button>
   </div>
-
 </div>
-
 <div id="bottom-nav">
   <button class="btn-back" id="btn-back" onclick="goBack()" style="display:none">Back</button>
-  <button class="btn-next" id="btn-next" onclick="goNext()">Start →</button>
+  <button class="btn-next" id="btn-next" onclick="goNext()">Start &rarr;</button>
 </div>
-
 <script>
 // ═══════════════════════════════════════════════════════
-// PARTICIPANT LISTS — replace placeholder codes with
-// actual participant initials once recruited.
+// PARTICIPANT LISTS — updated with confirmed participants
 // Each entry: { display: 'Initials shown on screen', redcap: 'REDCap study ID' }
+// Add City and South participants here when confirmed.
 // ═══════════════════════════════════════════════════════
 const PARTICIPANTS = {
   northshore: [
-    { display:'NS-01', redcap:'P01' },
-    { display:'NS-02', redcap:'P02' },
-    { display:'NS-03', redcap:'P03' },
-    { display:'NS-04', redcap:'P04' },
-    { display:'NS-05', redcap:'P05' },
+    { display:'AH', redcap:'P01' },
+    { display:'WF', redcap:'P05' },
+    { display:'SR', redcap:'P13' },
+    { display:'JM', redcap:'P22' },
   ],
   city: [
-    { display:'C-01', redcap:'P06' },
-    { display:'C-02', redcap:'P07' },
-    { display:'C-03', redcap:'P08' },
-    { display:'C-04', redcap:'P09' },
-    { display:'C-05', redcap:'P10' },
+    // TBC — add initials and P0x codes when confirmed
   ],
   south: [
-    { display:'S-01', redcap:'P11' },
-    { display:'S-02', redcap:'P12' },
-    { display:'S-03', redcap:'P13' },
-    { display:'S-04', redcap:'P14' },
-    { display:'S-05', redcap:'P15' },
+    // TBC — add initials and P0x codes when confirmed
   ],
 };
-
 const SITE_NAMES = { northshore:'AUT Northshore Fitness Centre', city:'AUT City Fitness Centre', south:'AUT South Fitness Centre' };
-
-// ═══════════════════════════════════════════════════════
-// REDCap API — fill in once token is issued by AUT
-// ═══════════════════════════════════════════════════════
 const REDCAP_URL   = 'https://redcap.aut.ac.nz/api/';
 const REDCAP_TOKEN = '170E226C48A4D1F770A9D68EE772B727';
-// ═══════════════════════════════════════════════════════
-
 const PHASES = {
-  1:{w:1,p:1,dose:'3 × 1 min',detail:'3 bouts · 1 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:1},
-  2:{w:1,p:1,dose:'3 × 1 min',detail:'3 bouts · 1 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:1},
-  3:{w:2,p:1,dose:'3 × 1 min',detail:'3 bouts · 1 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:1},
-  4:{w:2,p:1,dose:'3 × 1 min',detail:'3 bouts · 1 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:1},
-  5:{w:3,p:2,dose:'3 × 90 sec',detail:'3 bouts · 90 sec each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:2},
-  6:{w:3,p:2,dose:'3 × 90 sec',detail:'3 bouts · 90 sec each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:2},
-  7:{w:4,p:2,dose:'3 × 90 sec',detail:'3 bouts · 90 sec each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:2},
-  8:{w:4,p:2,dose:'3 × 90 sec',detail:'3 bouts · 90 sec each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:2},
-  9:{w:5,p:3,dose:'3 × 120 sec',detail:'3 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:3},
-  10:{w:5,p:3,dose:'3 × 120 sec',detail:'3 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:3},
-  11:{w:6,p:3,dose:'3 × 120 sec',detail:'3 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:3},
-  12:{w:6,p:3,dose:'3 × 120 sec',detail:'3 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:3},
-  13:{w:7,p:4,dose:'4 × 120 sec',detail:'4 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:4},
-  14:{w:7,p:4,dose:'4 × 120 sec',detail:'4 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:4},
-  15:{w:8,p:4,dose:'4 × 120 sec',detail:'4 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:4},
-  16:{w:8,p:4,dose:'4 × 120 sec',detail:'4 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10',rc:4},
+  1:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
+  2:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
+  3:{w:2,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
+  4:{w:2,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
+  5:{w:3,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2},
+  6:{w:3,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2},
+  7:{w:4,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2},
+  8:{w:4,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2},
+  9:{w:5,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3},
+  10:{w:5,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3},
+  11:{w:6,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3},
+  12:{w:6,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3},
+  13:{w:7,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4},
+  14:{w:7,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4},
+  15:{w:8,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4},
+  16:{w:8,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4},
 };
-
-const NRS_COLORS = ['#4CAF50','#66BB6A','#9CCC65','#D4E157','#FFEE58','#FFA726','#FF7043','#EF5350','#E53935','#C62828','#8B0000'];
-const NRS_LABELS = ['No pain at all','Very mild','Mild','Mild–moderate','Moderate','Moderate','Moderate–severe','Severe','Very severe','Nearly worst possible','Worst imaginable'];
-const DOSE_LABELS = {'1':'3 × 1 min','2':'3 × 90 sec','3':'3 × 120 sec','4':'4 × 120 sec','5':'Other / modified'};
-const DOSE_INFO = {
-  1:{dose:'3 × 1 min',  detail:'3 bouts · 1 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10'},
-  2:{dose:'3 × 90 sec', detail:'3 bouts · 90 sec each · 30–60 sec rest · 20–30 rpm · pain ≤3/10'},
-  3:{dose:'3 × 120 sec',detail:'3 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10'},
-  4:{dose:'4 × 120 sec',detail:'4 bouts · 2 min each · 30–60 sec rest · 20–30 rpm · pain ≤3/10'},
-};
-const RPE_LABELS  = {'1':'Light','2':'Somewhat hard','3':'Moderate','4':'Hard'};
-const PROG_LABELS = {'1':'Increase','2':'Maintain','3':'Reduce','4':'Pause','5':'Not applicable','none':'N/A (pain <3)'};
-const YN = {'1':'Yes','0':'No','2':'NA'};
-const SW_LABELS   = {'1':'None','2':'Mild','3':'Moderate','4':'Severe'};
-
-let state = {};
-let site = '';
-let siteParticipants = [];
-let screenIdx = 0;
-const SCREENS = [0,1,2,3,4,5,6];
-
-// ── Site detection ────────────────────────────────────
-function detectSite() {
-  const params = new URLSearchParams(window.location.search);
-  const s = (params.get('site') || '').toLowerCase();
-  site = PARTICIPANTS[s] ? s : 'all';
-  if (site === 'all') {
-    siteParticipants = [...PARTICIPANTS.northshore, ...PARTICIPANTS.city, ...PARTICIPANTS.south];
-    document.getElementById('site-label').textContent = 'Session Log — All Sites';
-  } else {
-    siteParticipants = PARTICIPANTS[site];
-    document.getElementById('site-label').textContent = SITE_NAMES[site];
-  }
-  const sel = document.getElementById('sel-participant');
-  siteParticipants.forEach(p => {
-    const opt = document.createElement('option');
-    opt.value = p.redcap;
-    opt.textContent = p.display;
-    sel.appendChild(opt);
-  });
-  for (let i=1; i<=16; i++) {
-    ['sel-session-override','sel-session-new'].forEach(id => {
-      const opt = document.createElement('option');
-      opt.value = i;
-      const ph = PHASES[i];
-      opt.textContent = `Session ${i} — Week ${ph.w}, Phase ${ph.p} (${ph.dose})`;
-      document.getElementById(id).appendChild(opt);
-    });
-  }
+const NRS_COLORS=['#4CAF50','#66BB6A','#9CCC65','#D4E157','#FFEE58','#FFA726','#FF7043','#EF5350','#E53935','#C62828','#8B0000'];
+const NRS_LABELS=['No pain at all','Very mild','Mild','Mild-moderate','Moderate','Moderate','Moderate-severe','Severe','Very severe','Nearly worst possible','Worst imaginable'];
+const DOSE_LABELS={'1':'3 x 1 min','2':'3 x 90 sec','3':'3 x 120 sec','4':'4 x 120 sec','5':'Other / modified'};
+const DOSE_INFO={1:{dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},2:{dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},3:{dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},4:{dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'}};
+const RPE_LABELS={'1':'Light','2':'Somewhat hard','3':'Moderate','4':'Hard'};
+const PROG_LABELS={'1':'Increase','2':'Maintain','3':'Reduce','4':'Pause','5':'Not applicable','none':'N/A (pain <3)'};
+const YN={'1':'Yes','0':'No','2':'NA'};
+const SW_LABELS={'1':'None','2':'Mild','3':'Moderate','4':'Severe'};
+let state={},site='',siteParticipants=[],screenIdx=0;
+const SCREENS=[0,1,2,3,4,5,6];
+function detectSite(){
+  const params=new URLSearchParams(window.location.search);
+  const s=(params.get('site')||'').toLowerCase();
+  site=PARTICIPANTS[s]?s:'all';
+  if(site==='all'){siteParticipants=[...PARTICIPANTS.northshore,...PARTICIPANTS.city,...PARTICIPANTS.south];document.getElementById('site-label').textContent='Session Log - All Sites';}
+  else{siteParticipants=PARTICIPANTS[site];document.getElementById('site-label').textContent=SITE_NAMES[site];}
+  const sel=document.getElementById('sel-participant');
+  siteParticipants.forEach(p=>{const opt=document.createElement('option');opt.value=p.redcap;opt.textContent=p.display;sel.appendChild(opt);});
+  for(let i=1;i<=16;i++){['sel-session-override','sel-session-new'].forEach(id=>{const opt=document.createElement('option');opt.value=i;const ph=PHASES[i];opt.textContent='Session '+i+' - Week '+ph.w+', Phase '+ph.p+' ('+ph.dose+')';document.getElementById(id).appendChild(opt);});}
 }
-
-// ── Participant selection ─────────────────────────────
-function onParticipantSelect() {
-  const redcapId = document.getElementById('sel-participant').value;
-  if (!redcapId) { document.getElementById('welcome-back-card').style.display='none'; document.getElementById('new-participant-card').style.display='none'; return; }
-  state.participantRedcap = redcapId;
-  state.participantDisplay = siteParticipants.find(p=>p.redcap===redcapId)?.display || redcapId;
-  const progress = getProgress(redcapId);
-  if (progress && progress.lastSession < 16) {
-    const nextSess = progress.lastSession + 1;
-    state.session = nextSess;
-    const ph = PHASES[nextSess];
-    document.getElementById('wb-name').textContent = 'Welcome back, ' + state.participantDisplay;
-    document.getElementById('wb-session').textContent = 'Session ' + nextSess;
-    document.getElementById('wb-phase').textContent = `Phase ${ph.p} · Week ${ph.w} · ${ph.dose}`;
-    document.getElementById('welcome-back-card').style.display = 'block';
-    document.getElementById('new-participant-card').style.display = 'none';
-    document.getElementById('session-badge').textContent = 'Session ' + nextSess;
-    document.getElementById('session-badge').style.display = 'block';
-  } else {
-    document.getElementById('welcome-back-card').style.display = 'none';
-    document.getElementById('new-participant-card').style.display = 'block';
-    state.session = null;
-  }
+function onParticipantSelect(){
+  const redcapId=document.getElementById('sel-participant').value;
+  if(!redcapId){document.getElementById('welcome-back-card').style.display='none';document.getElementById('new-participant-card').style.display='none';return;}
+  state.participantRedcap=redcapId;
+  state.participantDisplay=siteParticipants.find(p=>p.redcap===redcapId)?.display||redcapId;
+  const progress=getProgress(redcapId);
+  if(progress&&progress.lastSession<16){
+    const nextSess=progress.lastSession+1;state.session=nextSess;const ph=PHASES[nextSess];
+    document.getElementById('wb-name').textContent='Welcome back, '+state.participantDisplay;
+    document.getElementById('wb-session').textContent='Session '+nextSess;
+    document.getElementById('wb-phase').textContent='Phase '+ph.p+' - Week '+ph.w+' - '+ph.dose;
+    document.getElementById('welcome-back-card').style.display='block';
+    document.getElementById('new-participant-card').style.display='none';
+    document.getElementById('session-badge').textContent='Session '+nextSess;
+    document.getElementById('session-badge').style.display='block';
+  }else{document.getElementById('welcome-back-card').style.display='none';document.getElementById('new-participant-card').style.display='block';state.session=null;}
 }
-
-function showSessionOverride() {
-  const el = document.getElementById('session-override');
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-}
-function onSessionOverride() {
-  const v = parseInt(document.getElementById('sel-session-override').value);
-  if (!v) return;
-  state.session = v;
-  const ph = PHASES[v];
-  document.getElementById('wb-session').textContent = 'Session ' + v;
-  document.getElementById('wb-phase').textContent = `Phase ${ph.p} · Week ${ph.w} · ${ph.dose}`;
-  document.getElementById('session-badge').textContent = 'Session ' + v;
-}
-function onNewSessionSelect() {
-  const v = parseInt(document.getElementById('sel-session-new').value);
-  state.session = v || null;
-  if (v) { document.getElementById('session-badge').textContent = 'Session ' + v; document.getElementById('session-badge').style.display='block'; }
-}
-
-// ── NRS builders ──────────────────────────────────────
-function buildNRS(id, key) {
-  const el = document.getElementById(id);
-  for (let i=0;i<=10;i++) {
-    const b = document.createElement('button');
-    b.className='nrs-btn'; b.textContent=i;
-    b.dataset.label = NRS_LABELS[i];
-    b.style.background=NRS_COLORS[i];
-    b.style.color = i>=6?'#fff':'#1A1A1A';
+function showSessionOverride(){const el=document.getElementById('session-override');el.style.display=el.style.display==='none'?'block':'none';}
+function onSessionOverride(){const v=parseInt(document.getElementById('sel-session-override').value);if(!v)return;state.session=v;const ph=PHASES[v];document.getElementById('wb-session').textContent='Session '+v;document.getElementById('wb-phase').textContent='Phase '+ph.p+' - Week '+ph.w+' - '+ph.dose;document.getElementById('session-badge').textContent='Session '+v;}
+function onNewSessionSelect(){const v=parseInt(document.getElementById('sel-session-new').value);state.session=v||null;if(v){document.getElementById('session-badge').textContent='Session '+v;document.getElementById('session-badge').style.display='block';}}
+function buildNRS(id,key){
+  const el=document.getElementById(id);
+  for(let i=0;i<=10;i++){
+    const b=document.createElement('button');b.className='nrs-btn';b.textContent=i;b.dataset.label=NRS_LABELS[i];b.style.background=NRS_COLORS[i];b.style.color=i>=6?'#fff':'#1A1A1A';
     b.onclick=()=>{
-      el.querySelectorAll('.nrs-btn').forEach(x=>x.classList.remove('selected'));
-      b.classList.add('selected'); state[key]=i;
-      if (key==='presessionPain') {
-        if (state.session > 1) document.getElementById('card-symptoms').style.display='block';
-        const gateEl   = document.getElementById('card-progression-gate');
-        const safetyEl = document.getElementById('card-safety-gate');
-        if (i >= 5) {
-          safetyEl.style.display='block'; gateEl.style.display='none';
-          state.progression=null; state.safetyDecision=null;
-        } else if (i >= 3 && state.session > 1) {
-          gateEl.style.display='block'; safetyEl.style.display='none';
-          state.safetyDecision=null;
-        } else {
-          gateEl.style.display='none'; safetyEl.style.display='none';
-          state.progression='none'; state.safetyDecision=null;
-        }
+      el.querySelectorAll('.nrs-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');state[key]=i;
+      if(key==='presessionPain'){
+        if(state.session>1)document.getElementById('card-symptoms').style.display='block';
+        const gateEl=document.getElementById('card-progression-gate');const safetyEl=document.getElementById('card-safety-gate');
+        if(i>=5){safetyEl.style.display='block';gateEl.style.display='none';state.progression=null;state.safetyDecision=null;}
+        else if(i>=3&&state.session>1){gateEl.style.display='block';safetyEl.style.display='none';state.safetyDecision=null;}
+        else{gateEl.style.display='none';safetyEl.style.display='none';state.progression='none';state.safetyDecision=null;}
       }
     };
     el.appendChild(b);
   }
 }
-
-// ── Tap groups ────────────────────────────────────────
-function initTap(groupId, key, cb) {
-  document.querySelectorAll('#'+groupId+' .tap-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      document.querySelectorAll('#'+groupId+' .tap-btn').forEach(b=>b.classList.remove('selected'));
-      btn.classList.add('selected'); state[key]=btn.dataset.val;
-      if (cb) cb(btn.dataset.val);
-    });
-  });
-}
-
-// ── Phase display ─────────────────────────────────────
-function updatePhaseDisplay() {
-  const s = state.session;
-  if (!s) return;
-  const ph = PHASES[s];
-  document.getElementById('phase-dose-text').textContent = ph.dose;
-  document.getElementById('phase-detail-text').textContent = ph.detail;
-  document.getElementById('sel-dose').value = String(ph.rc);
-  state.prescribedDose = String(ph.rc);
-}
-
-// ── Validation ────────────────────────────────────────
-function validate(screenN) {
-  if (screenN===0) {
-    if (!state.participantRedcap) { alert('Please select your name.'); return false; }
-    if (!state.session)           { alert('Please select the session number.'); return false; }
-    state.sessionDate = new Date().toLocaleDateString('en-NZ');
-    updatePhaseDisplay();
+function initTap(groupId,key,cb){document.querySelectorAll('#'+groupId+' .tap-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#'+groupId+' .tap-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');state[key]=btn.dataset.val;if(cb)cb(btn.dataset.val);});});}
+function updatePhaseDisplay(){const s=state.session;if(!s)return;const ph=PHASES[s];document.getElementById('phase-dose-text').textContent=ph.dose;document.getElementById('phase-detail-text').textContent=ph.detail;document.getElementById('sel-dose').value=String(ph.rc);state.prescribedDose=String(ph.rc);}
+function validate(screenN){
+  if(screenN===0){if(!state.participantRedcap){alert('Please select your name.');return false;}if(!state.session){alert('Please select the session number.');return false;}state.sessionDate=new Date().toLocaleDateString('en-NZ');updatePhaseDisplay();return true;}
+  if(screenN===1){
+    if(state.presessionPain===undefined){alert('Please rate your pre-session pain.');return false;}
+    if(state.session>1){if(!state.lastPainOK){alert('Please answer the last session pain question.');return false;}if(!state.symptoms24h){alert('Please answer the 24-hour recovery question.');return false;}if(!state.swelling){alert('Please rate swelling/stiffness.');return false;}}
+    else{state.symptoms24h='2';state.swelling='1';}
+    if(state.presessionPain>=5){if(!state.safetyDecision){alert('Trainer: please select a decision in the red safety section above.');return false;}if(state.safetyDecision==='pause'){goToPause();return false;}}
+    else if(state.presessionPain>=3&&state.session>1){if(!state.progression){alert('Trainer: please select a progression decision above.');return false;}if(state.progression==='4'){goToPause();return false;}}
+    if(state.session>1&&document.getElementById('card-symptoms-gate').style.display!=='none'){if(!state.symptomsGateDecision){alert('Trainer: please select a decision for the symptoms check above.');return false;}if(state.symptomsGateDecision==='pause'){goToPause();return false;}}
     return true;
   }
-  if (screenN===1) {
-    if (state.presessionPain===undefined) { alert('Please rate your pre-session pain.'); return false; }
-    if (state.session > 1) {
-      if (!state.lastPainOK)    { alert('Please answer the last session pain question.'); return false; }
-      if (!state.symptoms24h)   { alert('Please answer the 24-hour recovery question.'); return false; }
-      if (!state.swelling)      { alert('Please rate swelling/stiffness.'); return false; }
-    } else {
-      state.symptoms24h = '2'; // NA - first session
-      state.swelling    = '1'; // None - first session
-    }
-    if (state.presessionPain >= 5) {
-      if (!state.safetyDecision) { alert('Trainer: please select a decision in the red safety section above.'); return false; }
-      if (state.safetyDecision === 'pause') { goToPause(); return false; }
-    } else if (state.presessionPain >= 3 && state.session > 1) {
-      if (!state.progression) { alert('Trainer: please select a progression decision above.'); return false; }
-      if (state.progression === '4') { goToPause(); return false; }
-    }
-    if (state.session > 1 && document.getElementById('card-symptoms-gate').style.display !== 'none') {
-      if (!state.symptomsGateDecision) { alert('Trainer: please select a decision for the symptoms check above.'); return false; }
-      if (state.symptomsGateDecision === 'pause') { goToPause(); return false; }
-    }
-    return true;
-  }
-  if (screenN===3) {
-    if (!state.rpe)                     { alert('Please rate how hard the session felt.'); return false; }
-    if (state.maxPain===undefined)      { alert('Please rate your maximum pain during the session.'); return false; }
-    return true;
-  }
-  if (screenN===4) {
-    if (!document.getElementById('inp-cadence').value) { alert('Please enter the cadence.'); return false; }
-    if (!document.getElementById('sel-dose').value)    { alert('Please select the prescribed dose.'); return false; }
-    if (!state.technique)     { alert('Please rate technique.'); return false; }
-    if (!state.doseCompleted) { alert('Please indicate whether the dose was completed.'); return false; }
-    if (!state.adverseEvent)  { alert('Please answer the adverse event question.'); return false; }
-    if (!state.sae)           { alert('Please answer the serious adverse event question.'); return false; }
-    if (!document.getElementById('inp-initials').value) { alert('Please enter trainer initials.'); return false; }
-    state.cadence      = document.getElementById('inp-cadence').value;
-    state.prescribedDose = document.getElementById('sel-dose').value;
-    state.duration     = document.getElementById('inp-duration').value;
-    state.resistance   = document.getElementById('inp-resistance').value;
-    state.aeDetails    = document.getElementById('inp-ae-details').value;
-    state.trainerInitials = document.getElementById('inp-initials').value.toUpperCase();
-    buildSummary();
-    return true;
+  if(screenN===3){if(!state.rpe){alert('Please rate how hard the session felt.');return false;}if(state.maxPain===undefined){alert('Please rate your maximum pain during the session.');return false;}return true;}
+  if(screenN===4){
+    if(!document.getElementById('inp-cadence').value){alert('Please enter the cadence.');return false;}
+    if(!document.getElementById('sel-dose').value){alert('Please select the prescribed dose.');return false;}
+    if(!state.technique){alert('Please rate technique.');return false;}if(!state.doseCompleted){alert('Please indicate whether the dose was completed.');return false;}
+    if(!state.adverseEvent){alert('Please answer the adverse event question.');return false;}if(!state.sae){alert('Please answer the serious adverse event question.');return false;}
+    if(!document.getElementById('inp-initials').value){alert('Please enter trainer initials.');return false;}
+    state.cadence=document.getElementById('inp-cadence').value;state.prescribedDose=document.getElementById('sel-dose').value;state.duration=document.getElementById('inp-duration').value;state.resistance=document.getElementById('inp-resistance').value;state.aeDetails=document.getElementById('inp-ae-details').value;state.trainerInitials=document.getElementById('inp-initials').value.toUpperCase();
+    buildSummary();return true;
   }
   return true;
 }
-
-// ── Summary ───────────────────────────────────────────
-function buildSummary() {
-  const ph = PHASES[state.session];
-  const rows = [
-    ['Participant', state.participantDisplay],
-    ['Session', `${state.session} (Phase ${ph.p} · Week ${ph.w})`],
-    ['Date', state.sessionDate],
-    ['Pre-session pain', `${state.presessionPain}/10`],
-    ['Symptoms settled 24h', state.session > 1 ? YN[state.symptoms24h] : 'N/A (Session 1)'],
-    ['Swelling/stiffness', state.session > 1 ? SW_LABELS[state.swelling] : 'N/A (Session 1)'],
-    ['Perceived exertion', RPE_LABELS[state.rpe]],
-    ['Max pain during session', `${state.maxPain}/10`],
-    ['Cadence', state.cadence+' rpm'],
-    ['Dose', DOSE_LABELS[state.prescribedDose]],
-    ['Duration', state.duration ? state.duration+' min' : '—'],
-    ['Resistance', state.resistance || '—'],
-    ['Technique OK', YN[state.technique]],
-    ['Dose completed', YN[state.doseCompleted]],
-    ['Progression', PROG_LABELS[state.progression]],
-    ['Adverse event', YN[state.adverseEvent]],
-    ['Serious AE', YN[state.sae]],
-    ['Trainer', state.trainerInitials],
-  ];
-  document.getElementById('summary-card').innerHTML =
-    rows.map(([k,v])=>`<div class="sum-row"><span>${k}</span><span>${v}</span></div>`).join('');
+function buildSummary(){
+  const ph=PHASES[state.session];
+  const rows=[['Participant',state.participantDisplay],['Session',state.session+' (Phase '+ph.p+' - Week '+ph.w+')'],['Date',state.sessionDate],['Pre-session pain',state.presessionPain+'/10'],['Symptoms settled 24h',state.session>1?YN[state.symptoms24h]:'N/A (Session 1)'],['Swelling/stiffness',state.session>1?SW_LABELS[state.swelling]:'N/A (Session 1)'],['Perceived exertion',RPE_LABELS[state.rpe]],['Max pain during session',state.maxPain+'/10'],['Cadence',state.cadence+' rpm'],['Dose',DOSE_LABELS[state.prescribedDose]],['Duration',state.duration?state.duration+' min':'--'],['Resistance',state.resistance||'--'],['Technique OK',YN[state.technique]],['Dose completed',YN[state.doseCompleted]],['Progression',PROG_LABELS[state.progression]],['Adverse event',YN[state.adverseEvent]],['Serious AE',YN[state.sae]],['Trainer',state.trainerInitials]];
+  document.getElementById('summary-card').innerHTML=rows.map(([k,v])=>'<div class="sum-row"><span>'+k+'</span><span>'+v+'</span></div>').join('');
 }
-
-// ── Dose adjustment on progression decision ───────────
-function applyProgressionDose(val) {
-  if (!state.session) return;
-  const ph = PHASES[state.session];
-  let doseRc = ph.rc;
-  let banner = '';
-
-  if (val === '3' && ph.rc > 1) {        // Reduce — step back one phase
-    doseRc = ph.rc - 1;
-    banner = `Reduced from scheduled ${ph.dose}`;
-  } else if (val === '3' && ph.rc === 1) { // Already at minimum
-    banner = 'Already at minimum dose — maintain';
-  } else if (val === '1') {               // Increase — use scheduled dose
-    banner = '';
-  }
-
-  const info = DOSE_INFO[doseRc];
-  document.getElementById('phase-dose-text').textContent = info.dose;
-  document.getElementById('phase-detail-text').textContent = banner ? `⚠️ ${banner} · ${info.detail}` : info.detail;
-  document.getElementById('sel-dose').value = String(doseRc);
-  state.prescribedDose = String(doseRc);
+function applyProgressionDose(val){
+  if(!state.session)return;const ph=PHASES[state.session];let doseRc=ph.rc,banner='';
+  if(val==='3'&&ph.rc>1){doseRc=ph.rc-1;banner='Reduced from scheduled '+ph.dose;}
+  else if(val==='3'&&ph.rc===1){banner='Already at minimum dose - maintain';}
+  const info=DOSE_INFO[doseRc];
+  document.getElementById('phase-dose-text').textContent=info.dose;
+  document.getElementById('phase-detail-text').textContent=banner?'Warning: '+banner+' - '+info.detail:info.detail;
+  document.getElementById('sel-dose').value=String(doseRc);state.prescribedDose=String(doseRc);
 }
-
-// ── Progression criteria display ──────────────────────
-function updateProgressionCriteria() {
-  const painOK    = state.lastPainOK === '1';
-  const settleOK  = state.symptoms24h === '1';
-  const techOK    = state.lastTechnique === '1';
-  const painSet   = state.lastPainOK !== undefined;
-  const settleSet = state.symptoms24h !== undefined;
-  const techSet   = state.lastTechnique !== undefined;
-
-  const tick = '✅', cross = '❌', blank = '⬜';
-  document.getElementById('crit-pain-icon').textContent   = painSet   ? (painOK   ? tick : cross) : blank;
-  document.getElementById('crit-settle-icon').textContent = settleSet ? (settleOK ? tick : cross) : blank;
-  document.getElementById('crit-tech-icon').textContent   = techSet   ? (techOK   ? tick : cross) : blank;
-
-  const allSet = painSet && settleSet && techSet;
-  const sug = document.getElementById('progression-suggestion');
-  if (allSet) {
-    sug.style.display = 'block';
-    if (painOK && settleOK && techOK) {
-      sug.style.background = '#E8F5E9'; sug.style.color = '#1B5E3B';
-      sug.textContent = '✅ Suggested: Increase dose';
-    } else {
-      sug.style.background = '#FFF3CD'; sug.style.color = '#856404';
-      sug.textContent = '⚠️ Suggested: Reduce dose — not all criteria met';
-    }
-  } else {
-    sug.style.display = 'none';
-  }
+function updateProgressionCriteria(){
+  const painOK=state.lastPainOK==='1',settleOK=state.symptoms24h==='1',techOK=state.lastTechnique==='1';
+  const painSet=state.lastPainOK!==undefined,settleSet=state.symptoms24h!==undefined,techSet=state.lastTechnique!==undefined;
+  const tick='OK',cross='X',blank='?';
+  document.getElementById('crit-pain-icon').textContent=painSet?(painOK?tick:cross):blank;
+  document.getElementById('crit-settle-icon').textContent=settleSet?(settleOK?tick:cross):blank;
+  document.getElementById('crit-tech-icon').textContent=techSet?(techOK?tick:cross):blank;
+  const allSet=painSet&&settleSet&&techSet;const sug=document.getElementById('progression-suggestion');
+  if(allSet){sug.style.display='block';if(painOK&&settleOK&&techOK){sug.style.background='#E8F5E9';sug.style.color='#1B5E3B';sug.textContent='Suggested: Increase dose';}else{sug.style.background='#FFF3CD';sug.style.color='#856404';sug.textContent='Suggested: Reduce dose - not all criteria met';}}
+  else{sug.style.display='none';}
 }
-
-// ── Symptoms gate ─────────────────────────────────────
-function updateSymptomsGate() {
-  const notSettled  = state.symptoms24h === '0';
-  const highSwelling = state.swelling === '3' || state.swelling === '4';
-  const show = notSettled || highSwelling;
-  const gate = document.getElementById('card-symptoms-gate');
-  gate.style.display = show ? 'block' : 'none';
-  if (show) {
-    let title = '⚠️ ';
-    if (notSettled && highSwelling) title += 'Symptoms not settled and significant swelling reported';
-    else if (notSettled)            title += 'Symptoms have not returned to baseline within 24 hours';
-    else                            title += 'Moderate or severe swelling / stiffness reported';
-    document.getElementById('symptoms-gate-title').textContent = title;
-  }
-  if (!show) state.symptomsGateDecision = null;
+function updateSymptomsGate(){
+  const notSettled=state.symptoms24h==='0',highSwelling=state.swelling==='3'||state.swelling==='4',show=notSettled||highSwelling;
+  const gate=document.getElementById('card-symptoms-gate');gate.style.display=show?'block':'none';
+  if(show){let title='Warning: ';if(notSettled&&highSwelling)title+='Symptoms not settled and significant swelling reported';else if(notSettled)title+='Symptoms have not returned to baseline within 24 hours';else title+='Moderate or severe swelling / stiffness reported';document.getElementById('symptoms-gate-title').textContent=title;}
+  if(!show)state.symptomsGateDecision=null;
 }
-
-// ── Pause flow ────────────────────────────────────────
-function goToPause() {
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-7').classList.add('active');
-  document.getElementById('btn-back').style.display='none';
-  document.getElementById('btn-next').style.display='none';
-  document.getElementById('progress-fill').style.width='100%';
-  document.getElementById('card-wrap').scrollTop=0; window.scrollTo(0,0);
+function goToPause(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-7').classList.add('active');document.getElementById('btn-back').style.display='none';document.getElementById('btn-next').style.display='none';document.getElementById('progress-fill').style.width='100%';document.getElementById('card-wrap').scrollTop=0;window.scrollTo(0,0);}
+function resumeFromPause(){screenIdx=1;showScreen(screenIdx);}
+async function submitPause(){
+  const initials=document.getElementById('inp-pause-initials').value.trim();if(!initials){alert('Please enter trainer initials.');return;}
+  const reason=document.getElementById('inp-pause-reason').value.trim();
+  const record={record_id:state.participantRedcap,redcap_event_name:'session_'+state.session+'_arm_1',session_date:new Date().toISOString().split('T')[0],session_attended:'1',presession_pain_nrs:state.presessionPain!==undefined?String(state.presessionPain):'',symptoms_24h:state.symptoms24h||'',swelling_stiffness:state.swelling||'',progression_decision:'4',modification_details:reason,trainer_initials:initials.toUpperCase(),adverse_event:'0',serious_adverse_event:'0'};
+  let sentLive=false;
+  if(REDCAP_TOKEN!=='PASTE_YOUR_API_TOKEN_HERE'&&navigator.onLine){try{sentLive=await postToREDCap(record);}catch(e){sentLive=false;}}
+  if(!sentLive)addToQueue(record);
+  saveProgress(state.participantRedcap,state.session-1);
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-6').classList.add('active');
+  document.getElementById('success-msg').textContent=state.participantDisplay+' - Session '+state.session+' - Paused';
+  document.getElementById('offline-note').textContent=sentLive?'Paused session recorded in REDCap.':'Saved locally - will sync when back online.';
 }
-function resumeFromPause() {
-  screenIdx=1; showScreen(screenIdx);
-}
-async function submitPause() {
-  const initials = document.getElementById('inp-pause-initials').value.trim();
-  if (!initials) { alert('Please enter trainer initials.'); return; }
-  const reason = document.getElementById('inp-pause-reason').value.trim();
-  const record = {
-    record_id:             state.participantRedcap,
-    redcap_event_name:     `session_${state.session}_arm_1`,
-    session_date:          new Date().toISOString().split('T')[0],
-    session_attended:      '1',
-    presession_pain_nrs:   state.presessionPain !== undefined ? String(state.presessionPain) : '',
-    symptoms_24h:          state.symptoms24h||'',
-    swelling_stiffness:    state.swelling||'',
-    progression_decision:  '4',
-    modification_details:  reason,
-    trainer_initials:      initials.toUpperCase(),
-    adverse_event:         '0',
-    serious_adverse_event: '0',
-  };
-  let sentLive = false;
-  if (REDCAP_TOKEN !== 'PASTE_YOUR_API_TOKEN_HERE' && navigator.onLine) {
-    try { sentLive = await postToREDCap(record); } catch(e) { sentLive=false; }
-  }
-  if (!sentLive) addToQueue(record);
-  saveProgress(state.participantRedcap, state.session - 1); // don't advance session
-  // Show success screen
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-6').classList.add('active');
-  document.getElementById('success-msg').textContent =
-    `${state.participantDisplay} · Session ${state.session} · Paused`;
-  document.getElementById('offline-note').textContent = sentLive
-    ? '⏸️ Paused session recorded in REDCap.'
-    : '📤 Saved locally — will sync when back online.';
-}
-
-// ── Navigation ────────────────────────────────────────
-function showScreen(idx) {
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+SCREENS[idx]).classList.add('active');
-  document.getElementById('card-wrap').scrollTop=0; window.scrollTo(0,0);
+function showScreen(idx){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+SCREENS[idx]).classList.add('active');document.getElementById('card-wrap').scrollTop=0;window.scrollTo(0,0);
   document.getElementById('progress-fill').style.width=(idx/(SCREENS.length-1)*100)+'%';
-  document.getElementById('btn-back').style.display = idx>0?'block':'none';
-  const nb=document.getElementById('btn-next');
-  nb.style.display='block'; nb.disabled=false;
-  if (idx===SCREENS.length-2) nb.textContent='Submit session →';
-  else if (SCREENS[idx]===2)  nb.textContent='Session finished → Continue';
-  else if (idx===0)           nb.textContent='Start →';
-  else                        nb.textContent='Continue →';
-  if (idx===SCREENS.length-1) { nb.style.display='none'; document.getElementById('btn-back').style.display='none'; }
+  document.getElementById('btn-back').style.display=idx>0?'block':'none';
+  const nb=document.getElementById('btn-next');nb.style.display='block';nb.disabled=false;
+  if(idx===SCREENS.length-2)nb.textContent='Submit session';else if(SCREENS[idx]===2)nb.textContent='Session finished - Continue';else if(idx===0)nb.textContent='Start';else nb.textContent='Continue';
+  if(idx===SCREENS.length-1){nb.style.display='none';document.getElementById('btn-back').style.display='none';}
 }
-
-function goNext() {
-  if (!validate(SCREENS[screenIdx])) return;
-  if (screenIdx===SCREENS.length-2) { submitForm(); return; }
-  screenIdx++; showScreen(screenIdx);
+function goNext(){if(!validate(SCREENS[screenIdx]))return;if(screenIdx===SCREENS.length-2){submitForm();return;}screenIdx++;showScreen(screenIdx);}
+function goBack(){if(screenIdx>0){screenIdx--;showScreen(screenIdx);}}
+function getProgress(id){try{return JSON.parse(localStorage.getItem('eckoa_progress_'+id));}catch(e){return null;}}
+function saveProgress(id,s){try{localStorage.setItem('eckoa_progress_'+id,JSON.stringify({lastSession:s,date:new Date().toISOString()}));}catch(e){}}
+const QUEUE_KEY='eckoa_queue';
+function getQueue(){try{return JSON.parse(localStorage.getItem(QUEUE_KEY))||[];}catch(e){return[];}}
+function saveQueue(q){try{localStorage.setItem(QUEUE_KEY,JSON.stringify(q));}catch(e){}}
+function addToQueue(rec){const q=getQueue();q.push({record:rec,ts:Date.now()});saveQueue(q);updateSyncBanner();}
+function updateSyncBanner(){const q=getQueue();const b=document.getElementById('sync-banner');if(q.length>0){b.style.display='flex';document.getElementById('sync-msg').textContent=q.length+' session'+(q.length>1?'s':'')+' waiting to sync';}else b.style.display='none';}
+async function trySyncQueue(){
+  if(REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE'){alert('REDCap API not yet configured.');return;}
+  const q=getQueue();if(!q.length)return;let sent=0;
+  for(const item of q){try{const ok=await postToREDCap(item.record);if(ok)sent++;}catch(e){}}
+  if(sent>0){const remaining=getQueue().slice(sent);saveQueue(remaining);updateSyncBanner();if(remaining.length===0)alert(sent+' session'+(sent>1?'s':'')+' synced to REDCap successfully.');}
 }
-function goBack() { if (screenIdx>0) { screenIdx--; showScreen(screenIdx); } }
-
-// ── Local progress storage ────────────────────────────
-function getProgress(id)    { try { return JSON.parse(localStorage.getItem('eckoa_progress_'+id)); } catch(e) { return null; } }
-function saveProgress(id,s) { try { localStorage.setItem('eckoa_progress_'+id, JSON.stringify({lastSession:s, date:new Date().toISOString()})); } catch(e) {} }
-
-// ── Offline queue ─────────────────────────────────────
-const QUEUE_KEY = 'eckoa_queue';
-function getQueue()       { try { return JSON.parse(localStorage.getItem(QUEUE_KEY))||[]; } catch(e) { return []; } }
-function saveQueue(q)     { try { localStorage.setItem(QUEUE_KEY, JSON.stringify(q)); } catch(e) {} }
-function addToQueue(rec)  { const q=getQueue(); q.push({record:rec, ts:Date.now()}); saveQueue(q); updateSyncBanner(); }
-
-function updateSyncBanner() {
-  const q=getQueue(); const b=document.getElementById('sync-banner');
-  if (q.length>0) { b.style.display='flex'; document.getElementById('sync-msg').textContent=`📤 ${q.length} session${q.length>1?'s':''} waiting to sync`; }
-  else b.style.display='none';
+function buildRecord(){
+  return{record_id:state.participantRedcap,redcap_event_name:'session_'+state.session+'_arm_1',session_date:new Date().toISOString().split('T')[0],session_attended:'1',presession_pain_nrs:String(state.presessionPain),last_session_pain_ok:state.lastPainOK||'',last_session_technique:state.lastTechnique||'',symptoms_24h:state.symptoms24h||'2',swelling_stiffness:state.swelling||'1',perceived_exertion:state.rpe,max_pain_nrs:String(state.maxPain),cadence_rpm:state.cadence,prescribed_dose:state.prescribedDose,eccentric_duration:state.duration||'',resistance_load:state.resistance||'',technique_satisfactory:state.technique,dose_completed:state.doseCompleted,progression_decision:state.progression,modification_details:state.modification||'',adverse_event:state.adverseEvent,serious_adverse_event:state.sae,ae_sae_details:state.aeDetails||'',trainer_initials:state.trainerInitials};
 }
-
-async function trySyncQueue() {
-  if (REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE') { alert('REDCap API not yet configured. Data is safely stored on this device.'); return; }
-  const q=getQueue(); if (!q.length) return;
-  let sent=0;
-  for (const item of q) {
-    try {
-      const ok = await postToREDCap(item.record);
-      if (ok) sent++;
-    } catch(e) {}
-  }
-  if (sent>0) {
-    const remaining=getQueue().slice(sent);
-    saveQueue(remaining);
-    updateSyncBanner();
-    if (remaining.length===0) alert(`✅ ${sent} session${sent>1?'s':''} synced to REDCap successfully.`);
-  }
+async function postToREDCap(record){
+  const form=new FormData();form.append('token',REDCAP_TOKEN);form.append('content','record');form.append('format','json');form.append('type','flat');form.append('data',JSON.stringify([record]));form.append('overwriteBehavior','normal');form.append('returnFormat','json');
+  const r=await fetch(REDCAP_URL,{method:'POST',body:form});const res=await r.json();return res.count>0||res===1;
 }
-
-// ── REDCap submission ─────────────────────────────────
-function buildRecord() {
-  return {
-    record_id:             state.participantRedcap,
-    redcap_event_name:     `session_${state.session}_arm_1`,
-    session_date:          new Date().toISOString().split('T')[0],
-    session_attended:      '1',
-    presession_pain_nrs:   String(state.presessionPain),
-    last_session_pain_ok:  state.lastPainOK||'',
-    last_session_technique:state.lastTechnique||'',
-    symptoms_24h:          state.symptoms24h||'2',
-    swelling_stiffness:    state.swelling||'1',
-    perceived_exertion:    state.rpe,
-    max_pain_nrs:          String(state.maxPain),
-    cadence_rpm:           state.cadence,
-    prescribed_dose:       state.prescribedDose,
-    eccentric_duration:    state.duration||'',
-    resistance_load:       state.resistance||'',
-    technique_satisfactory:state.technique,
-    dose_completed:        state.doseCompleted,
-    progression_decision:  state.progression,
-    modification_details:  state.modification||'',
-    adverse_event:         state.adverseEvent,
-    serious_adverse_event: state.sae,
-    ae_sae_details:        state.aeDetails||'',
-    trainer_initials:      state.trainerInitials,
-  };
+async function submitForm(){
+  const nb=document.getElementById('btn-next');nb.textContent='Submitting...';nb.disabled=true;
+  const record=buildRecord();let sentLive=false;
+  if(REDCAP_TOKEN!=='PASTE_YOUR_API_TOKEN_HERE'&&navigator.onLine){try{sentLive=await postToREDCap(record);}catch(e){sentLive=false;}}
+  if(!sentLive){addToQueue(record);}else{saveProgress(state.participantRedcap,state.session);}
+  saveProgress(state.participantRedcap,state.session);
+  screenIdx=SCREENS.length-1;showScreen(screenIdx);
+  document.getElementById('success-msg').textContent=state.participantDisplay+' - Session '+state.session+' - '+state.sessionDate;
+  document.getElementById('offline-note').textContent=sentLive?'Saved to REDCap successfully.':(REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE'?'Demo mode - connect API token to save to REDCap.':'No connection - saved locally. Will sync when you next open this form on wifi.');
 }
-
-async function postToREDCap(record) {
-  const form = new FormData();
-  form.append('token', REDCAP_TOKEN);
-  form.append('content','record');
-  form.append('format','json');
-  form.append('type','flat');
-  form.append('data', JSON.stringify([record]));
-  form.append('overwriteBehavior','normal');
-  form.append('returnFormat','json');
-  const r = await fetch(REDCAP_URL, {method:'POST', body:form});
-  const res = await r.json();
-  return res.count>0 || res===1;
+function resetForm(){
+  state={};document.querySelectorAll('.tap-btn').forEach(b=>b.classList.remove('selected'));document.querySelectorAll('.nrs-btn').forEach(b=>b.classList.remove('selected'));document.querySelectorAll('select').forEach(s=>s.value='');document.querySelectorAll('input,textarea').forEach(i=>i.value='');
+  document.getElementById('card-symptoms').style.display='none';document.getElementById('card-symptoms-gate').style.display='none';document.getElementById('card-progression-gate').style.display='none';document.getElementById('card-safety-gate').style.display='none';document.getElementById('welcome-back-card').style.display='none';document.getElementById('new-participant-card').style.display='none';document.getElementById('session-override').style.display='none';document.getElementById('ae-wrap').classList.remove('show');document.getElementById('session-badge').style.display='none';
+  screenIdx=0;showScreen(0);
 }
-
-async function submitForm() {
-  const nb=document.getElementById('btn-next');
-  nb.textContent='Submitting…'; nb.disabled=true;
-  const record = buildRecord();
-  let sentLive = false;
-
-  if (REDCAP_TOKEN !== 'PASTE_YOUR_API_TOKEN_HERE' && navigator.onLine) {
-    try {
-      sentLive = await postToREDCap(record);
-    } catch(e) { sentLive=false; }
-  }
-
-  if (!sentLive) {
-    addToQueue(record);
-  } else {
-    saveProgress(state.participantRedcap, state.session);
-  }
-
-  // Always save progress locally regardless
-  saveProgress(state.participantRedcap, state.session);
-
-  // Show success screen
-  screenIdx=SCREENS.length-1; showScreen(screenIdx);
-  document.getElementById('success-msg').textContent =
-    `${state.participantDisplay} · Session ${state.session} · ${state.sessionDate}`;
-  document.getElementById('offline-note').textContent = sentLive
-    ? '✅ Saved to REDCap successfully.'
-    : (REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE'
-        ? '⚙️ Demo mode — connect API token to save to REDCap.'
-        : '📤 No connection — saved locally. Will sync automatically when you next open this form on wifi.');
-}
-
-// ── Reset ─────────────────────────────────────────────
-function resetForm() {
-  state={};
-  document.querySelectorAll('.tap-btn').forEach(b=>b.classList.remove('selected'));
-  document.querySelectorAll('.nrs-btn').forEach(b=>b.classList.remove('selected'));
-  document.querySelectorAll('select').forEach(s=>s.value='');
-  document.querySelectorAll('input,textarea').forEach(i=>i.value='');
-  document.getElementById('card-symptoms').style.display='none';
-  document.getElementById('card-symptoms-gate').style.display='none';
-  document.getElementById('card-progression-gate').style.display='none';
-  document.getElementById('card-safety-gate').style.display='none';
-  document.getElementById('welcome-back-card').style.display='none';
-  document.getElementById('new-participant-card').style.display='none';
-  document.getElementById('session-override').style.display='none';
-  document.getElementById('ae-wrap').classList.remove('show');
-  document.getElementById('session-badge').style.display='none';
-  document.getElementById('session-badge').style.display='none';
-  screenIdx=0; showScreen(0);
-}
-
-// ── Connection monitor ────────────────────────────────
-function updateConn() {
-  const online=navigator.onLine;
-  document.getElementById('conn-dot').classList.toggle('offline',!online);
-  if (online) trySyncQueue();
-}
-window.addEventListener('online',  updateConn);
-window.addEventListener('offline', updateConn);
-
-// ── Init ──────────────────────────────────────────────
-detectSite();
-buildNRS('nrs-pre','presessionPain');
-buildNRS('nrs-max','maxPain');
-initTap('tg-last-pain-ok','lastPainOK', () => updateProgressionCriteria());
-initTap('tg-24h','symptoms24h', () => { updateSymptomsGate(); updateProgressionCriteria(); });
-initTap('tg-swelling','swelling', () => updateSymptomsGate());
-initTap('tg-last-technique','lastTechnique', () => updateProgressionCriteria());
-initTap('tg-symptoms-gate','symptomsGateDecision', v => {
-  if (v === 'pause') goToPause();
-});
-initTap('tg-rpe','rpe');
-initTap('tg-technique','technique');
-initTap('tg-dose-complete','doseCompleted');
-initTap('tg-progression-gate','progression', v => {
-  if (v === '4') goToPause();
-  else applyProgressionDose(v);
-});
-initTap('tg-safety-gate','safetyDecision', v => {
-  if (v === 'pause') goToPause();
-});
-initTap('tg-ae','adverseEvent', ()=>{
-  document.getElementById('ae-wrap').classList.toggle('show', state.adverseEvent==='1'||state.sae==='1');
-});
-initTap('tg-sae','sae', ()=>{
-  document.getElementById('ae-wrap').classList.toggle('show', state.adverseEvent==='1'||state.sae==='1');
-});
+function updateConn(){const online=navigator.onLine;document.getElementById('conn-dot').classList.toggle('offline',!online);if(online)trySyncQueue();}
+window.addEventListener('online',updateConn);window.addEventListener('offline',updateConn);
+detectSite();buildNRS('nrs-pre','presessionPain');buildNRS('nrs-max','maxPain');
+initTap('tg-last-pain-ok','lastPainOK',()=>updateProgressionCriteria());
+initTap('tg-24h','symptoms24h',()=>{updateSymptomsGate();updateProgressionCriteria();});
+initTap('tg-swelling','swelling',()=>updateSymptomsGate());
+initTap('tg-last-technique','lastTechnique',()=>updateProgressionCriteria());
+initTap('tg-symptoms-gate','symptomsGateDecision',v=>{if(v==='pause')goToPause();});
+initTap('tg-rpe','rpe');initTap('tg-technique','technique');initTap('tg-dose-complete','doseCompleted');
+initTap('tg-progression-gate','progression',v=>{if(v==='4')goToPause();else applyProgressionDose(v);});
+initTap('tg-safety-gate','safetyDecision',v=>{if(v==='pause')goToPause();});
+initTap('tg-ae','adverseEvent',()=>{document.getElementById('ae-wrap').classList.toggle('show',state.adverseEvent==='1'||state.sae==='1');});
+initTap('tg-sae','sae',()=>{document.getElementById('ae-wrap').classList.toggle('show',state.adverseEvent==='1'||state.sae==='1');});
 document.getElementById('inp-initials').addEventListener('input',function(){this.value=this.value.toUpperCase();});
-updateConn();
-updateSyncBanner();
-showScreen(0);
+updateConn();updateSyncBanner();showScreen(0);
 </script>
 </body>
 </html>
