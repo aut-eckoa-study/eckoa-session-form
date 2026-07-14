@@ -433,6 +433,7 @@ const progWidths  = ['20%','40%','60%','80%','100%'];
 const progLabels  = ['Step 1 of 5','Step 2 of 5','Step 3 of 5','Step 4 of 5','Step 5 of 5'];
 
 function goTo(n){
+  if(n===4 && !balDone) initBalanceScreen();
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('s'+n).classList.add('active');
   document.getElementById('progFill').style.width  = progWidths[n-1];
@@ -705,12 +706,7 @@ function initBalanceScreen(){
   balInitStage();
 }
 
-// Override goTo to init balance when navigating to screen 4
-const _goTo = goTo;
-function goTo(n){
-  if(n===4 && !balDone) initBalanceScreen();
-  _goTo(n);
-}
+
 
 // ========== SUMMARY ==========
 function buildSummary(){
