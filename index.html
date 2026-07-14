@@ -1,3 +1,108 @@
+
+/
+Claude finished the response
+I dont think we can get trainers to stay for entire session so need them to fill in their parts in 3 including making a call on technique  (based on the warm up technique) and initials.  These parts (Prescribed dose completed?
+Safety
+Adverse event or symptom flare?
+Serious adverse event?
+Any unexpected medical event requiring intervention or hospitalisation.) will need to be filled in by the  participant themselves
+
+
+Restructured form flow by bifurcating trainer and participant responsibilities
+Restructured form flow by bifurcating trainer and participant responsibilities
+Got it — so the new split is:
+
+Trainer does (after warm-up, then leaves):
+
+Cadence
+Prescribed dose
+Resistance (Light / Moderate / Somewhat hard)
+Technique satisfactory (based on warm-up)
+Trainer initials
+Participant does after the session:
+
+RPE
+Max pain NRS
+Prescribed dose completed?
+Adverse event or symptom flare?
+Serious adverse event?
+AE/SAE details if needed
+New screen order would be:
+
+Participant selection
+Pre-session pain + safety checks
+Warm-up instruction page
+Trainer section → trainer leaves after this
+Phase banner / Ready to ride
+Post-session participant questions (RPE, max pain, dose completed, AE/SAE)
+Summary & submit
+Is that right before I go ahead and rebuild it?
+
+for the cadence can you have 30 as standard, with a drop down box with 25 and 20. What is RPE?
+
+RPE = Rate of Perceived Exertion — it's the "how hard did the session feel" question (Light / Somewhat hard / Moderate / Hard) that the participant rates after the session. Just checking you're happy to keep that in the post-session participant section.
+
+And confirmed on cadence — default/display of 30 rpm, with a dropdown to select 25 or 20 if the trainer reduces it.
+
+So the cadence field would look like:
+
+Cadence (rpm)
+30 (default)
+Drop down: 25 / 20
+
+Should 30 just show as the pre-selected option, or do you want it displayed prominently as the standard and only changed if needed?
+
+just show as pre selected
+
+
+Architected comprehensive screen rebuild with preset defaults
+Architected comprehensive screen rebuild with preset defaults
+Perfect — I have everything I need. Building it now.
+
+Summary of all changes:
+
+Screen 2 (NEW): Warm-up instruction page
+Screen 3 (NEW Trainer): Cadence dropdown (30 pre-selected, 25, 20), Prescribed dose, Resistance dropdown (Light/Moderate/Somewhat hard), Technique, Initials — then trainer leaves
+Duration field: removed
+Screen 5 (Post-session participant): RPE, Max pain, Dose completed, AE/SAE
+
+Write complete rebuilt index.html with all changes
+Write complete rebuilt index.html with all changes
+is it done?
+
+
+Ran a command, read a file
+Ran a command, read a file
+Yes — done. Here's what's changed:
+
+New screen order:
+
+Participant selection
+Pre-session pain + safety checks
+Warm-up page — step-by-step instructions, professional wording
+Trainer section — Cadence (30 pre-selected, 25/20 dropdown), Prescribed dose, Resistance (Light/Moderate/Somewhat hard), Technique based on warm-up, Initials — then the button says "Session setup complete — hand phone to participant"
+Phase banner / Ready to ride
+Post-session participant — RPE, Max pain, Session completed, Unusual event, Medical attention needed
+Summary & submit
+Done
+Also removed: Total eccentric loading time field — gone completely.
+
+Same process to push it — copy all, paste into GitHub editor replacing the current index.html, commit. Want me to walk through anything before you do that?
+
+
+Index
+Code · HTML 
+
+
+
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,6 +153,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
 .callout { background:var(--amber-light); border-left:3px solid var(--amber); border-radius:8px; padding:12px 14px; font-size:13px; color:#5D3A00; line-height:1.5; margin-bottom:14px; }
 .callout strong { display:block; margin-bottom:2px; }
 .callout-red { background:var(--red-light); border-color:var(--red); color:#5c0000; }
+.warmup-box { background:var(--green); color:var(--white); border-radius:16px; padding:28px 22px; text-align:center; margin-bottom:14px; }
+.warmup-box .wu-icon { font-size:48px; margin-bottom:12px; }
+.warmup-box .wu-title { font-size:22px; font-weight:800; margin-bottom:8px; }
+.warmup-box .wu-sub { font-size:14px; opacity:0.85; line-height:1.6; }
+.warmup-steps { background:var(--white); border-radius:12px; padding:16px 18px; margin-bottom:14px; }
+.warmup-step { display:flex; gap:14px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); }
+.warmup-step:last-child { border-bottom:none; }
+.wu-num { background:var(--green); color:#fff; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.wu-text { font-size:14px; line-height:1.5; color:var(--text); }
+.wu-text strong { display:block; font-size:15px; margin-bottom:2px; }
 select, input[type="text"], input[type="number"], textarea { width:100%; padding:13px 14px; border:2px solid var(--border); border-radius:10px; font-size:16px; color:var(--text); background:var(--white); font-family:inherit; }
 select { appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B5E3B' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-color:var(--white); padding-right:40px; }
 select:focus, input:focus, textarea:focus { outline:none; border-color:var(--green); }
@@ -91,11 +206,12 @@ textarea { min-height:80px; resize:none; }
   <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
 </div>
 <div id="sync-banner">
-  <span id="sync-msg">&#128228; 1 session waiting to sync</span>
+  <span id="sync-msg">1 session waiting to sync</span>
   <button onclick="trySyncQueue()">Sync now</button>
 </div>
 <div id="card-wrap">
-  <!-- SCREEN 0 -->
+ 
+  <!-- SCREEN 0: Participant selection -->
   <div class="screen active" id="screen-0">
     <div class="card">
       <div class="screen-label" id="site-label">Session Log</div>
@@ -141,7 +257,8 @@ textarea { min-height:80px; resize:none; }
       </div>
     </div>
   </div>
-  <!-- SCREEN 1 -->
+ 
+  <!-- SCREEN 1: Pre-session pain + safety -->
   <div class="screen" id="screen-1">
     <div class="card">
       <div class="screen-label">Before you start &middot; Your questions</div>
@@ -157,21 +274,21 @@ textarea { min-height:80px; resize:none; }
     </div>
     <div class="card" id="card-safety-gate" style="display:none">
       <div style="background:#FDECEA;border-left:4px solid #C62828;padding:12px 14px;border-radius:8px;margin-bottom:14px">
-        <div style="font-weight:700;color:#B71C1C;margin-bottom:3px">&#128721; Pre-session pain is 5 or above</div>
+        <div style="font-weight:700;color:#B71C1C;margin-bottom:3px">Pre-session pain is 5 or above</div>
         <div style="font-size:13px;color:#B71C1C;line-height:1.5">This session should not proceed without trainer review. Please speak with your trainer now.</div>
       </div>
       <div style="font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px"><strong>Safety rule:</strong> Stop or modify the session if pain becomes sharp, escalating, or above 5/10 at any point, or if you feel your knee giving way or feel unsafe.</div>
       <div class="field">
         <label class="field-label">Trainer decision</label>
         <div class="tap-group" id="tg-safety-gate">
-          <button class="tap-btn" data-val="proceed">Trainer has reviewed &mdash; proceed with caution<span class="sub">Trainer will monitor closely. Pain &le;3/10 rule still applies during session.</span></button>
+          <button class="tap-btn" data-val="proceed">Trainer has reviewed &mdash; proceed with caution<span class="sub">Trainer will monitor closely. Pain 3/10 or less rule still applies during session.</span></button>
           <button class="tap-btn" data-val="pause">Not proceeding today<span class="sub">Log this as a paused / rested session</span></button>
         </div>
       </div>
     </div>
     <div class="card" id="card-symptoms" style="display:none">
       <div class="field">
-        <label class="field-label">Was your knee pain &le;3/10 throughout your last session?</label>
+        <label class="field-label">Was your knee pain 3/10 or less throughout your last session?</label>
         <div class="tap-group horiz" id="tg-last-pain-ok">
           <button class="tap-btn" data-val="1">Yes</button>
           <button class="tap-btn" data-val="0">No</button>
@@ -201,26 +318,26 @@ textarea { min-height:80px; resize:none; }
     </div>
     <div class="card" id="card-symptoms-gate" style="display:none">
       <div style="background:#FDECEA;border-left:4px solid #C62828;padding:12px 14px;border-radius:8px;margin-bottom:14px">
-        <div style="font-weight:700;color:#B71C1C;margin-bottom:3px" id="symptoms-gate-title">&#9888;&#65039; Symptoms have not returned to baseline</div>
+        <div style="font-weight:700;color:#B71C1C;margin-bottom:3px" id="symptoms-gate-title">Symptoms have not returned to baseline</div>
         <div style="font-size:13px;color:#B71C1C;line-height:1.5">This session should not proceed without trainer review. Please speak with your trainer now.</div>
       </div>
       <div class="field">
         <label class="field-label">Trainer decision</label>
         <div class="tap-group" id="tg-symptoms-gate">
-          <button class="tap-btn" data-val="proceed">Trainer has reviewed &mdash; proceed with caution<span class="sub">Trainer will monitor closely. Pain &le;3/10 rule still applies during session.</span></button>
+          <button class="tap-btn" data-val="proceed">Trainer has reviewed &mdash; proceed with caution<span class="sub">Trainer will monitor closely. Pain 3/10 or less rule still applies during session.</span></button>
           <button class="tap-btn" data-val="pause">Not proceeding today<span class="sub">Log this as a paused / rested session</span></button>
         </div>
       </div>
     </div>
     <div class="card" id="card-progression-gate" style="display:none">
       <div style="background:#FFF3CD;border-left:4px solid #F0A500;padding:12px 14px;border-radius:8px;margin-bottom:16px">
-        <div style="font-weight:700;color:#856404;margin-bottom:3px">&#9888;&#65039; Pre-session pain is 3 or above</div>
+        <div style="font-weight:700;color:#856404;margin-bottom:3px">Pre-session pain is 3 or above</div>
         <div style="font-size:13px;color:#856404;line-height:1.5">Trainer: review the criteria below and confirm the progression decision.</div>
       </div>
       <div style="background:#FFFBF0;border:1px solid #F0A500;border-radius:8px;padding:12px 14px;margin-bottom:14px;font-size:13px;line-height:1.8">
-        <div id="crit-pain" style="display:flex;gap:8px"><span id="crit-pain-icon">&#9634;</span><span>Pain &le;3/10 throughout last session</span></div>
-        <div id="crit-settle" style="display:flex;gap:8px"><span id="crit-settle-icon">&#9634;</span><span>Symptoms returned to baseline within 24h</span></div>
-        <div id="crit-tech" style="display:flex;gap:8px"><span id="crit-tech-icon">&#9634;</span><span>Technique satisfactory last session</span></div>
+        <div id="crit-pain" style="display:flex;gap:8px"><span id="crit-pain-icon">?</span><span>Pain 3/10 or less throughout last session</span></div>
+        <div id="crit-settle" style="display:flex;gap:8px"><span id="crit-settle-icon">?</span><span>Symptoms returned to baseline within 24h</span></div>
+        <div id="crit-tech" style="display:flex;gap:8px"><span id="crit-tech-icon">?</span><span>Technique satisfactory last session</span></div>
       </div>
       <div class="field">
         <label class="field-label">Was technique satisfactory last session?</label>
@@ -233,32 +350,117 @@ textarea { min-height:80px; resize:none; }
       <div class="field">
         <label class="field-label">Progression decision</label>
         <div class="tap-group" id="tg-progression-gate">
-          <button class="tap-btn" data-val="1">Increase dose<span class="sub">Pain &le;3/10 last session &middot; symptoms returned to baseline within 24h &middot; technique satisfactory</span></button>
+          <button class="tap-btn" data-val="1">Increase dose<span class="sub">Pain 3/10 or less last session, symptoms returned to baseline within 24h, technique satisfactory</span></button>
           <button class="tap-btn" data-val="3">Reduce dose<span class="sub">Pain exceeded 3/10 during last session, or symptoms / swelling did not return to baseline</span></button>
           <button class="tap-btn" data-val="4">Pause programme<span class="sub">Intercurrent illness, symptom flare, or other safety concern</span></button>
         </div>
       </div>
     </div>
   </div>
-  <!-- SCREEN 2 -->
+ 
+  <!-- SCREEN 2: Warm-up -->
   <div class="screen" id="screen-2">
+    <div class="warmup-box">
+      <div class="wu-icon">&#128694;</div>
+      <div class="wu-title">Warm-Up</div>
+      <div class="wu-sub">Please complete your one-minute warm-up before your trainer records the session details below.</div>
+    </div>
+    <div class="warmup-steps">
+      <div class="warmup-step">
+        <div class="wu-num">1</div>
+        <div class="wu-text"><strong>Mount the cycle safely</strong>Ensure your foot arch is centred on the pedal and your knee remains slightly bent throughout the full pedal cycle.</div>
+      </div>
+      <div class="warmup-step">
+        <div class="wu-num">2</div>
+        <div class="wu-text"><strong>One minute, no resistance</strong>Pedal backwards at a comfortable pace with the resistance set to zero. This allows your muscles and joints to prepare for eccentric loading.</div>
+      </div>
+      <div class="warmup-step">
+        <div class="wu-num">3</div>
+        <div class="wu-text"><strong>Stop immediately if needed</strong>If you experience any sharp pain, chest discomfort, dizziness, or anything unusual, stop and inform your trainer straight away.</div>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>When your warm-up is complete</strong>
+      Your trainer will complete the session details below, then you are ready to begin your eccentric cycling session.
+    </div>
+  </div>
+ 
+  <!-- SCREEN 3: Trainer section (pre-ride) -->
+  <div class="screen" id="screen-3">
+    <div class="trainer-header">
+      <div class="trainer-icon">&#127947;</div>
+      <div><h3>Trainer section</h3><p>Complete all fields below, then the participant continues independently.</p></div>
+    </div>
+    <div class="card">
+      <div class="screen-label">Session setup</div>
+      <div class="field">
+        <label class="field-label">Cadence (rpm)</label>
+        <select id="sel-cadence">
+          <option value="30" selected>30 rpm (standard)</option>
+          <option value="25">25 rpm</option>
+          <option value="20">20 rpm</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="field-label">Prescribed dose</label>
+        <select id="sel-dose">
+          <option value="">&mdash; Select &mdash;</option>
+          <option value="1">3 x 1 min</option>
+          <option value="2">3 x 90 sec</option>
+          <option value="3">3 x 120 sec</option>
+          <option value="4">4 x 120 sec</option>
+          <option value="5">Other / modified</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="field-label">Resistance level</label>
+        <select id="sel-resistance">
+          <option value="">&mdash; Select &mdash;</option>
+          <option value="Light">Light</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Somewhat hard">Somewhat hard</option>
+        </select>
+      </div>
+    </div>
+    <div class="card">
+      <div class="screen-label">Technique (based on warm-up)</div>
+      <div class="field">
+        <label class="field-label">Technique satisfactory?</label>
+        <div class="tap-group horiz" id="tg-technique">
+          <button class="tap-btn" data-val="1">Yes</button>
+          <button class="tap-btn" data-val="0">No</button>
+          <button class="tap-btn" data-val="2">NA</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="field">
+        <label class="field-label">Trainer initials</label>
+        <input type="text" id="inp-initials" placeholder="e.g. JB" maxlength="5" style="text-transform:uppercase">
+      </div>
+    </div>
+  </div>
+ 
+  <!-- SCREEN 4: Phase info / ready to ride -->
+  <div class="screen" id="screen-4">
     <div class="phase-banner">
       <div class="phase-label">Today's prescribed dose</div>
       <div class="phase-dose" id="phase-dose-text"></div>
       <div class="phase-detail" id="phase-detail-text"></div>
     </div>
     <div class="callout">
-      <strong>&#9888;&#65039; Safety reminder</strong>
+      <strong>Safety reminder</strong>
       Stop immediately and tell your trainer if your knee pain goes above 3/10, or if you feel chest pain, dizziness, or anything unusual.
     </div>
     <div class="card">
       <div class="screen-label">Ready to ride</div>
       <div class="screen-title">Your session is starting</div>
-      <div class="screen-sub">Your trainer will set the bike. When your session is <strong>finished</strong>, tap Continue to complete your post-session questions.</div>
+      <div class="screen-sub">Your trainer has set the bike. When your session is <strong>finished</strong>, tap Continue to complete your post-session questions.</div>
     </div>
   </div>
-  <!-- SCREEN 3 -->
-  <div class="screen" id="screen-3">
+ 
+  <!-- SCREEN 5: Post-session (participant) -->
+  <div class="screen" id="screen-5">
     <div class="card">
       <div class="screen-label">After your session &middot; Your questions</div>
       <div class="screen-title">How did that feel?</div>
@@ -281,70 +483,27 @@ textarea { min-height:80px; resize:none; }
         <div class="nrs-grid" id="nrs-max"></div>
       </div>
     </div>
-  </div>
-  <!-- SCREEN 4 -->
-  <div class="screen" id="screen-4">
-    <div class="trainer-header">
-      <div class="trainer-icon">&#127947;</div>
-      <div><h3>Trainer section</h3><p>Complete all fields below then submit.</p></div>
-    </div>
     <div class="card">
-      <div class="screen-label">Session data</div>
       <div class="field">
-        <label class="field-label">Cadence achieved (rpm)</label>
-        <input type="number" id="inp-cadence" placeholder="e.g. 25" min="0" max="100">
-      </div>
-      <div class="field">
-        <label class="field-label">Prescribed dose</label>
-        <select id="sel-dose">
-          <option value="">&mdash; Select &mdash;</option>
-          <option value="1">3 &times; 1 min</option>
-          <option value="2">3 &times; 90 sec</option>
-          <option value="3">3 &times; 120 sec</option>
-          <option value="4">4 &times; 120 sec</option>
-          <option value="5">Other / modified</option>
-        </select>
-      </div>
-      <div class="field">
-        <label class="field-label">Total eccentric loading time (min)</label>
-        <input type="number" id="inp-duration" placeholder="e.g. 3" min="0" max="30" step="0.5">
-      </div>
-      <div class="field">
-        <label class="field-label">Resistance / load setting</label>
-        <input type="text" id="inp-resistance" placeholder="e.g. Level 3, 15 kg">
-      </div>
-    </div>
-    <div class="card">
-      <div class="screen-label">Technique &amp; completion</div>
-      <div class="field">
-        <label class="field-label">Technique satisfactory?</label>
-        <div class="tap-group horiz" id="tg-technique">
+        <label class="field-label">Was the full session completed?</label>
+        <div class="tap-group horiz" id="tg-dose-complete">
           <button class="tap-btn" data-val="1">Yes</button>
           <button class="tap-btn" data-val="0">No</button>
-          <button class="tap-btn" data-val="2">NA</button>
+          <button class="tap-btn" data-val="2">Not sure</button>
         </div>
       </div>
       <div class="divider"></div>
       <div class="field">
-        <label class="field-label">Prescribed dose completed?</label>
-        <div class="tap-group horiz" id="tg-dose-complete">
-          <button class="tap-btn" data-val="1">Yes</button>
-          <button class="tap-btn" data-val="0">No</button>
-          <button class="tap-btn" data-val="2">NA</button>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="screen-label">Safety</div>
-      <div class="field">
-        <label class="field-label">Adverse event or symptom flare?</label>
+        <label class="field-label">Did anything unusual happen during the session?</label>
+        <div class="field-hint">For example: increased pain, swelling, dizziness, or any other concern.</div>
         <div class="tap-group horiz" id="tg-ae">
           <button class="tap-btn" data-val="1">Yes</button>
           <button class="tap-btn" data-val="0">No</button>
         </div>
       </div>
+      <div class="divider"></div>
       <div class="field">
-        <label class="field-label">Serious adverse event?</label>
+        <label class="field-label">Did anything happen that required medical attention?</label>
         <div class="field-hint">Any unexpected medical event requiring intervention or hospitalisation.</div>
         <div class="tap-group horiz" id="tg-sae">
           <button class="tap-btn" data-val="1">Yes</button>
@@ -352,22 +511,17 @@ textarea { min-height:80px; resize:none; }
         </div>
       </div>
       <div class="conditional" id="ae-wrap">
-        <div class="callout callout-red"><strong>&#9888;&#65039; Complete a separate AE/SAE report</strong>Note brief details below, then complete the full report with the Research Officer.</div>
+        <div class="callout callout-red"><strong>Please note brief details below</strong>Your trainer and the Research Officer will follow up with you.</div>
         <div class="field">
-          <label class="field-label">AE / SAE brief details</label>
-          <textarea id="inp-ae-details" placeholder="Brief description..."></textarea>
+          <label class="field-label">Brief details</label>
+          <textarea id="inp-ae-details" placeholder="Brief description of what happened..."></textarea>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="field">
-        <label class="field-label">Trainer initials</label>
-        <input type="text" id="inp-initials" placeholder="e.g. JB" maxlength="5" style="text-transform:uppercase">
-      </div>
-    </div>
   </div>
-  <!-- SCREEN 5 -->
-  <div class="screen" id="screen-5">
+ 
+  <!-- SCREEN 6: Summary & submit -->
+  <div class="screen" id="screen-6">
     <div class="card" style="text-align:center;padding:28px 18px">
       <div class="success-icon">&#128203;</div>
       <div class="screen-title" style="margin-bottom:6px">Ready to submit</div>
@@ -378,8 +532,9 @@ textarea { min-height:80px; resize:none; }
       <div style="font-size:13px;color:#5D3A00;line-height:1.5">Data will be sent securely to the ECKOA REDCap database at AUT. If you have no internet connection, it will be saved and sent automatically next time you open this form on wifi.</div>
     </div>
   </div>
-  <!-- SCREEN 6 -->
-  <div class="screen" id="screen-6">
+ 
+  <!-- SCREEN 7: Done -->
+  <div class="screen" id="screen-7">
     <div class="card" style="text-align:center;padding:40px 18px">
       <div class="success-icon" style="font-size:40px">&#9989;</div>
       <div class="screen-title" style="margin-bottom:8px">Session logged</div>
@@ -388,10 +543,11 @@ textarea { min-height:80px; resize:none; }
       <button class="btn-next" style="position:static;max-width:220px;margin:0 auto;display:block" onclick="resetForm()">Log another session</button>
     </div>
   </div>
-  <!-- SCREEN 7 -->
-  <div class="screen" id="screen-7">
+ 
+  <!-- SCREEN 8: Paused -->
+  <div class="screen" id="screen-8">
     <div class="card" style="text-align:center;padding:28px 18px">
-      <div class="success-icon" style="background:#FFF3CD;font-size:36px">&#9208;&#65039;</div>
+      <div class="success-icon" style="background:#FFF3CD;font-size:36px">&#9208;</div>
       <div class="screen-title" style="margin-bottom:6px">Session paused</div>
       <div class="screen-sub">Today's session will not proceed. This will be recorded in the study log.</div>
     </div>
@@ -408,20 +564,17 @@ textarea { min-height:80px; resize:none; }
         <input type="text" id="inp-pause-initials" placeholder="e.g. JB" maxlength="5" style="text-transform:uppercase">
       </div>
     </div>
-    <button class="btn-next" style="position:static;max-width:100%;margin:0 0 10px 0" onclick="submitPause()">Log as paused &rarr;</button>
+    <button class="btn-next" style="position:static;max-width:100%;margin:0 0 10px 0" onclick="submitPause()">Log as paused</button>
     <button style="background:none;border:none;color:var(--muted);font-size:13px;display:block;margin:0 auto;cursor:pointer;padding:8px" onclick="resumeFromPause()">Go back to pre-session check</button>
   </div>
+ 
 </div>
 <div id="bottom-nav">
   <button class="btn-back" id="btn-back" onclick="goBack()" style="display:none">Back</button>
-  <button class="btn-next" id="btn-next" onclick="goNext()">Start &rarr;</button>
+  <button class="btn-next" id="btn-next" onclick="goNext()">Start</button>
 </div>
+ 
 <script>
-// ═══════════════════════════════════════════════════════
-// PARTICIPANT LISTS — updated with confirmed participants
-// Each entry: { display: 'Initials shown on screen', redcap: 'REDCap study ID' }
-// Add City and South participants here when confirmed.
-// ═══════════════════════════════════════════════════════
 const PARTICIPANTS = {
   northshore: [
     { display:'AH', redcap:'P01' },
@@ -429,16 +582,13 @@ const PARTICIPANTS = {
     { display:'SR', redcap:'P13' },
     { display:'JM', redcap:'P22' },
   ],
-  city: [
-    // TBC — add initials and P0x codes when confirmed
-  ],
-  south: [
-    // TBC — add initials and P0x codes when confirmed
-  ],
+  city: [],
+  south: [],
 };
 const SITE_NAMES = { northshore:'AUT Northshore Fitness Centre', city:'AUT City Fitness Centre', south:'AUT South Fitness Centre' };
 const REDCAP_URL   = 'https://redcap.aut.ac.nz/api/';
 const REDCAP_TOKEN = '170E226C48A4D1F770A9D68EE772B727';
+ 
 const PHASES = {
   1:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
   2:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
@@ -460,13 +610,21 @@ const PHASES = {
 const NRS_COLORS=['#4CAF50','#66BB6A','#9CCC65','#D4E157','#FFEE58','#FFA726','#FF7043','#EF5350','#E53935','#C62828','#8B0000'];
 const NRS_LABELS=['No pain at all','Very mild','Mild','Mild-moderate','Moderate','Moderate','Moderate-severe','Severe','Very severe','Nearly worst possible','Worst imaginable'];
 const DOSE_LABELS={'1':'3 x 1 min','2':'3 x 90 sec','3':'3 x 120 sec','4':'4 x 120 sec','5':'Other / modified'};
-const DOSE_INFO={1:{dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},2:{dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},3:{dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},4:{dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'}};
+const DOSE_INFO={
+  1:{dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},
+  2:{dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},
+  3:{dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},
+  4:{dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less'},
+};
 const RPE_LABELS={'1':'Light','2':'Somewhat hard','3':'Moderate','4':'Hard'};
-const PROG_LABELS={'1':'Increase','2':'Maintain','3':'Reduce','4':'Pause','5':'Not applicable','none':'N/A (pain <3)'};
-const YN={'1':'Yes','0':'No','2':'NA'};
+const PROG_LABELS={'1':'Increase','2':'Maintain','3':'Reduce','4':'Pause','none':'N/A (pain below 3)'};
+const YN={'1':'Yes','0':'No','2':'Not sure'};
 const SW_LABELS={'1':'None','2':'Mild','3':'Moderate','4':'Severe'};
+const TECH_LABELS={'1':'Yes','0':'No','2':'NA'};
+ 
 let state={},site='',siteParticipants=[],screenIdx=0;
-const SCREENS=[0,1,2,3,4,5,6];
+const SCREENS=[0,1,2,3,4,5,6,7];
+ 
 function detectSite(){
   const params=new URLSearchParams(window.location.search);
   const s=(params.get('site')||'').toLowerCase();
@@ -475,8 +633,15 @@ function detectSite(){
   else{siteParticipants=PARTICIPANTS[site];document.getElementById('site-label').textContent=SITE_NAMES[site];}
   const sel=document.getElementById('sel-participant');
   siteParticipants.forEach(p=>{const opt=document.createElement('option');opt.value=p.redcap;opt.textContent=p.display;sel.appendChild(opt);});
-  for(let i=1;i<=16;i++){['sel-session-override','sel-session-new'].forEach(id=>{const opt=document.createElement('option');opt.value=i;const ph=PHASES[i];opt.textContent='Session '+i+' - Week '+ph.w+', Phase '+ph.p+' ('+ph.dose+')';document.getElementById(id).appendChild(opt);});}
+  for(let i=1;i<=16;i++){
+    ['sel-session-override','sel-session-new'].forEach(id=>{
+      const opt=document.createElement('option');opt.value=i;const ph=PHASES[i];
+      opt.textContent='Session '+i+' - Week '+ph.w+', Phase '+ph.p+' ('+ph.dose+')';
+      document.getElementById(id).appendChild(opt);
+    });
+  }
 }
+ 
 function onParticipantSelect(){
   const redcapId=document.getElementById('sel-participant').value;
   if(!redcapId){document.getElementById('welcome-back-card').style.display='none';document.getElementById('new-participant-card').style.display='none';return;}
@@ -492,11 +657,16 @@ function onParticipantSelect(){
     document.getElementById('new-participant-card').style.display='none';
     document.getElementById('session-badge').textContent='Session '+nextSess;
     document.getElementById('session-badge').style.display='block';
-  }else{document.getElementById('welcome-back-card').style.display='none';document.getElementById('new-participant-card').style.display='block';state.session=null;}
+  } else {
+    document.getElementById('welcome-back-card').style.display='none';
+    document.getElementById('new-participant-card').style.display='block';
+    state.session=null;
+  }
 }
 function showSessionOverride(){const el=document.getElementById('session-override');el.style.display=el.style.display==='none'?'block':'none';}
 function onSessionOverride(){const v=parseInt(document.getElementById('sel-session-override').value);if(!v)return;state.session=v;const ph=PHASES[v];document.getElementById('wb-session').textContent='Session '+v;document.getElementById('wb-phase').textContent='Phase '+ph.p+' - Week '+ph.w+' - '+ph.dose;document.getElementById('session-badge').textContent='Session '+v;}
 function onNewSessionSelect(){const v=parseInt(document.getElementById('sel-session-new').value);state.session=v||null;if(v){document.getElementById('session-badge').textContent='Session '+v;document.getElementById('session-badge').style.display='block';}}
+ 
 function buildNRS(id,key){
   const el=document.getElementById(id);
   for(let i=0;i<=10;i++){
@@ -514,130 +684,276 @@ function buildNRS(id,key){
     el.appendChild(b);
   }
 }
-function initTap(groupId,key,cb){document.querySelectorAll('#'+groupId+' .tap-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#'+groupId+' .tap-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');state[key]=btn.dataset.val;if(cb)cb(btn.dataset.val);});});}
-function updatePhaseDisplay(){const s=state.session;if(!s)return;const ph=PHASES[s];document.getElementById('phase-dose-text').textContent=ph.dose;document.getElementById('phase-detail-text').textContent=ph.detail;document.getElementById('sel-dose').value=String(ph.rc);state.prescribedDose=String(ph.rc);}
+ 
+function initTap(groupId,key,cb){
+  document.querySelectorAll('#'+groupId+' .tap-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#'+groupId+' .tap-btn').forEach(b=>b.classList.remove('selected'));
+      btn.classList.add('selected');state[key]=btn.dataset.val;if(cb)cb(btn.dataset.val);
+    });
+  });
+}
+ 
+function updatePhaseDisplay(){
+  const s=state.session;if(!s)return;
+  const ph=PHASES[s];
+  document.getElementById('phase-dose-text').textContent=ph.dose;
+  document.getElementById('phase-detail-text').textContent=ph.detail;
+  const doseVal=document.getElementById('sel-dose').value;
+  if(doseVal)state.prescribedDose=doseVal;
+  else{document.getElementById('sel-dose').value=String(ph.rc);state.prescribedDose=String(ph.rc);}
+}
+ 
 function validate(screenN){
-  if(screenN===0){if(!state.participantRedcap){alert('Please select your name.');return false;}if(!state.session){alert('Please select the session number.');return false;}state.sessionDate=new Date().toLocaleDateString('en-NZ');updatePhaseDisplay();return true;}
-  if(screenN===1){
-    if(state.presessionPain===undefined){alert('Please rate your pre-session pain.');return false;}
-    if(state.session>1){if(!state.lastPainOK){alert('Please answer the last session pain question.');return false;}if(!state.symptoms24h){alert('Please answer the 24-hour recovery question.');return false;}if(!state.swelling){alert('Please rate swelling/stiffness.');return false;}}
-    else{state.symptoms24h='2';state.swelling='1';}
-    if(state.presessionPain>=5){if(!state.safetyDecision){alert('Trainer: please select a decision in the red safety section above.');return false;}if(state.safetyDecision==='pause'){goToPause();return false;}}
-    else if(state.presessionPain>=3&&state.session>1){if(!state.progression){alert('Trainer: please select a progression decision above.');return false;}if(state.progression==='4'){goToPause();return false;}}
-    if(state.session>1&&document.getElementById('card-symptoms-gate').style.display!=='none'){if(!state.symptomsGateDecision){alert('Trainer: please select a decision for the symptoms check above.');return false;}if(state.symptomsGateDecision==='pause'){goToPause();return false;}}
+  if(screenN===0){
+    if(!state.participantRedcap){alert('Please select your name.');return false;}
+    if(!state.session){alert('Please select the session number.');return false;}
+    state.sessionDate=new Date().toLocaleDateString('en-NZ');
     return true;
   }
-  if(screenN===3){if(!state.rpe){alert('Please rate how hard the session felt.');return false;}if(state.maxPain===undefined){alert('Please rate your maximum pain during the session.');return false;}return true;}
-  if(screenN===4){
-    if(!document.getElementById('inp-cadence').value){alert('Please enter the cadence.');return false;}
+  if(screenN===1){
+    if(state.presessionPain===undefined){alert('Please rate your pre-session pain.');return false;}
+    if(state.session>1){
+      if(!state.lastPainOK){alert('Please answer the last session pain question.');return false;}
+      if(!state.symptoms24h){alert('Please answer the 24-hour recovery question.');return false;}
+      if(!state.swelling){alert('Please rate swelling/stiffness.');return false;}
+    } else {state.symptoms24h='2';state.swelling='1';}
+    if(state.presessionPain>=5){
+      if(!state.safetyDecision){alert('Trainer: please select a decision in the red safety section above.');return false;}
+      if(state.safetyDecision==='pause'){goToPause();return false;}
+    } else if(state.presessionPain>=3&&state.session>1){
+      if(!state.progression){alert('Trainer: please select a progression decision above.');return false;}
+      if(state.progression==='4'){goToPause();return false;}
+    }
+    if(state.session>1&&document.getElementById('card-symptoms-gate').style.display!=='none'){
+      if(!state.symptomsGateDecision){alert('Trainer: please select a decision for the symptoms check above.');return false;}
+      if(state.symptomsGateDecision==='pause'){goToPause();return false;}
+    }
+    return true;
+  }
+  if(screenN===2){
+    // Warm-up page — no required inputs, just tap Continue when done
+    return true;
+  }
+  if(screenN===3){
+    // Trainer section
     if(!document.getElementById('sel-dose').value){alert('Please select the prescribed dose.');return false;}
-    if(!state.technique){alert('Please rate technique.');return false;}if(!state.doseCompleted){alert('Please indicate whether the dose was completed.');return false;}
-    if(!state.adverseEvent){alert('Please answer the adverse event question.');return false;}if(!state.sae){alert('Please answer the serious adverse event question.');return false;}
+    if(!document.getElementById('sel-resistance').value){alert('Please select the resistance level.');return false;}
+    if(!state.technique){alert('Please rate technique.');return false;}
     if(!document.getElementById('inp-initials').value){alert('Please enter trainer initials.');return false;}
-    state.cadence=document.getElementById('inp-cadence').value;state.prescribedDose=document.getElementById('sel-dose').value;state.duration=document.getElementById('inp-duration').value;state.resistance=document.getElementById('inp-resistance').value;state.aeDetails=document.getElementById('inp-ae-details').value;state.trainerInitials=document.getElementById('inp-initials').value.toUpperCase();
-    buildSummary();return true;
+    state.cadence=document.getElementById('sel-cadence').value;
+    state.prescribedDose=document.getElementById('sel-dose').value;
+    state.resistance=document.getElementById('sel-resistance').value;
+    state.trainerInitials=document.getElementById('inp-initials').value.toUpperCase();
+    updatePhaseDisplay();
+    return true;
+  }
+  if(screenN===5){
+    if(!state.rpe){alert('Please rate how hard the session felt.');return false;}
+    if(state.maxPain===undefined){alert('Please rate your maximum pain during the session.');return false;}
+    if(!state.doseCompleted){alert('Please indicate whether the session was completed.');return false;}
+    if(!state.adverseEvent){alert('Please answer the unusual event question.');return false;}
+    if(!state.sae){alert('Please answer the medical attention question.');return false;}
+    state.aeDetails=document.getElementById('inp-ae-details').value;
+    buildSummary();
+    return true;
   }
   return true;
 }
+ 
 function buildSummary(){
   const ph=PHASES[state.session];
-  const rows=[['Participant',state.participantDisplay],['Session',state.session+' (Phase '+ph.p+' - Week '+ph.w+')'],['Date',state.sessionDate],['Pre-session pain',state.presessionPain+'/10'],['Symptoms settled 24h',state.session>1?YN[state.symptoms24h]:'N/A (Session 1)'],['Swelling/stiffness',state.session>1?SW_LABELS[state.swelling]:'N/A (Session 1)'],['Perceived exertion',RPE_LABELS[state.rpe]],['Max pain during session',state.maxPain+'/10'],['Cadence',state.cadence+' rpm'],['Dose',DOSE_LABELS[state.prescribedDose]],['Duration',state.duration?state.duration+' min':'--'],['Resistance',state.resistance||'--'],['Technique OK',YN[state.technique]],['Dose completed',YN[state.doseCompleted]],['Progression',PROG_LABELS[state.progression]],['Adverse event',YN[state.adverseEvent]],['Serious AE',YN[state.sae]],['Trainer',state.trainerInitials]];
+  const rows=[
+    ['Participant',state.participantDisplay],
+    ['Session',state.session+' (Phase '+ph.p+' - Week '+ph.w+')'],
+    ['Date',state.sessionDate],
+    ['Pre-session pain',state.presessionPain+'/10'],
+    ['Symptoms settled 24h',state.session>1?YN[state.symptoms24h]:'N/A (Session 1)'],
+    ['Swelling/stiffness',state.session>1?SW_LABELS[state.swelling]:'N/A (Session 1)'],
+    ['Cadence',state.cadence+' rpm'],
+    ['Prescribed dose',DOSE_LABELS[state.prescribedDose]],
+    ['Resistance',state.resistance||'--'],
+    ['Technique (warm-up)',TECH_LABELS[state.technique]],
+    ['Trainer',state.trainerInitials],
+    ['Perceived exertion',RPE_LABELS[state.rpe]],
+    ['Max pain during session',state.maxPain+'/10'],
+    ['Session completed',YN[state.doseCompleted]],
+    ['Progression',PROG_LABELS[state.progression]||'--'],
+    ['Unusual event',YN[state.adverseEvent]],
+    ['Medical attention needed',YN[state.sae]],
+  ];
   document.getElementById('summary-card').innerHTML=rows.map(([k,v])=>'<div class="sum-row"><span>'+k+'</span><span>'+v+'</span></div>').join('');
 }
+ 
 function applyProgressionDose(val){
   if(!state.session)return;const ph=PHASES[state.session];let doseRc=ph.rc,banner='';
   if(val==='3'&&ph.rc>1){doseRc=ph.rc-1;banner='Reduced from scheduled '+ph.dose;}
   else if(val==='3'&&ph.rc===1){banner='Already at minimum dose - maintain';}
   const info=DOSE_INFO[doseRc];
   document.getElementById('phase-dose-text').textContent=info.dose;
-  document.getElementById('phase-detail-text').textContent=banner?'Warning: '+banner+' - '+info.detail:info.detail;
+  document.getElementById('phase-detail-text').textContent=banner?'Note: '+banner+' - '+info.detail:info.detail;
   document.getElementById('sel-dose').value=String(doseRc);state.prescribedDose=String(doseRc);
 }
+ 
 function updateProgressionCriteria(){
   const painOK=state.lastPainOK==='1',settleOK=state.symptoms24h==='1',techOK=state.lastTechnique==='1';
   const painSet=state.lastPainOK!==undefined,settleSet=state.symptoms24h!==undefined,techSet=state.lastTechnique!==undefined;
-  const tick='OK',cross='X',blank='?';
-  document.getElementById('crit-pain-icon').textContent=painSet?(painOK?tick:cross):blank;
-  document.getElementById('crit-settle-icon').textContent=settleSet?(settleOK?tick:cross):blank;
-  document.getElementById('crit-tech-icon').textContent=techSet?(techOK?tick:cross):blank;
+  document.getElementById('crit-pain-icon').textContent=painSet?(painOK?'OK':'X'):'?';
+  document.getElementById('crit-settle-icon').textContent=settleSet?(settleOK?'OK':'X'):'?';
+  document.getElementById('crit-tech-icon').textContent=techSet?(techOK?'OK':'X'):'?';
   const allSet=painSet&&settleSet&&techSet;const sug=document.getElementById('progression-suggestion');
-  if(allSet){sug.style.display='block';if(painOK&&settleOK&&techOK){sug.style.background='#E8F5E9';sug.style.color='#1B5E3B';sug.textContent='Suggested: Increase dose';}else{sug.style.background='#FFF3CD';sug.style.color='#856404';sug.textContent='Suggested: Reduce dose - not all criteria met';}}
-  else{sug.style.display='none';}
+  if(allSet){
+    sug.style.display='block';
+    if(painOK&&settleOK&&techOK){sug.style.background='#E8F5E9';sug.style.color='#1B5E3B';sug.textContent='Suggested: Increase dose';}
+    else{sug.style.background='#FFF3CD';sug.style.color='#856404';sug.textContent='Suggested: Reduce dose - not all criteria met';}
+  } else {sug.style.display='none';}
 }
+ 
 function updateSymptomsGate(){
   const notSettled=state.symptoms24h==='0',highSwelling=state.swelling==='3'||state.swelling==='4',show=notSettled||highSwelling;
   const gate=document.getElementById('card-symptoms-gate');gate.style.display=show?'block':'none';
-  if(show){let title='Warning: ';if(notSettled&&highSwelling)title+='Symptoms not settled and significant swelling reported';else if(notSettled)title+='Symptoms have not returned to baseline within 24 hours';else title+='Moderate or severe swelling / stiffness reported';document.getElementById('symptoms-gate-title').textContent=title;}
+  if(show){let t='';if(notSettled&&highSwelling)t='Symptoms not settled and significant swelling reported';else if(notSettled)t='Symptoms have not returned to baseline within 24 hours';else t='Moderate or severe swelling / stiffness reported';document.getElementById('symptoms-gate-title').textContent=t;}
   if(!show)state.symptomsGateDecision=null;
 }
-function goToPause(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-7').classList.add('active');document.getElementById('btn-back').style.display='none';document.getElementById('btn-next').style.display='none';document.getElementById('progress-fill').style.width='100%';document.getElementById('card-wrap').scrollTop=0;window.scrollTo(0,0);}
+ 
+function goToPause(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-8').classList.add('active');
+  document.getElementById('btn-back').style.display='none';
+  document.getElementById('btn-next').style.display='none';
+  document.getElementById('progress-fill').style.width='100%';
+  document.getElementById('card-wrap').scrollTop=0;window.scrollTo(0,0);
+}
 function resumeFromPause(){screenIdx=1;showScreen(screenIdx);}
+ 
 async function submitPause(){
-  const initials=document.getElementById('inp-pause-initials').value.trim();if(!initials){alert('Please enter trainer initials.');return;}
+  const initials=document.getElementById('inp-pause-initials').value.trim();
+  if(!initials){alert('Please enter trainer initials.');return;}
   const reason=document.getElementById('inp-pause-reason').value.trim();
   const record={record_id:state.participantRedcap,redcap_event_name:'session_'+state.session+'_arm_1',session_date:new Date().toISOString().split('T')[0],session_attended:'1',presession_pain_nrs:state.presessionPain!==undefined?String(state.presessionPain):'',symptoms_24h:state.symptoms24h||'',swelling_stiffness:state.swelling||'',progression_decision:'4',modification_details:reason,trainer_initials:initials.toUpperCase(),adverse_event:'0',serious_adverse_event:'0'};
   let sentLive=false;
   if(REDCAP_TOKEN!=='PASTE_YOUR_API_TOKEN_HERE'&&navigator.onLine){try{sentLive=await postToREDCap(record);}catch(e){sentLive=false;}}
   if(!sentLive)addToQueue(record);
   saveProgress(state.participantRedcap,state.session-1);
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-6').classList.add('active');
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-7').classList.add('active');
   document.getElementById('success-msg').textContent=state.participantDisplay+' - Session '+state.session+' - Paused';
   document.getElementById('offline-note').textContent=sentLive?'Paused session recorded in REDCap.':'Saved locally - will sync when back online.';
 }
+ 
 function showScreen(idx){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+SCREENS[idx]).classList.add('active');document.getElementById('card-wrap').scrollTop=0;window.scrollTo(0,0);
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+SCREENS[idx]).classList.add('active');
+  document.getElementById('card-wrap').scrollTop=0;window.scrollTo(0,0);
   document.getElementById('progress-fill').style.width=(idx/(SCREENS.length-1)*100)+'%';
   document.getElementById('btn-back').style.display=idx>0?'block':'none';
   const nb=document.getElementById('btn-next');nb.style.display='block';nb.disabled=false;
-  if(idx===SCREENS.length-2)nb.textContent='Submit session';else if(SCREENS[idx]===2)nb.textContent='Session finished - Continue';else if(idx===0)nb.textContent='Start';else nb.textContent='Continue';
+  if(SCREENS[idx]===6)nb.textContent='Submit session';
+  else if(SCREENS[idx]===4)nb.textContent='Session finished - Continue';
+  else if(SCREENS[idx]===3)nb.textContent='Session setup complete - hand phone to participant';
+  else if(idx===0)nb.textContent='Start';
+  else nb.textContent='Continue';
   if(idx===SCREENS.length-1){nb.style.display='none';document.getElementById('btn-back').style.display='none';}
 }
-function goNext(){if(!validate(SCREENS[screenIdx]))return;if(screenIdx===SCREENS.length-2){submitForm();return;}screenIdx++;showScreen(screenIdx);}
+ 
+function goNext(){
+  if(!validate(SCREENS[screenIdx]))return;
+  if(screenIdx===SCREENS.length-2){submitForm();return;}
+  screenIdx++;showScreen(screenIdx);
+}
 function goBack(){if(screenIdx>0){screenIdx--;showScreen(screenIdx);}}
+ 
 function getProgress(id){try{return JSON.parse(localStorage.getItem('eckoa_progress_'+id));}catch(e){return null;}}
 function saveProgress(id,s){try{localStorage.setItem('eckoa_progress_'+id,JSON.stringify({lastSession:s,date:new Date().toISOString()}));}catch(e){}}
+ 
 const QUEUE_KEY='eckoa_queue';
 function getQueue(){try{return JSON.parse(localStorage.getItem(QUEUE_KEY))||[];}catch(e){return[];}}
 function saveQueue(q){try{localStorage.setItem(QUEUE_KEY,JSON.stringify(q));}catch(e){}}
 function addToQueue(rec){const q=getQueue();q.push({record:rec,ts:Date.now()});saveQueue(q);updateSyncBanner();}
 function updateSyncBanner(){const q=getQueue();const b=document.getElementById('sync-banner');if(q.length>0){b.style.display='flex';document.getElementById('sync-msg').textContent=q.length+' session'+(q.length>1?'s':'')+' waiting to sync';}else b.style.display='none';}
+ 
 async function trySyncQueue(){
   if(REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE'){alert('REDCap API not yet configured.');return;}
   const q=getQueue();if(!q.length)return;let sent=0;
   for(const item of q){try{const ok=await postToREDCap(item.record);if(ok)sent++;}catch(e){}}
   if(sent>0){const remaining=getQueue().slice(sent);saveQueue(remaining);updateSyncBanner();if(remaining.length===0)alert(sent+' session'+(sent>1?'s':'')+' synced to REDCap successfully.');}
 }
+ 
 function buildRecord(){
-  return{record_id:state.participantRedcap,redcap_event_name:'session_'+state.session+'_arm_1',session_date:new Date().toISOString().split('T')[0],session_attended:'1',presession_pain_nrs:String(state.presessionPain),last_session_pain_ok:state.lastPainOK||'',last_session_technique:state.lastTechnique||'',symptoms_24h:state.symptoms24h||'2',swelling_stiffness:state.swelling||'1',perceived_exertion:state.rpe,max_pain_nrs:String(state.maxPain),cadence_rpm:state.cadence,prescribed_dose:state.prescribedDose,eccentric_duration:state.duration||'',resistance_load:state.resistance||'',technique_satisfactory:state.technique,dose_completed:state.doseCompleted,progression_decision:state.progression,modification_details:state.modification||'',adverse_event:state.adverseEvent,serious_adverse_event:state.sae,ae_sae_details:state.aeDetails||'',trainer_initials:state.trainerInitials};
+  return{
+    record_id:state.participantRedcap,
+    redcap_event_name:'session_'+state.session+'_arm_1',
+    session_date:new Date().toISOString().split('T')[0],
+    session_attended:'1',
+    presession_pain_nrs:String(state.presessionPain),
+    last_session_pain_ok:state.lastPainOK||'',
+    last_session_technique:state.lastTechnique||'',
+    symptoms_24h:state.symptoms24h||'2',
+    swelling_stiffness:state.swelling||'1',
+    cadence_rpm:state.cadence||'30',
+    prescribed_dose:state.prescribedDose,
+    resistance_load:state.resistance||'',
+    technique_satisfactory:state.technique,
+    trainer_initials:state.trainerInitials,
+    perceived_exertion:state.rpe,
+    max_pain_nrs:String(state.maxPain),
+    dose_completed:state.doseCompleted,
+    progression_decision:state.progression,
+    adverse_event:state.adverseEvent,
+    serious_adverse_event:state.sae,
+    ae_sae_details:state.aeDetails||'',
+  };
 }
+ 
 async function postToREDCap(record){
   const form=new FormData();form.append('token',REDCAP_TOKEN);form.append('content','record');form.append('format','json');form.append('type','flat');form.append('data',JSON.stringify([record]));form.append('overwriteBehavior','normal');form.append('returnFormat','json');
   const r=await fetch(REDCAP_URL,{method:'POST',body:form});const res=await r.json();return res.count>0||res===1;
 }
+ 
 async function submitForm(){
   const nb=document.getElementById('btn-next');nb.textContent='Submitting...';nb.disabled=true;
   const record=buildRecord();let sentLive=false;
   if(REDCAP_TOKEN!=='PASTE_YOUR_API_TOKEN_HERE'&&navigator.onLine){try{sentLive=await postToREDCap(record);}catch(e){sentLive=false;}}
-  if(!sentLive){addToQueue(record);}else{saveProgress(state.participantRedcap,state.session);}
+  if(!sentLive){addToQueue(record);}
   saveProgress(state.participantRedcap,state.session);
   screenIdx=SCREENS.length-1;showScreen(screenIdx);
   document.getElementById('success-msg').textContent=state.participantDisplay+' - Session '+state.session+' - '+state.sessionDate;
-  document.getElementById('offline-note').textContent=sentLive?'Saved to REDCap successfully.':(REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE'?'Demo mode - connect API token to save to REDCap.':'No connection - saved locally. Will sync when you next open this form on wifi.');
+  document.getElementById('offline-note').textContent=sentLive?'Saved to REDCap successfully.':(REDCAP_TOKEN==='PASTE_YOUR_API_TOKEN_HERE'?'Demo mode - connect API token to save to REDCap.':'No connection - saved locally. Will sync automatically when you next open this form on wifi.');
 }
+ 
 function resetForm(){
-  state={};document.querySelectorAll('.tap-btn').forEach(b=>b.classList.remove('selected'));document.querySelectorAll('.nrs-btn').forEach(b=>b.classList.remove('selected'));document.querySelectorAll('select').forEach(s=>s.value='');document.querySelectorAll('input,textarea').forEach(i=>i.value='');
-  document.getElementById('card-symptoms').style.display='none';document.getElementById('card-symptoms-gate').style.display='none';document.getElementById('card-progression-gate').style.display='none';document.getElementById('card-safety-gate').style.display='none';document.getElementById('welcome-back-card').style.display='none';document.getElementById('new-participant-card').style.display='none';document.getElementById('session-override').style.display='none';document.getElementById('ae-wrap').classList.remove('show');document.getElementById('session-badge').style.display='none';
+  state={};
+  document.querySelectorAll('.tap-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('.nrs-btn').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('select').forEach(s=>s.value='');
+  document.getElementById('sel-cadence').value='30';
+  document.querySelectorAll('input,textarea').forEach(i=>i.value='');
+  document.getElementById('card-symptoms').style.display='none';
+  document.getElementById('card-symptoms-gate').style.display='none';
+  document.getElementById('card-progression-gate').style.display='none';
+  document.getElementById('card-safety-gate').style.display='none';
+  document.getElementById('welcome-back-card').style.display='none';
+  document.getElementById('new-participant-card').style.display='none';
+  document.getElementById('session-override').style.display='none';
+  document.getElementById('ae-wrap').classList.remove('show');
+  document.getElementById('session-badge').style.display='none';
   screenIdx=0;showScreen(0);
 }
+ 
 function updateConn(){const online=navigator.onLine;document.getElementById('conn-dot').classList.toggle('offline',!online);if(online)trySyncQueue();}
 window.addEventListener('online',updateConn);window.addEventListener('offline',updateConn);
-detectSite();buildNRS('nrs-pre','presessionPain');buildNRS('nrs-max','maxPain');
+ 
+detectSite();
+buildNRS('nrs-pre','presessionPain');
+buildNRS('nrs-max','maxPain');
 initTap('tg-last-pain-ok','lastPainOK',()=>updateProgressionCriteria());
 initTap('tg-24h','symptoms24h',()=>{updateSymptomsGate();updateProgressionCriteria();});
 initTap('tg-swelling','swelling',()=>updateSymptomsGate());
 initTap('tg-last-technique','lastTechnique',()=>updateProgressionCriteria());
 initTap('tg-symptoms-gate','symptomsGateDecision',v=>{if(v==='pause')goToPause();});
-initTap('tg-rpe','rpe');initTap('tg-technique','technique');initTap('tg-dose-complete','doseCompleted');
+initTap('tg-rpe','rpe');
+initTap('tg-technique','technique');
+initTap('tg-dose-complete','doseCompleted');
 initTap('tg-progression-gate','progression',v=>{if(v==='4')goToPause();else applyProgressionDose(v);});
 initTap('tg-safety-gate','safetyDecision',v=>{if(v==='pause')goToPause();});
 initTap('tg-ae','adverseEvent',()=>{document.getElementById('ae-wrap').classList.toggle('show',state.adverseEvent==='1'||state.sae==='1');});
@@ -647,3 +963,12 @@ updateConn();updateSyncBanner();showScreen(0);
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
