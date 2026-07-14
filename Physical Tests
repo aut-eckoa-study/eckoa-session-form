@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECKOA · Physical Tests</title>
+<style>
+  :root{
+    --green-dark:#1B5E3B;
+    --green:#006B3F;
+    --green-pale:#EAF4EE;
+    --amber:#F5A623;
+    --amber-pale:#FFF6E6;
+    --red:#C0392B;
+    --red-pale:#FBEAEA;
+    --ink:#1F2B24;
+    --paper:#FFFFFF;
+    --line:#D8E3DC;
+    --grey:#5A6B62;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:var(--green-pale);
+    color:var(--ink);
+    margin:0; padding:0 0 60px;
+    min-height:100vh;
+  }
+  header{
+    background:var(--green-dark);
+    color:#fff;
+    padding:18px 20px 14px;
+    text-align:center;
+  }
+  header h1{margin:0 0 3px;font-size:1.3rem;}
+  header p{margin:0;font-size:0.82rem;opacity:0.88;}
+
+  /* Progress bar */
+  .prog-bar{
+    background:rgba(255,255,255,0.2);
+    height:4px;
+    margin-top:12px;
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .prog-fill{
+    background:#fff;
+    height:100%;
+    border-radius:2px;
+    transition:width 0.3s;
+  }
+  .prog-label{font-size:0.75rem;opacity:0.8;margin-top:4px;}
+
+  .wrap{max-width:500px;margin:0 auto;padding:18px 16px;}
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:16px;
+  }
+  .card h2{
+    color:var(--green-dark);
+    font-size:1.05rem;
+    margin:0 0 14px;
+    padding-bottom:10px;
+    border-bottom:2px solid var(--green);
+  }
+  .card h3{
+    font-size:0.95rem;
+    color:var(--ink);
+    margin:16px 0 8px;
+  }
+
+  label.field-label{
+    display:block;
+    font-weight:600;
+    font-size:0.9rem;
+    margin-bottom:6px;
+  }
+  select, input[type=text], input[type=number]{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-size:0.95rem;
+    font-family:inherit;
+    color:var(--ink);
+    background:#fff;
+  }
+  .field-group{margin-bottom:16px;}
+
+  /* Time-point toggle */
+  .tp-toggle{display:flex;gap:0;border:2px solid var(--green);border-radius:8px;overflow:hidden;margin-bottom:4px;}
+  .tp-toggle button{
+    flex:1;padding:11px;border:none;background:#fff;
+    font-size:0.95rem;font-weight:600;color:var(--green-dark);cursor:pointer;
+    transition:all 0.15s;
+  }
+  .tp-toggle button.active{background:var(--green);color:#fff;}
+
+  /* Info box */
+  .info-box{
+    background:var(--green-pale);
+    border-left:4px solid var(--green);
+    padding:10px 14px;
+    border-radius:4px;
+    font-size:0.87rem;
+    color:var(--green-dark);
+    margin-bottom:14px;
+  }
+  .amber-box{
+    background:var(--amber-pale);
+    border-left:4px solid var(--amber);
+    padding:10px 14px;
+    border-radius:4px;
+    font-size:0.87rem;
+    color:#7a4f00;
+    margin-bottom:14px;
+  }
+
+  /* ---- TIMER / COUNTER ---- */
+  .timer-display{
+    font-size:4rem;
+    font-weight:700;
+    text-align:center;
+    color:var(--green-dark);
+    font-variant-numeric:tabular-nums;
+    margin:10px 0;
+    letter-spacing:0.04em;
+  }
+  .timer-display.warning{color:var(--amber);}
+  .timer-display.done{color:var(--red);}
+
+  .big-btn{
+    display:block;
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:10px;
+    font-size:1.1rem;
+    font-weight:700;
+    cursor:pointer;
+    margin-bottom:10px;
+    transition:all 0.15s;
+  }
+  .big-btn.green{background:var(--green-dark);color:#fff;}
+  .big-btn.green:disabled{background:#9bb3a6;cursor:not-allowed;}
+  .big-btn.amber{background:var(--amber);color:#fff;}
+  .big-btn.red{background:var(--red);color:#fff;}
+  .big-btn.outline{background:#fff;border:2px solid var(--green-dark);color:var(--green-dark);}
+
+  /* Rep counter */
+  .rep-row{display:flex;align-items:center;gap:12px;justify-content:center;margin:12px 0;}
+  .rep-count{
+    font-size:3.5rem;
+    font-weight:700;
+    color:var(--green-dark);
+    min-width:80px;
+    text-align:center;
+  }
+  .rep-btn{
+    width:64px;height:64px;
+    border-radius:50%;
+    border:none;
+    font-size:2rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:all 0.1s;
+  }
+  .rep-btn.plus{background:var(--green);color:#fff;}
+  .rep-btn.minus{background:#e0e8e4;color:var(--green-dark);}
+  .rep-btn:active{transform:scale(0.92);}
+
+  /* Result badge */
+  .result-badge{
+    background:var(--green-pale);
+    border:2px solid var(--green);
+    border-radius:8px;
+    padding:12px 16px;
+    text-align:center;
+    margin:10px 0;
+    font-size:1.1rem;
+    font-weight:700;
+    color:var(--green-dark);
+  }
+  .result-badge span{font-size:0.82rem;font-weight:400;display:block;color:var(--grey);}
+
+  /* Balance stages */
+  .stage-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .stage-row:last-child{border-bottom:none;}
+  .stage-name{flex:1;font-size:0.9rem;font-weight:600;}
+  .stage-time{
+    font-size:1.2rem;
+    font-weight:700;
+    color:var(--green-dark);
+    min-width:55px;
+    text-align:right;
+  }
+  .stage-status{font-size:1.3rem;min-width:26px;text-align:center;}
+
+  /* Nav buttons */
+  .nav-row{display:flex;gap:10px;margin-top:10px;}
+  .nav-row button{flex:1;padding:14px;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;border:none;}
+  .nav-back{background:#e8ede9;color:var(--green-dark);}
+  .nav-next{background:var(--green-dark);color:#fff;}
+  .nav-next:disabled{background:#9bb3a6;cursor:not-allowed;}
+
+  /* Summary table */
+  .summary-table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+  .summary-table td{padding:8px 10px;border-bottom:1px solid var(--line);}
+  .summary-table td:first-child{color:var(--grey);width:55%;}
+  .summary-table td:last-child{font-weight:700;color:var(--green-dark);text-align:right;}
+
+  /* Submit area */
+  #submitMsg{margin-top:10px;font-size:0.9rem;font-weight:600;text-align:center;}
+  .ok{color:var(--green-dark);}
+  .err{color:var(--red);}
+
+  footer{text-align:center;font-size:0.75rem;color:var(--grey);padding:20px 16px 0;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ECKOA · Physical Tests</h1>
+  <p id="headerSub">Chair Stand · 40m Walk · Balance</p>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:20%"></div></div>
+  <div class="prog-label" id="progLabel">Step 1 of 5</div>
+</header>
+
+<div class="wrap">
+
+  <!-- ========== SCREEN 1: SETUP ========== -->
+  <div class="screen active" id="s1">
+    <div class="card">
+      <h2>Participant & Time Point</h2>
+      <div class="field-group">
+        <label class="field-label">Participant</label>
+        <select id="participantSelect">
+          <option value="">Loading participants…</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Time point</label>
+        <div class="tp-toggle">
+          <button id="tpBl" class="active" onclick="setTP('bl')">Baseline</button>
+          <button id="tpFu" onclick="setTP('fu')">Follow-up</button>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="nav-next" id="s1Next" onclick="goTo(2)" disabled>Next: Chair Stand →</button>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN 2: CHAIR STAND ========== -->
+  <div class="screen" id="s2">
+    <div class="card">
+      <h2>30-Second Chair Stand</h2>
+      <div class="info-box">
+        Participant stands from a chair as many times as possible in 30 seconds, arms crossed over chest. Count each full stand. Tap <strong>+</strong> for each rep.
+      </div>
+      <div class="timer-display" id="csTimer">0:30</div>
+      <button class="big-btn green" id="csStartBtn" onclick="csStart()">▶ Start Timer</button>
+      <button class="big-btn red" id="csStopBtn" onclick="csStop()" style="display:none;">■ Stop</button>
+
+      <div class="rep-row">
+        <button class="rep-btn minus" onclick="csAdjust(-1)">−</button>
+        <div class="rep-count" id="csReps">0</div>
+        <button class="rep-btn plus" onclick="csAdjust(1)">+</button>
+      </div>
+      <div style="text-align:center;font-size:0.82rem;color:var(--grey);margin-bottom:8px;">reps</div>
+
+      <div id="csResult" class="result-badge" style="display:none;">
+        <span>Chair Stand Result</span>
+        <span id="csResultVal">—</span>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="nav-back" onclick="goTo(1)">← Back</button>
+      <button class="nav-next" id="s2Next" onclick="goTo(3)">Next: Walk Test →</button>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN 3: WALK TEST ========== -->
+  <div class="screen" id="s3">
+    <div class="card">
+      <h2>40-Metre Walk Test</h2>
+      <div class="info-box">
+        Participant walks 40 m as fast as safely possible. Tap <strong>Start</strong> when they cross the start line, <strong>Stop</strong> when they cross the finish.
+      </div>
+      <div class="timer-display" id="walkTimer">0.00 s</div>
+      <button class="big-btn green" id="walkStartBtn" onclick="walkStart()">▶ Start</button>
+      <button class="big-btn red" id="walkStopBtn" onclick="walkStop()" style="display:none;">■ Stop</button>
+      <button class="big-btn outline" id="walkResetBtn" onclick="walkReset()" style="display:none;">↺ Redo</button>
+
+      <div id="walkResult" style="display:none;">
+        <div class="result-badge">
+          <span>Time</span>
+          <span id="walkResultTime">—</span>
+        </div>
+        <div class="result-badge">
+          <span>Speed (auto-calculated)</span>
+          <span id="walkResultSpeed">—</span>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <label class="field-label" style="font-size:0.82rem;color:var(--grey);">Or enter time manually (seconds):</label>
+        <input type="number" id="walkManual" placeholder="e.g. 28.4" step="0.1" min="0" oninput="walkManualUpdate()">
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="nav-back" onclick="goTo(2)">← Back</button>
+      <button class="nav-next" id="s3Next" onclick="goTo(4)">Next: Balance →</button>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN 4: BALANCE TEST ========== -->
+  <div class="screen" id="s4">
+    <div class="card">
+      <h2>4-Stage Balance Test</h2>
+      <div class="info-box">
+        Time each position up to <strong>10 seconds</strong>. Move to the next stage only if they complete 10 s. Tap <strong>Stop</strong> if they wobble or step out earlier.
+      </div>
+
+      <!-- Active timer panel -->
+      <div id="balActivePanel">
+        <div style="text-align:center;font-size:0.88rem;font-weight:700;color:var(--grey);margin-bottom:4px;" id="balStageName">—</div>
+        <div class="timer-display" id="balTimer">10.0</div>
+        <button class="big-btn green" id="balStartBtn" onclick="balStart()">▶ Start</button>
+        <button class="big-btn red" id="balStopBtn" onclick="balStop()" style="display:none;">■ Stop (wobbled)</button>
+        <div class="amber-box" id="balHint" style="display:none;text-align:center;">10 seconds complete — tap to move to next stage.</div>
+        <button class="big-btn outline" id="balNextBtn" onclick="balNext()" style="display:none;">Next stage →</button>
+      </div>
+
+      <!-- Stage results summary -->
+      <h3 style="margin-top:18px;">Results</h3>
+      <div class="stage-row">
+        <div class="stage-name">1. Feet together</div>
+        <div class="stage-time" id="br1">—</div>
+        <div class="stage-status" id="bs1">⬜</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-name">2. Semi-tandem</div>
+        <div class="stage-time" id="br2">—</div>
+        <div class="stage-status" id="bs2">⬜</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-name">3. Tandem</div>
+        <div class="stage-time" id="br3">—</div>
+        <div class="stage-status" id="bs3">⬜</div>
+      </div>
+      <div class="stage-row">
+        <div class="stage-name">4. Single-leg</div>
+        <div class="stage-time" id="br4">—</div>
+        <div class="stage-status" id="bs4">⬜</div>
+      </div>
+
+      <div id="balHighestRow" style="display:none;margin-top:14px;">
+        <div class="result-badge">
+          <span>Highest stage completed</span>
+          <span id="balHighestLabel">—</span>
+        </div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <button class="nav-back" onclick="goTo(3)">← Back</button>
+      <button class="nav-next" id="s4Next" onclick="goTo(5)" disabled>Next: Submit →</button>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN 5: SUMMARY & SUBMIT ========== -->
+  <div class="screen" id="s5">
+    <div class="card">
+      <h2>Summary</h2>
+      <div class="info-box" id="summaryHeader">—</div>
+      <table class="summary-table">
+        <tr><td>Chair stand reps</td><td id="sumCs">—</td></tr>
+        <tr><td>40m walk time</td><td id="sumWalkTime">—</td></tr>
+        <tr><td>40m walk speed</td><td id="sumWalkSpeed">—</td></tr>
+        <tr><td>Balance: feet together</td><td id="sumB1">—</td></tr>
+        <tr><td>Balance: semi-tandem</td><td id="sumB2">—</td></tr>
+        <tr><td>Balance: tandem</td><td id="sumB3">—</td></tr>
+        <tr><td>Balance: single-leg</td><td id="sumB4">—</td></tr>
+        <tr><td>Highest stage</td><td id="sumBhigh">—</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <button class="big-btn green" id="submitBtn" onclick="submitToRedcap()">Submit to REDCap</button>
+      <div id="submitMsg"></div>
+    </div>
+    <div class="card">
+      <div style="font-size:0.85rem;color:var(--grey);margin-bottom:10px;font-weight:600;">Backup — only if REDCap is unreachable</div>
+      <button class="big-btn outline" onclick="downloadBackup()">⬇ Download .txt backup</button>
+    </div>
+    <div class="nav-row">
+      <button class="nav-back" onclick="goTo(4)">← Back</button>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  ECKOA Feasibility Study · AUTEC Ref: 26/40<br>
+  CI: A/Prof Daniel O'Brien (dobrien@aut.ac.nz) · RO: Stephen Willis (stephen.willis@aut.ac.nz)
+</footer>
+
+<script>
+// ---- REDCap config ----
+const REDCAP_URL   = "https://redcap.aut.ac.nz/api/";
+const REDCAP_TOKEN = "170E226C48A4D1F770A9D68EE772B727";
+
+// ---- State ----
+let timepoint = 'bl'; // 'bl' or 'fu'
+let csReps    = 0;
+let walkTimeSecs = null;
+let balResults   = [null, null, null, null]; // seconds for each stage (null = not attempted)
+let balHighest   = null; // 1-5 (5 = not completed)
+
+// ---- Screen navigation ----
+const progWidths  = ['20%','40%','60%','80%','100%'];
+const progLabels  = ['Step 1 of 5','Step 2 of 5','Step 3 of 5','Step 4 of 5','Step 5 of 5'];
+
+function goTo(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.getElementById('progFill').style.width  = progWidths[n-1];
+  document.getElementById('progLabel').textContent = progLabels[n-1];
+  if(n===5) buildSummary();
+  window.scrollTo(0,0);
+}
+
+// ---- Time point ----
+function setTP(tp){
+  timepoint = tp;
+  document.getElementById('tpBl').classList.toggle('active', tp==='bl');
+  document.getElementById('tpFu').classList.toggle('active', tp==='fu');
+}
+
+// ---- Load participants from REDCap ----
+async function loadParticipants(){
+  const sel = document.getElementById('participantSelect');
+  try{
+    const body = new URLSearchParams({
+      token: REDCAP_TOKEN, content:'record', format:'json', type:'flat',
+      fields:'record_id', events:'baseline_arm_1', rawOrLabel:'raw'
+    });
+    const res = await fetch(REDCAP_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
+    const data = await res.json();
+    if(!Array.isArray(data)) throw new Error(data.error||'Unexpected response');
+    const ids = [...new Set(data.map(r=>r.record_id))].sort();
+    sel.innerHTML = '<option value="">— Select participant —</option>';
+    ids.forEach(id=>{ const o=document.createElement('option'); o.value=id; o.textContent=id; sel.appendChild(o); });
+  } catch(e){
+    sel.innerHTML = '<option value="">Could not load — check connection</option>';
+  }
+  sel.addEventListener('change', ()=>{
+    document.getElementById('s1Next').disabled = !sel.value;
+  });
+}
+loadParticipants();
+
+// ========== CHAIR STAND ==========
+let csInterval = null;
+let csSecsLeft = 30;
+let csRunning  = false;
+
+function csStart(){
+  if(csRunning) return;
+  csRunning = true;
+  csSecsLeft = 30;
+  csReps = 0;
+  document.getElementById('csReps').textContent = '0';
+  document.getElementById('csResult').style.display = 'none';
+  document.getElementById('csStartBtn').style.display = 'none';
+  document.getElementById('csStopBtn').style.display  = 'block';
+  const disp = document.getElementById('csTimer');
+  disp.className = 'timer-display';
+
+  csInterval = setInterval(()=>{
+    csSecsLeft--;
+    const s = csSecsLeft;
+    disp.textContent = '0:' + (s<10?'0':'')+s;
+    if(s<=10) disp.className = 'timer-display warning';
+    if(s<=0){
+      clearInterval(csInterval);
+      csRunning = false;
+      disp.textContent = 'Done!';
+      disp.className = 'timer-display done';
+      csFinish();
+    }
+  }, 1000);
+}
+
+function csStop(){
+  if(!csRunning) return;
+  clearInterval(csInterval);
+  csRunning = false;
+  csFinish();
+}
+
+function csFinish(){
+  document.getElementById('csStartBtn').style.display = 'block';
+  document.getElementById('csStopBtn').style.display  = 'none';
+  const res = document.getElementById('csResult');
+  document.getElementById('csResultVal').textContent = csReps + ' reps';
+  res.style.display = 'block';
+}
+
+function csAdjust(d){
+  csReps = Math.max(0, csReps + d);
+  document.getElementById('csReps').textContent = csReps;
+}
+
+// ========== WALK TEST ==========
+let walkInterval  = null;
+let walkStartTime = null;
+let walkRunning   = false;
+
+function walkStart(){
+  walkStartTime = performance.now();
+  walkRunning   = true;
+  walkTimeSecs  = null;
+  document.getElementById('walkStartBtn').style.display = 'none';
+  document.getElementById('walkStopBtn').style.display  = 'block';
+  document.getElementById('walkResetBtn').style.display = 'none';
+  document.getElementById('walkResult').style.display   = 'none';
+  document.getElementById('walkManual').value = '';
+
+  walkInterval = setInterval(()=>{
+    const t = ((performance.now()-walkStartTime)/1000).toFixed(2);
+    document.getElementById('walkTimer').textContent = t + ' s';
+  }, 50);
+}
+
+function walkStop(){
+  if(!walkRunning) return;
+  clearInterval(walkInterval);
+  walkRunning  = false;
+  walkTimeSecs = (performance.now()-walkStartTime)/1000;
+  showWalkResult(walkTimeSecs);
+  document.getElementById('walkStopBtn').style.display  = 'none';
+  document.getElementById('walkResetBtn').style.display = 'block';
+  document.getElementById('walkStartBtn').style.display = 'block';
+}
+
+function walkReset(){
+  clearInterval(walkInterval);
+  walkRunning  = false;
+  walkTimeSecs = null;
+  document.getElementById('walkTimer').textContent = '0.00 s';
+  document.getElementById('walkStartBtn').style.display = 'block';
+  document.getElementById('walkStopBtn').style.display  = 'none';
+  document.getElementById('walkResetBtn').style.display = 'none';
+  document.getElementById('walkResult').style.display   = 'none';
+  document.getElementById('s3Next').disabled = true;
+}
+
+function showWalkResult(t){
+  const speed = (40/t).toFixed(2);
+  document.getElementById('walkTimer').textContent = t.toFixed(2) + ' s';
+  document.getElementById('walkResultTime').textContent  = t.toFixed(2) + ' s';
+  document.getElementById('walkResultSpeed').textContent = speed + ' m/s';
+  document.getElementById('walkResult').style.display = 'block';
+  document.getElementById('s3Next').disabled = false;
+}
+
+function walkManualUpdate(){
+  const v = parseFloat(document.getElementById('walkManual').value);
+  if(v>0){
+    walkTimeSecs = v;
+    showWalkResult(v);
+    clearInterval(walkInterval);
+    walkRunning = false;
+    document.getElementById('walkStartBtn').style.display = 'block';
+    document.getElementById('walkStopBtn').style.display  = 'none';
+    document.getElementById('walkResetBtn').style.display = 'none';
+  }
+}
+
+// ========== BALANCE TEST ==========
+const balStageNames = ['Feet together','Semi-tandem','Tandem','Single-leg'];
+let balCurrentStage = 0; // 0-based index
+let balInterval     = null;
+let balStartTime    = null;
+let balRunning      = false;
+let balDone         = false;
+
+function balInitStage(){
+  if(balCurrentStage >= 4){
+    balFinishAll();
+    return;
+  }
+  const name = balStageNames[balCurrentStage];
+  document.getElementById('balStageName').textContent = 'Stage '+(balCurrentStage+1)+': '+name;
+  document.getElementById('balTimer').textContent = '10.0';
+  document.getElementById('balTimer').className   = 'timer-display';
+  document.getElementById('balStartBtn').style.display  = 'block';
+  document.getElementById('balStopBtn').style.display   = 'none';
+  document.getElementById('balNextBtn').style.display   = 'none';
+  document.getElementById('balHint').style.display      = 'none';
+}
+
+function balStart(){
+  if(balRunning) return;
+  balRunning  = true;
+  balStartTime = performance.now();
+  document.getElementById('balStartBtn').style.display = 'none';
+  document.getElementById('balStopBtn').style.display  = 'block';
+
+  const disp = document.getElementById('balTimer');
+  balInterval = setInterval(()=>{
+    const elapsed = (performance.now()-balStartTime)/1000;
+    const remaining = Math.max(0, 10-elapsed);
+    disp.textContent = remaining.toFixed(1);
+    if(remaining<=3) disp.className = 'timer-display warning';
+    if(remaining<=0){
+      clearInterval(balInterval);
+      balRunning = false;
+      balResults[balCurrentStage] = 10;
+      updateBalRow(balCurrentStage, 10, true);
+      disp.textContent = '10.0';
+      disp.className   = 'timer-display done';
+      document.getElementById('balStopBtn').style.display = 'none';
+      document.getElementById('balHint').style.display    = 'block';
+      document.getElementById('balNextBtn').style.display = 'block';
+    }
+  }, 50);
+}
+
+function balStop(){
+  if(!balRunning) return;
+  clearInterval(balInterval);
+  balRunning = false;
+  const elapsed = Math.min(10, (performance.now()-balStartTime)/1000);
+  balResults[balCurrentStage] = parseFloat(elapsed.toFixed(1));
+  updateBalRow(balCurrentStage, elapsed, false);
+  document.getElementById('balStopBtn').style.display = 'none';
+  // Stopped early = can't proceed to next stage
+  balFinishAll(balCurrentStage);
+}
+
+function balNext(){
+  balCurrentStage++;
+  balInitStage();
+}
+
+function updateBalRow(idx, secs, completed){
+  document.getElementById('br'+(idx+1)).textContent = secs.toFixed(1)+' s';
+  document.getElementById('bs'+(idx+1)).textContent = completed ? '✅' : '⛔';
+}
+
+function balFinishAll(stoppedAt){
+  clearInterval(balInterval);
+  balRunning = false;
+  balDone    = true;
+
+  // Hide active panel if all 4 done
+  if(stoppedAt === undefined){
+    // All 4 completed
+    balHighest = 4;
+  } else {
+    // Stopped early at stoppedAt (0-based)
+    // Highest completed = all stages before stoppedAt (if stoppedAt=0 and they got <10s, highest=5=not completed)
+    if(stoppedAt === 0 && (balResults[0]===null || balResults[0]<10)){
+      balHighest = 5; // not completed
+    } else {
+      balHighest = stoppedAt; // 1-based: stages 0,1,2,3 → highest completed is stoppedAt (since they stopped at that one)
+    }
+  }
+  if(stoppedAt === undefined) balHighest = 4;
+
+  // Show highest label
+  const highLabels = ['','Feet together','Semi-tandem','Tandem','Single-leg','Not completed'];
+  document.getElementById('balHighestLabel').textContent = highLabels[balHighest];
+  document.getElementById('balHighestRow').style.display = 'block';
+  document.getElementById('balActivePanel').style.display = 'none';
+  document.getElementById('s4Next').disabled = false;
+}
+
+// Show balance panel only when entering screen 4
+function initBalanceScreen(){
+  balCurrentStage = 0;
+  balResults      = [null,null,null,null];
+  balHighest      = null;
+  balDone         = false;
+  clearInterval(balInterval);
+  balRunning = false;
+  document.getElementById('balActivePanel').style.display = 'block';
+  document.getElementById('balHighestRow').style.display  = 'none';
+  document.getElementById('s4Next').disabled = true;
+  ['br1','br2','br3','br4'].forEach(id=>{ document.getElementById(id).textContent='—'; });
+  ['bs1','bs2','bs3','bs4'].forEach(id=>{ document.getElementById(id).textContent='⬜'; });
+  balInitStage();
+}
+
+// Override goTo to init balance when navigating to screen 4
+const _goTo = goTo;
+function goTo(n){
+  if(n===4 && !balDone) initBalanceScreen();
+  _goTo(n);
+}
+
+// ========== SUMMARY ==========
+function buildSummary(){
+  const pid = document.getElementById('participantSelect').value;
+  const tp  = timepoint === 'bl' ? 'Baseline' : 'Follow-up';
+  document.getElementById('summaryHeader').textContent = pid + ' — ' + tp;
+
+  document.getElementById('sumCs').textContent = csReps + ' reps';
+
+  if(walkTimeSecs){
+    document.getElementById('sumWalkTime').textContent  = walkTimeSecs.toFixed(2) + ' s';
+    document.getElementById('sumWalkSpeed').textContent = (40/walkTimeSecs).toFixed(2) + ' m/s';
+  }
+
+  const bLabels = ['—','—','—','—'];
+  balResults.forEach((v,i)=>{ if(v!==null) bLabels[i]=v.toFixed(1)+' s'; });
+  document.getElementById('sumB1').textContent = bLabels[0];
+  document.getElementById('sumB2').textContent = bLabels[1];
+  document.getElementById('sumB3').textContent = bLabels[2];
+  document.getElementById('sumB4').textContent = bLabels[3];
+
+  const highLabels = ['','Feet together (1)','Semi-tandem (2)','Tandem (3)','Single-leg (4)','Not completed (5)'];
+  document.getElementById('sumBhigh').textContent = balHighest ? highLabels[balHighest] : '—';
+}
+
+// ========== SUBMIT TO REDCAP ==========
+async function submitToRedcap(){
+  const pid = document.getElementById('participantSelect').value;
+  if(!pid){ alert('No participant selected.'); return; }
+
+  const sfx   = timepoint;  // 'bl' or 'fu'
+  const event = timepoint==='bl' ? 'baseline_arm_1' : 'postprogramme_arm_1';
+
+  const record = { record_id: pid, redcap_event_name: event };
+  record['chair_stand_reps_'+sfx] = String(csReps);
+  if(walkTimeSecs) record['walk_time_'+sfx] = walkTimeSecs.toFixed(2);
+  if(balResults[0]!==null) record['balance_feet_'+sfx]        = balResults[0].toFixed(1);
+  if(balResults[1]!==null) record['balance_semitandem_'+sfx]  = balResults[1].toFixed(1);
+  if(balResults[2]!==null) record['balance_tandem_'+sfx]      = balResults[2].toFixed(1);
+  if(balResults[3]!==null) record['balance_singleleg_'+sfx]   = balResults[3].toFixed(1);
+  if(balHighest)            record['balance_highest_'+sfx]     = String(balHighest);
+
+  const msg = document.getElementById('submitMsg');
+  const btn = document.getElementById('submitBtn');
+  msg.className=''; msg.textContent='Submitting…';
+  btn.disabled = true;
+
+  try{
+    const body = new URLSearchParams({
+      token: REDCAP_TOKEN, content:'record', format:'json', type:'flat',
+      overwriteBehavior:'overwrite',
+      data: JSON.stringify([record])
+    });
+    const res  = await fetch(REDCAP_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
+    const result = await res.json();
+    if(res.ok && !result.error){
+      msg.className='ok';
+      msg.textContent='✓ Submitted to REDCap successfully.';
+    } else {
+      throw new Error(result.error||JSON.stringify(result));
+    }
+  } catch(e){
+    msg.className='err';
+    msg.textContent='Error: '+e.message;
+    btn.disabled = false;
+  }
+}
+
+// ========== BACKUP DOWNLOAD ==========
+function downloadBackup(){
+  const pid  = document.getElementById('participantSelect').value || '(unknown)';
+  const tp   = timepoint==='bl'?'Baseline':'Follow-up';
+  const now  = new Date().toLocaleString('en-NZ');
+  const high = ['','Feet together','Semi-tandem','Tandem','Single-leg','Not completed'];
+  let txt = `ECKOA Physical Tests Backup\n`;
+  txt += `Generated: ${now}\n\n`;
+  txt += `Participant: ${pid}\nTime point: ${tp}\n\n`;
+  txt += `30-Second Chair Stand\n  Reps: ${csReps}\n\n`;
+  txt += `40-Metre Walk Test\n`;
+  txt += walkTimeSecs ? `  Time: ${walkTimeSecs.toFixed(2)} s\n  Speed: ${(40/walkTimeSecs).toFixed(2)} m/s\n\n` : `  Not recorded\n\n`;
+  txt += `4-Stage Balance\n`;
+  const names=['Feet together','Semi-tandem','Tandem','Single-leg'];
+  balResults.forEach((v,i)=>{ txt+=`  Stage ${i+1} (${names[i]}): ${v!==null?v.toFixed(1)+' s':'not attempted'}\n`; });
+  txt += `  Highest stage completed: ${balHighest?high[balHighest]:'—'}\n`;
+  const blob=new Blob([txt],{type:'text/plain'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`ECKOA_PhysicalTests_${pid}_${tp}_${Date.now()}.txt`;
+  a.click();
+}
+</script>
+</body>
+</html>
