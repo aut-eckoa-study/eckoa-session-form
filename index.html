@@ -824,7 +824,7 @@ function buildRecord(){
     perceived_exertion:state.rpe,
     max_pain_nrs:String(state.maxPain),
     dose_completed:state.doseCompleted,
-    progression_decision:state.progression,
+    progression_decision:(state.progression&&state.progression!=='none')?state.progression:undefined,
     adverse_event:state.adverseEvent,
     serious_adverse_event:state.sae,
     ae_sae_details:state.aeDetails||'',
