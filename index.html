@@ -484,7 +484,11 @@ const PARTICIPANTS = {
     { display:'Prof.', redcap:'P18' },
     { display:'KS', redcap:'P23' },
   ],
-  city: [],
+  city: [
+    { display:'LT', redcap:'P10' },
+    { display:'BP', redcap:'P15' },
+    { display:'TT', redcap:'P28' },
+  ],
   south: [
     { display:'DT', redcap:'P24' },
   ],
@@ -828,7 +832,7 @@ function buildRecord(){
     perceived_exertion:state.rpe,
     max_pain_nrs:String(state.maxPain),
     dose_completed:state.doseCompleted,
-    progression_decision:(state.progression&&state.progression!=='none')?state.progression:undefined,
+    progression_decision:(state.progression&&state.progression!=='none')?state.progression:'',
     adverse_event:state.adverseEvent,
     serious_adverse_event:state.sae,
     ae_sae_details:state.aeDetails||'',
