@@ -809,7 +809,7 @@ function showScreen(idx){
   const nb=document.getElementById('btn-next');nb.style.display='block';nb.disabled=false;
   if(SCREENS[idx]===6)nb.textContent='Submit session';
   else if(SCREENS[idx]===4)nb.textContent='Session finished - Continue';
-  else if(SCREENS[idx]===3)nb.textContent='Session setup complete';
+  else if(SCREENS[idx]===3){nb.textContent='Session setup complete';updatePhaseDisplay();}
   else if(idx===0)nb.textContent='Start';
   else nb.textContent='Continue';
   if(idx===SCREENS.length-1){nb.style.display='none';document.getElementById('btn-back').style.display='none';}
