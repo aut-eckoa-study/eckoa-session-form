@@ -796,7 +796,9 @@ async function trySyncQueue(){
   const q=getQueue();if(!q.length)return;let sent=0;const stillQueued=[];let firstRejectError=null;
   for(const item of q){
     try{
-      const res=await postToREDCap(item.record);
+      const rec=item.record;
+      if(!rec.progression_decision||rec.progression_decision==='none')rec.progression_decision='';
+      const res=await postToREDCap(rec);
       if(res.ok){sent++;}
       else{stillQueued.push(item);if(!firstRejectError)firstRejectError=res.error;}
     }catch(e){stillQueued.push(item);} // network failure - keep in queue, try again later
