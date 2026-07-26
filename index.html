@@ -19,64 +19,64 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
 .logo-text { font-size:20px; font-weight:800; color:var(--white); letter-spacing:-0.5px; }
 .logo-text span { color:#7ECFA0; }
 .header-right { display:flex; align-items:center; gap:8px; }
-.session-badge { background:rgba(255,255,255,0.15); color:var(--white); font-size:13px; font-weight:600; padding:4px 10px; border-radius:20px; display:none; }
+.session-badge { background:rgba(255,255,255,0.15); color:var(--white); font-size:15px; font-weight:600; padding:4px 10px; border-radius:20px; display:none; }
 .conn-dot { width:8px; height:8px; border-radius:50%; background:#7ECFA0; transition:background 0.3s; }
 .conn-dot.offline { background:#E8A020; }
 .progress-track { height:4px; background:rgba(255,255,255,0.2); border-radius:2px; overflow:hidden; }
 .progress-fill { height:100%; background:#7ECFA0; border-radius:2px; transition:width 0.3s ease; width:0%; }
-#sync-banner { background:var(--amber); color:#5D3A00; font-size:13px; font-weight:600; padding:10px 16px; display:none; align-items:center; justify-content:space-between; }
-#sync-banner button { background:rgba(0,0,0,0.12); border:none; border-radius:6px; padding:4px 10px; font-size:12px; font-weight:700; color:#5D3A00; cursor:pointer; }
+#sync-banner { background:var(--amber); color:#5D3A00; font-size:15px; font-weight:600; padding:10px 16px; display:none; align-items:center; justify-content:space-between; }
+#sync-banner button { background:rgba(0,0,0,0.12); border:none; border-radius:6px; padding:4px 10px; font-size:14px; font-weight:700; color:#5D3A00; cursor:pointer; }
 #card-wrap { flex:1; padding:16px 14px 100px; overflow-y:auto; }
 .screen { display:none; }
 .screen.active { display:block; }
 .card { background:var(--white); border-radius:16px; padding:22px 18px; margin-bottom:14px; box-shadow:0 2px 12px rgba(0,0,0,0.08); }
-.screen-label { font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--green-mid); margin-bottom:4px; }
-.screen-title { font-size:22px; font-weight:800; color:var(--text); line-height:1.2; margin-bottom:6px; }
-.screen-sub { font-size:14px; color:var(--muted); line-height:1.5; }
+.screen-label { font-size:13px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--green-mid); margin-bottom:4px; }
+.screen-title { font-size:24px; font-weight:800; color:var(--text); line-height:1.2; margin-bottom:6px; }
+.screen-sub { font-size:16px; color:var(--muted); line-height:1.5; }
 .field { margin-bottom:20px; }
-.field-label { font-size:15px; font-weight:700; color:var(--text); margin-bottom:8px; display:block; }
-.field-hint { font-size:13px; color:var(--muted); margin-bottom:8px; line-height:1.4; }
+.field-label { font-size:17px; font-weight:700; color:var(--text); margin-bottom:8px; display:block; }
+.field-hint { font-size:15px; color:var(--muted); margin-bottom:8px; line-height:1.4; }
 .welcome-back { background:var(--green); color:var(--white); border-radius:12px; padding:16px; margin-bottom:14px; }
-.welcome-back .wb-name { font-size:18px; font-weight:800; margin-bottom:2px; }
-.welcome-back .wb-session { font-size:28px; font-weight:800; margin:8px 0 4px; }
-.welcome-back .wb-phase { font-size:13px; opacity:0.8; margin-bottom:12px; }
-.wb-change { background:rgba(255,255,255,0.15); border:none; border-radius:8px; padding:8px 14px; color:var(--white); font-size:13px; font-weight:600; cursor:pointer; width:100%; text-align:center; }
+.welcome-back .wb-name { font-size:20px; font-weight:800; margin-bottom:2px; }
+.welcome-back .wb-session { font-size:30px; font-weight:800; margin:8px 0 4px; }
+.welcome-back .wb-phase { font-size:15px; opacity:0.8; margin-bottom:12px; }
+.wb-change { background:rgba(255,255,255,0.15); border:none; border-radius:8px; padding:8px 14px; color:var(--white); font-size:15px; font-weight:600; cursor:pointer; width:100%; text-align:center; }
 .phase-banner { background:var(--green); color:var(--white); border-radius:12px; padding:14px 16px; margin-bottom:14px; }
-.phase-banner .phase-label { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.7; margin-bottom:3px; }
-.phase-banner .phase-dose { font-size:22px; font-weight:800; margin-bottom:2px; }
-.phase-banner .phase-detail { font-size:13px; opacity:0.85; line-height:1.5; }
-.callout { background:var(--amber-light); border-left:3px solid var(--amber); border-radius:8px; padding:12px 14px; font-size:13px; color:#5D3A00; line-height:1.5; margin-bottom:14px; }
+.phase-banner .phase-label { font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.7; margin-bottom:3px; }
+.phase-banner .phase-dose { font-size:24px; font-weight:800; margin-bottom:2px; }
+.phase-banner .phase-detail { font-size:15px; opacity:0.85; line-height:1.5; }
+.callout { background:var(--amber-light); border-left:3px solid var(--amber); border-radius:8px; padding:12px 14px; font-size:15px; color:#5D3A00; line-height:1.5; margin-bottom:14px; }
 .callout strong { display:block; margin-bottom:2px; }
 .callout-red { background:var(--red-light); border-color:var(--red); color:#5c0000; }
 .warmup-box { background:var(--green); color:var(--white); border-radius:16px; padding:28px 22px; text-align:center; margin-bottom:14px; }
 .warmup-box .wu-icon { font-size:48px; margin-bottom:12px; }
 .warmup-box .wu-title { font-size:22px; font-weight:800; margin-bottom:8px; }
-.warmup-box .wu-sub { font-size:14px; opacity:0.85; line-height:1.6; }
+.warmup-box .wu-sub { font-size:16px; opacity:0.85; line-height:1.6; }
 .warmup-steps { background:var(--white); border-radius:12px; padding:16px 18px; margin-bottom:14px; }
 .warmup-step { display:flex; gap:14px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--border); }
 .warmup-step:last-child { border-bottom:none; }
 .wu-num { background:var(--green); color:#fff; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; margin-top:1px; }
-.wu-text { font-size:14px; line-height:1.5; color:var(--text); }
-.wu-text strong { display:block; font-size:15px; margin-bottom:2px; }
-select, input[type="text"], input[type="number"], textarea { width:100%; padding:13px 14px; border:2px solid var(--border); border-radius:10px; font-size:16px; color:var(--text); background:var(--white); font-family:inherit; }
+.wu-text { font-size:16px; line-height:1.5; color:var(--text); }
+.wu-text strong { display:block; font-size:17px; margin-bottom:2px; }
+select, input[type="text"], input[type="number"], textarea { width:100%; padding:13px 14px; border:2px solid var(--border); border-radius:10px; font-size:18px; color:var(--text); background:var(--white); font-family:inherit; }
 select { appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B5E3B' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-color:var(--white); padding-right:40px; }
 select:focus, input:focus, textarea:focus { outline:none; border-color:var(--green); }
 textarea { min-height:80px; resize:none; }
 .tap-group { display:flex; flex-direction:column; gap:8px; }
 .tap-group.horiz { flex-direction:row; flex-wrap:wrap; }
-.tap-btn { border:2px solid var(--border); border-radius:10px; padding:12px 16px; font-size:15px; font-weight:600; color:var(--text); background:var(--card-bg); cursor:pointer; text-align:left; transition:all 0.15s; -webkit-tap-highlight-color:transparent; user-select:none; flex:1; }
-.tap-btn .sub { display:block; font-size:12px; font-weight:400; color:var(--muted); margin-top:2px; }
+.tap-btn { border:2px solid var(--border); border-radius:10px; padding:12px 16px; font-size:17px; font-weight:600; color:var(--text); background:var(--card-bg); cursor:pointer; text-align:left; transition:all 0.15s; -webkit-tap-highlight-color:transparent; user-select:none; flex:1; }
+.tap-btn .sub { display:block; font-size:14px; font-weight:400; color:var(--muted); margin-top:2px; }
 .tap-btn.selected { border-color:var(--green); background:var(--green-light); color:var(--green); }
 .tap-btn.selected .sub { color:var(--green-mid); }
 .nrs-grid { display:flex; flex-direction:column; gap:6px; margin-top:8px; }
-.nrs-btn { width:100%; padding:12px 16px; border-radius:10px; border:none; font-size:17px; font-weight:700; cursor:pointer; transition:transform 0.1s; -webkit-tap-highlight-color:transparent; display:flex; align-items:center; gap:12px; text-align:left; }
-.nrs-btn::after { content:attr(data-label); font-size:13px; font-weight:400; opacity:0.85; }
+.nrs-btn { width:100%; padding:12px 16px; border-radius:10px; border:none; font-size:19px; font-weight:700; cursor:pointer; transition:transform 0.1s; -webkit-tap-highlight-color:transparent; display:flex; align-items:center; gap:12px; text-align:left; }
+.nrs-btn::after { content:attr(data-label); font-size:15px; font-weight:400; opacity:0.85; }
 .nrs-btn.selected { box-shadow:0 0 0 3px var(--text),0 0 0 5px white; transform:scale(1.02); z-index:1; position:relative; }
 .trainer-header { background:var(--green); color:var(--white); border-radius:12px; padding:14px 16px; margin-bottom:14px; display:flex; align-items:center; gap:12px; }
 .trainer-icon { width:40px; height:40px; background:rgba(255,255,255,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
-.trainer-header h3 { font-size:16px; font-weight:700; }
-.trainer-header p { font-size:13px; opacity:0.8; margin-top:2px; }
-.sum-row { display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding:7px 0; font-size:14px; }
+.trainer-header h3 { font-size:18px; font-weight:700; }
+.trainer-header p { font-size:15px; opacity:0.8; margin-top:2px; }
+.sum-row { display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding:7px 0; font-size:16px; }
 .sum-row span:first-child { color:var(--muted); }
 .sum-row span:last-child { font-weight:600; text-align:right; max-width:58%; }
 .success-icon { width:72px; height:72px; background:var(--green-light); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:36px; margin:0 auto 16px; }
@@ -84,8 +84,8 @@ textarea { min-height:80px; resize:none; }
 .conditional { display:none; }
 .conditional.show { display:block; }
 #bottom-nav { position:fixed; bottom:0; left:0; right:0; background:var(--white); border-top:1px solid var(--border); padding:12px 16px; display:flex; gap:10px; z-index:20; }
-.btn-back { flex:0 0 80px; padding:14px; border:2px solid var(--border); border-radius:12px; background:var(--white); font-size:15px; font-weight:600; color:var(--muted); cursor:pointer; }
-.btn-next { flex:1; padding:14px; border:none; border-radius:12px; background:var(--green); color:var(--white); font-size:16px; font-weight:700; cursor:pointer; }
+.btn-back { flex:0 0 80px; padding:14px; border:2px solid var(--border); border-radius:12px; background:var(--white); font-size:17px; font-weight:600; color:var(--muted); cursor:pointer; }
+.btn-next { flex:1; padding:14px; border:none; border-radius:12px; background:var(--green); color:var(--white); font-size:18px; font-weight:700; cursor:pointer; }
 .btn-next:disabled { background:var(--border); color:var(--muted); cursor:default; }
 </style>
 </head>
@@ -185,6 +185,10 @@ textarea { min-height:80px; resize:none; }
           <button class="tap-btn" data-val="pause">Not proceeding today<span class="sub">Log this as a paused / rested session</span></button>
         </div>
       </div>
+      <div class="field" id="safety-gate-comments" style="display:none;">
+        <label class="field-label">Trainer comments (optional)</label>
+        <textarea id="inp-safety-comments" placeholder="e.g. Reason for proceeding, observations, plan..."></textarea>
+      </div>
     </div>
     <div class="card" id="card-symptoms" style="display:none">
       <div class="field">
@@ -228,6 +232,10 @@ textarea { min-height:80px; resize:none; }
           <button class="tap-btn" data-val="pause">Not proceeding today<span class="sub">Log this as a paused / rested session</span></button>
         </div>
       </div>
+      <div class="field" id="symptoms-gate-comments" style="display:none;">
+        <label class="field-label">Trainer comments (optional)</label>
+        <textarea id="inp-symptoms-comments" placeholder="e.g. Reason for proceeding, observations, plan..."></textarea>
+      </div>
     </div>
     <div class="card" id="card-progression-gate" style="display:none">
       <div style="background:#FFF3CD;border-left:4px solid #F0A500;padding:12px 14px;border-radius:8px;margin-bottom:16px">
@@ -263,11 +271,18 @@ textarea { min-height:80px; resize:none; }
     <div class="warmup-box">
       <div class="wu-icon">&#128692;</div>
       <div class="wu-title" style="font-size:28px;line-height:1.3;">1 Minute Warm-Up</div>
-      <div style="font-size:20px;font-weight:700;margin:12px 0 6px;color:#7ECFA0;">NO RESISTANCE</div>
-      <div class="wu-sub" style="font-size:15px;">Pedal backwards at a comfortable pace with resistance set to zero.</div>
+      <div style="font-size:20px;font-weight:700;margin:12px 0 0;color:#7ECFA0;">DO NOT RESIST THE PEDALS</div>
+      <div style="margin-top:12px;font-size:16px;line-height:1.6;color:rgba(255,255,255,0.95);">Let the pedals guide your legs backwards at a steady pace — relax and don't push back.</div>
+      <div style="margin-top:16px;text-align:left;font-size:15px;line-height:1.8;color:rgba(255,255,255,0.95);">
+        &#9679; <strong>Foot arch centred</strong> on the pedal<br>
+        &#9679; <strong>Knee slightly bent</strong> throughout the full pedal cycle
+      </div>
     </div>
     <div class="callout" style="text-align:center;">
-      <strong>&#9888; Stop immediately</strong> if you experience any sharp pain, chest discomfort, dizziness, or anything unusual — inform your trainer straight away.
+      <strong>Ready to continue?</strong><br>
+      If you're confident using the cycle and the app, tap Next to begin.<br><br>
+      <strong>Any questions, doubts, or unsure about anything?</strong><br>
+      Please ask your trainer before continuing — they're here to help.
     </div>
   </div>
 
@@ -275,10 +290,19 @@ textarea { min-height:80px; resize:none; }
   <div class="screen" id="screen-3">
     <div class="trainer-header">
       <div class="trainer-icon">&#127947;</div>
-      <div><h3>Trainer section</h3><p>Complete all fields below, then the participant continues independently.</p></div>
+      <div><h3>Session Setup</h3><p>Review the standard prescription below.</p></div>
+    </div>
+    <div class="phase-banner" id="session-prescription-banner">
+      <div class="phase-label">Standard prescription</div>
+      <div class="phase-dose" id="prescription-summary"></div>
+      <div id="prescription-detail" style="font-size:15px;opacity:0.95;line-height:1.9;margin-top:6px;"></div>
+    </div>
+    <div class="callout">
+      <strong>Need to adjust?</strong>
+      The standard settings are pre-loaded below. Change any of them if you or your trainer have a different prescription for today.
     </div>
     <div class="card">
-      <div class="screen-label">Session setup</div>
+      <div class="screen-label">Session settings</div>
       <div class="field">
         <label class="field-label">Cadence (rpm)</label>
         <select id="sel-cadence">
@@ -309,7 +333,7 @@ textarea { min-height:80px; resize:none; }
       </div>
     </div>
     <div class="card">
-      <div class="screen-label">Technique (based on warm-up)</div>
+      <div class="screen-label">Technique</div>
       <div class="field">
         <label class="field-label">Technique satisfactory?</label>
         <div class="tap-group horiz" id="tg-technique">
@@ -321,7 +345,7 @@ textarea { min-height:80px; resize:none; }
     </div>
     <div class="card">
       <div class="field">
-        <label class="field-label">Trainer initials</label>
+        <label class="field-label">Trainer or your initials</label>
         <input type="text" id="inp-initials" placeholder="e.g. JB" maxlength="5" style="text-transform:uppercase">
       </div>
     </div>
@@ -332,7 +356,7 @@ textarea { min-height:80px; resize:none; }
     <div class="phase-banner">
       <div class="phase-label">Today's prescribed dose</div>
       <div class="phase-dose" id="phase-dose-text"></div>
-      <div class="phase-detail" id="phase-detail-text"></div>
+      <div id="phase-detail-text" style="font-size:16px;opacity:0.95;line-height:2;margin-top:8px;"></div>
     </div>
     <div class="callout">
       <strong>Safety reminder</strong>
@@ -340,8 +364,8 @@ textarea { min-height:80px; resize:none; }
     </div>
     <div class="card">
       <div class="screen-label">Ready to ride</div>
-      <div class="screen-title">Your session is starting</div>
-      <div class="screen-sub">Your trainer has set the bike. When your session is <strong>finished</strong>, tap Continue to complete your post-session questions.</div>
+      <div class="screen-title">Start your session now</div>
+      <div class="screen-sub">After you have completed your sets, tap <strong>Continue</strong> to answer your post-session questions.</div>
     </div>
   </div>
 
@@ -356,8 +380,8 @@ textarea { min-height:80px; resize:none; }
         <label class="field-label">How hard did the session feel overall?</label>
         <div class="tap-group" id="tg-rpe">
           <button class="tap-btn" data-val="1">Light<span class="sub">Easy, could have done much more</span></button>
-          <button class="tap-btn" data-val="2">Somewhat hard<span class="sub">Noticeable effort, manageable</span></button>
-          <button class="tap-btn" data-val="3">Moderate<span class="sub">Challenging but sustainable</span></button>
+          <button class="tap-btn" data-val="3">Moderate<span class="sub">Noticeable effort, manageable</span></button>
+          <button class="tap-btn" data-val="2">Somewhat hard<span class="sub">Challenging but sustainable</span></button>
           <button class="tap-btn" data-val="4">Hard<span class="sub">Near your limit</span></button>
         </div>
       </div>
@@ -484,22 +508,22 @@ const REDCAP_URL   = 'https://redcap.aut.ac.nz/api/';
 const REDCAP_TOKEN = '170E226C48A4D1F770A9D68EE772B727';
 
 const PHASES = {
-  1:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
-  2:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
-  3:{w:2,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
-  4:{w:2,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1},
-  5:{w:3,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2},
-  6:{w:3,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2},
-  7:{w:4,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2},
-  8:{w:4,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2},
-  9:{w:5,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3},
-  10:{w:5,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3},
-  11:{w:6,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3},
-  12:{w:6,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3},
-  13:{w:7,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4},
-  14:{w:7,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4},
-  15:{w:8,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4},
-  16:{w:8,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4},
+  1:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1,intensity:'Light (30%)',phase:'Early'},
+  2:{w:1,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1,intensity:'Light (30%)',phase:'Early'},
+  3:{w:2,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1,intensity:'Light (30%)',phase:'Early'},
+  4:{w:2,p:1,dose:'3 x 1 min',detail:'3 bouts - 1 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:1,intensity:'Light (30%)',phase:'Early'},
+  5:{w:3,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2,intensity:'Moderate (40% – 50%)',phase:'Middle'},
+  6:{w:3,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2,intensity:'Moderate (40% – 50%)',phase:'Middle'},
+  7:{w:4,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2,intensity:'Moderate (40% – 50%)',phase:'Middle'},
+  8:{w:4,p:2,dose:'3 x 90 sec',detail:'3 bouts - 90 sec each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:2,intensity:'Moderate (40% – 50%)',phase:'Middle'},
+  9:{w:5,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3,intensity:'Somewhat hard (50% – 60%)',phase:'Late'},
+  10:{w:5,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3,intensity:'Somewhat hard (50% – 60%)',phase:'Late'},
+  11:{w:6,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3,intensity:'Somewhat hard (50% – 60%)',phase:'Late'},
+  12:{w:6,p:3,dose:'3 x 120 sec',detail:'3 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:3,intensity:'Somewhat hard (50% – 60%)',phase:'Late'},
+  13:{w:7,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4,intensity:'Somewhat hard (50% – 60%)',phase:'Late'},
+  14:{w:7,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4,intensity:'Somewhat hard (50% – 60%)',phase:'Late'},
+  15:{w:8,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4,intensity:'Somewhat hard (50% – 60%)',phase:'Late'},
+  16:{w:8,p:4,dose:'4 x 120 sec',detail:'4 bouts - 2 min each - 30-60 sec rest - 20-30 rpm - pain 3/10 or less',rc:4,intensity:'Somewhat hard (50% – 60%)',phase:'Late'},
 };
 const NRS_COLORS=['#4CAF50','#66BB6A','#9CCC65','#D4E157','#FFEE58','#FFA726','#FF7043','#EF5350','#E53935','#C62828','#8B0000'];
 const NRS_LABELS=['No pain at all','Very mild','Mild','Mild-moderate','Moderate','Moderate','Moderate-severe','Severe','Very severe','Nearly worst possible','Worst imaginable'];
@@ -592,10 +616,28 @@ function updatePhaseDisplay(){
   const s=state.session;if(!s)return;
   const ph=PHASES[s];
   document.getElementById('phase-dose-text').textContent=ph.dose;
-  document.getElementById('phase-detail-text').textContent=ph.detail;
-  const doseVal=document.getElementById('sel-dose').value;
-  if(doseVal)state.prescribedDose=doseVal;
-  else{document.getElementById('sel-dose').value=String(ph.rc);state.prescribedDose=String(ph.rc);}
+  // Build clear bullet-point detail for screen 4
+  const bouts=ph.dose.split(' x ');
+  const numBouts=bouts[0];
+  const boutLen=bouts[1]||'';
+  const detailEl=document.getElementById('phase-detail-text');
+  detailEl.innerHTML=
+    '&#9679; '+numBouts+' bouts of '+boutLen+' at <strong>'+ph.intensity+'</strong><br>'+
+    '&#9679; 30–60 sec rest between bouts<br>'+
+    '&#9679; 20–30 rpm &middot; pain 3/10 or less';
+  // Auto-select dose from session phase
+  document.getElementById('sel-dose').value=String(ph.rc);state.prescribedDose=String(ph.rc);
+  // Auto-select resistance from intensity phase
+  const INTENSITY_TO_RESISTANCE={'Early':'Light','Middle':'Moderate','Late':'Somewhat hard'};
+  const stdResistance=INTENSITY_TO_RESISTANCE[ph.phase]||'';
+  document.getElementById('sel-resistance').value=stdResistance;
+  // Build prescription summary for screen 3
+  const sessInWeek=s%2===1?1:2;
+  document.getElementById('prescription-summary').textContent='Week '+ph.w+', Session '+sessInWeek+' (Session '+s+' overall)';
+  document.getElementById('prescription-detail').innerHTML=
+    '&#9679; <strong>30 RPM</strong> cadence<br>'+
+    '&#9679; <strong>'+ph.dose+'</strong> ('+numBouts+' bouts of '+boutLen+')<br>'+
+    '&#9679; <strong>'+ph.intensity+'</strong> intensity';
 }
 
 function validate(screenN){
@@ -608,9 +650,9 @@ function validate(screenN){
   if(screenN===1){
     if(state.presessionPain===undefined){alert('Please rate your pre-session pain.');return false;}
     if(state.session>1){
-      if(!state.lastPainOK){alert('Please answer the last session pain question.');return false;}
-      if(!state.symptoms24h){alert('Please answer the 24-hour recovery question.');return false;}
-      if(!state.swelling){alert('Please rate swelling/stiffness.');return false;}
+      if(!state.lastPainOK){alert('Please scroll down and answer the last session pain question.');return false;}
+      if(!state.symptoms24h){alert('Please scroll down and answer the 24-hour recovery question.');return false;}
+      if(!state.swelling){alert('Please scroll down and rate swelling/stiffness.');return false;}
     } else {state.symptoms24h='2';state.swelling='1';}
     if(state.presessionPain>=5){
       if(!state.safetyDecision){alert('Trainer: please select a decision in the red safety section above.');return false;}
@@ -755,7 +797,7 @@ function showScreen(idx){
   const nb=document.getElementById('btn-next');nb.style.display='block';nb.disabled=false;
   if(SCREENS[idx]===6)nb.textContent='Submit session';
   else if(SCREENS[idx]===4)nb.textContent='Session finished - Continue';
-  else if(SCREENS[idx]===3)nb.textContent='Session setup complete - hand phone to participant';
+  else if(SCREENS[idx]===3)nb.textContent='Session setup complete';
   else if(idx===0)nb.textContent='Start';
   else nb.textContent='Continue';
   if(idx===SCREENS.length-1){nb.style.display='none';document.getElementById('btn-back').style.display='none';}
@@ -824,6 +866,7 @@ function buildRecord(){
     adverse_event:state.adverseEvent,
     serious_adverse_event:state.sae,
     ae_sae_details:state.aeDetails||'',
+    modification_details:state.trainerComments||'',
   };
 }
 
@@ -894,15 +937,17 @@ initTap('tg-last-pain-ok','lastPainOK',()=>updateProgressionCriteria());
 initTap('tg-24h','symptoms24h',()=>{updateSymptomsGate();updateProgressionCriteria();});
 initTap('tg-swelling','swelling',()=>updateSymptomsGate());
 initTap('tg-last-technique','lastTechnique',()=>updateProgressionCriteria());
-initTap('tg-symptoms-gate','symptomsGateDecision',v=>{if(v==='pause')goToPause();});
+initTap('tg-symptoms-gate','symptomsGateDecision',v=>{if(v==='pause')goToPause();document.getElementById('symptoms-gate-comments').style.display=v==='proceed'?'block':'none';if(v==='proceed')state.trainerComments=document.getElementById('inp-symptoms-comments').value;});
 initTap('tg-rpe','rpe');
 initTap('tg-technique','technique');
 initTap('tg-dose-complete','doseCompleted');
 initTap('tg-progression-gate','progression',v=>{if(v==='4')goToPause();else applyProgressionDose(v);});
-initTap('tg-safety-gate','safetyDecision',v=>{if(v==='pause')goToPause();});
+initTap('tg-safety-gate','safetyDecision',v=>{if(v==='pause')goToPause();document.getElementById('safety-gate-comments').style.display=v==='proceed'?'block':'none';if(v==='proceed')state.trainerComments=document.getElementById('inp-safety-comments').value;});
 initTap('tg-ae','adverseEvent',()=>{document.getElementById('ae-wrap').classList.toggle('show',state.adverseEvent==='1'||state.sae==='1');});
 initTap('tg-sae','sae',()=>{document.getElementById('ae-wrap').classList.toggle('show',state.adverseEvent==='1'||state.sae==='1');});
 document.getElementById('inp-initials').addEventListener('input',function(){this.value=this.value.toUpperCase();});
+document.getElementById('inp-safety-comments').addEventListener('input',function(){state.trainerComments=this.value;});
+document.getElementById('inp-symptoms-comments').addEventListener('input',function(){state.trainerComments=this.value;});
 updateConn();updateSyncBanner();showScreen(0);
 </script>
 </body>
