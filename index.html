@@ -580,10 +580,11 @@ function onParticipantSelect(){
     document.getElementById('new-participant-card').style.display='block';
     state.session=null;
   }
+  updatePresessionCards();
 }
 function showSessionOverride(){const el=document.getElementById('session-override');el.style.display=el.style.display==='none'?'block':'none';}
-function onSessionOverride(){const v=parseInt(document.getElementById('sel-session-override').value);if(!v)return;state.session=v;const ph=PHASES[v];document.getElementById('wb-session').textContent='Session '+v;document.getElementById('wb-phase').textContent='Phase '+ph.p+' - Week '+ph.w+' - '+ph.dose;document.getElementById('session-badge').textContent='Session '+v;}
-function onNewSessionSelect(){const v=parseInt(document.getElementById('sel-session-new').value);state.session=v||null;if(v){document.getElementById('session-badge').textContent='Session '+v;document.getElementById('session-badge').style.display='block';}}
+function onSessionOverride(){const v=parseInt(document.getElementById('sel-session-override').value);if(!v)return;state.session=v;const ph=PHASES[v];document.getElementById('wb-session').textContent='Session '+v;document.getElementById('wb-phase').textContent='Phase '+ph.p+' - Week '+ph.w+' - '+ph.dose;document.getElementById('session-badge').textContent='Session '+v;updatePresessionCards();}
+function onNewSessionSelect(){const v=parseInt(document.getElementById('sel-session-new').value);state.session=v||null;if(v){document.getElementById('session-badge').textContent='Session '+v;document.getElementById('session-badge').style.display='block';}updatePresessionCards();}
 
 function buildNRS(id,key){
   const el=document.getElementById(id);
@@ -592,15 +593,26 @@ function buildNRS(id,key){
     b.onclick=()=>{
       el.querySelectorAll('.nrs-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');state[key]=i;
       if(key==='presessionPain'){
-        if(state.session>1)document.getElementById('card-symptoms').style.display='block';
-        const gateEl=document.getElementById('card-progression-gate');const safetyEl=document.getElementById('card-safety-gate');
-        if(i>=5){safetyEl.style.display='block';gateEl.style.display='none';state.progression=null;state.safetyDecision=null;}
-        else if(i>=3&&state.session>1){gateEl.style.display='block';safetyEl.style.display='none';state.safetyDecision=null;}
-        else{gateEl.style.display='none';safetyEl.style.display='none';state.progression='none';state.safetyDecision=null;}
+        updatePresessionCards();
       }
     };
     el.appendChild(b);
   }
+}
+
+function updatePresessionCards(){
+  // Show/hide symptom questions based on session and pain
+  if(state.session>1 && state.presessionPain!==undefined){
+    document.getElementById('card-symptoms').style.display='block';
+  }
+  // Show/hide safety and progression gates based on pain level
+  const gateEl=document.getElementById('card-progression-gate');
+  const safetyEl=document.getElementById('card-safety-gate');
+  if(state.presessionPain===undefined){return;}
+  const i=state.presessionPain;
+  if(i>=5){safetyEl.style.display='block';gateEl.style.display='none';state.progression=null;state.safetyDecision=null;}
+  else if(i>=3&&state.session>1){gateEl.style.display='block';safetyEl.style.display='none';state.safetyDecision=null;}
+  else{gateEl.style.display='none';safetyEl.style.display='none';state.progression='none';state.safetyDecision=null;}
 }
 
 function initTap(groupId,key,cb){
